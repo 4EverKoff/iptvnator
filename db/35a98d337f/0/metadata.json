@@ -1,0 +1,32 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "db35a98d337f",
+  "session_id": "546d90a2-1403-4daa-9eb6-b46af8983d86",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-11T08:38:59.302285Z",
+  "branch": "master",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "libs/ui/components/src/lib/channel-list-container/channel-details-dialog/channel-details-dialog.component.html",
+    "libs/ui/components/src/lib/channel-list-container/channel-details-dialog/channel-details-dialog.component.scss",
+    "libs/ui/components/src/lib/channel-list-container/channel-details-dialog/channel-details-dialog.component.spec.ts",
+    "libs/ui/components/src/lib/channel-list-container/channel-details-dialog/channel-details-dialog.component.ts"
+  ],
+  "agent": "Claude Code",
+  "token_usage": {
+    "input_tokens": 3002,
+    "cache_creation_tokens": 78144,
+    "cache_read_tokens": 1621794,
+    "output_tokens": 13432,
+    "api_call_count": 27
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-11T08:38:59.261839Z",
+    "agent_lines": 0,
+    "human_added": 3579,
+    "human_modified": 1140,
+    "human_removed": 0,
+    "total_committed": 4240,
+    "agent_percentage": 0
+  }
+}

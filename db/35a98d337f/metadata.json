@@ -1,0 +1,29 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "db35a98d337f",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "libs/ui/components/src/lib/channel-list-container/channel-details-dialog/channel-details-dialog.component.html",
+    "libs/ui/components/src/lib/channel-list-container/channel-details-dialog/channel-details-dialog.component.scss",
+    "libs/ui/components/src/lib/channel-list-container/channel-details-dialog/channel-details-dialog.component.spec.ts",
+    "libs/ui/components/src/lib/channel-list-container/channel-details-dialog/channel-details-dialog.component.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/db/35a98d337f/0/metadata.json",
+      "transcript": "/db/35a98d337f/0/full.jsonl",
+      "context": "/db/35a98d337f/0/context.md",
+      "content_hash": "/db/35a98d337f/0/content_hash.txt",
+      "prompt": "/db/35a98d337f/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 3002,
+    "cache_creation_tokens": 78144,
+    "cache_read_tokens": 1621794,
+    "output_tokens": 13432,
+    "api_call_count": 27
+  }
+}
