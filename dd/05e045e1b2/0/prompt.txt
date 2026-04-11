@@ -1,0 +1,93 @@
+for m3u playlist the app also supports radio playlist and there is a special layout for that, there is @libs/ui/playback/src/lib/audio-player/audio-player.component.ts component for that. in this case when radio channel is playing we don't need to show epg panel in the layout. also there are some ui elements for radio player are missing, what do you think should be added to audio-player component to provide good radio player functionallity? also think about good design in consisten style of iptvnator. use angular skills, electron skill and frontend-design skill. use plan mode to think about it and create a nice layout. make sure that when radio player is active it always just uses default player, and not considering external player settings, because there is no need for that. use agent-brrowser cli to check the implementation afterwards
+
+---
+
+<task-notification>
+<task-id>bei3hdvin</task-id>
+<tool-use-id>REDACTED</tool-use-id>
+<output-file>REDACTED.output</output-file>
+<status>completed</status>
+<summary>Background command "Start Electron app for CDP inspection" completed (exit code 0)</summary>
+</task-notification>
+
+---
+
+<task-notification>
+<task-id>b2x601f9f</task-id>
+<tool-use-id>REDACTED</tool-use-id>
+<output-file>REDACTED.output</output-file>
+<status>completed</status>
+<summary>Background command "Start Angular frontend dev server" completed (exit code 0)</summary>
+</task-notification>
+
+---
+
+can oyu improve the layout and design of the player, the time is also not needed. use /frontend-design for very nice user interface of radio player and usability, use good typography, make sure that also volume keyboard hotkeys can control the volume and maps the current volume level to the volume bar in UI
+
+---
+
+Base directory for this skill: /Users/4gray/.claude/plugins/marketplaces/anthropic-agent-skills/skills/frontend-design
+
+This skill guides creation of distinctive, production-grade frontend interfaces that avoid generic "AI slop" aesthetics. Implement real working code with exceptional attention to aesthetic details and creative choices.
+
+The user provides frontend requirements: a component, page, application, or interface to build. They may include context about the purpose, audience, or technical constraints.
+
+## Design Thinking
+
+Before coding, understand the context and commit to a BOLD aesthetic direction:
+- **Purpose**: What problem does this interface solve? Who uses it?
+- **Tone**: Pick an extreme: brutally minimal, maximalist chaos, retro-futuristic, organic/natural, luxury/refined, playful/toy-like, editorial/magazine, brutalist/raw, art deco/geometric, soft/pastel, industrial/utilitarian, etc. There are so many flavors to choose from. Use these for inspiration but design one that is true to the aesthetic direction.
+- **Constraints**: Technical requirements (framework, performance, accessibility).
+- **Differentiation**: What makes this UNFORGETTABLE? What's the one thing someone will remember?
+
+**CRITICAL**: Choose a clear conceptual direction and execute it with precision. Bold maximalism and refined minimalism both work - the key is intentionality, not intensity.
+
+Then implement working code (HTML/CSS/JS, React, Vue, etc.) that is:
+- Production-grade and functional
+- Visually striking and memorable
+- Cohesive with a clear aesthetic point-of-view
+- Meticulously refined in every detail
+
+## Frontend Aesthetics Guidelines
+
+Focus on:
+- **Typography**: Choose fonts that are beautiful, unique, and interesting. Avoid generic fonts like Arial and Inter; opt instead for distinctive choices that elevate the frontend's aesthetics; unexpected, characterful font choices. Pair a distinctive display font with a refined body font.
+- **Color & Theme**: Commit to a cohesive aesthetic. Use CSS variables for consistency. Dominant colors with sharp accents outperform timid, evenly-distributed palettes.
+- **Motion**: Use animations for effects and micro-interactions. Prioritize CSS-only solutions for HTML. Use Motion library for React when available. Focus on high-impact moments: one well-orchestrated page load with staggered reveals (animation-delay) creates more delight than scattered micro-interactions. Use scroll-triggering and hover states that surprise.
+- **Spatial Composition**: Unexpected layouts. Asymmetry. Overlap. Diagonal flow. Grid-breaking elements. Generous negative space OR controlled density.
+- **Backgrounds & Visual Details**: Create atmosphere and depth rather than defaulting to solid colors. Add contextual effects and textures that match the overall aesthetic. Apply creative forms like gradient meshes, noise textures, geometric patterns, layered transparencies, dramatic shadows, decorative borders, custom cursors, and grain overlays.
+
+NEVER use generic AI-generated aesthetics like overused font families (Inter, Roboto, Arial, system fonts), cliched color schemes (particularly purple gradients on white backgrounds), predictable layouts and component patterns, and cookie-cutter design that lacks context-specific character.
+
+Interpret creatively and make unexpected choices that feel genuinely designed for the context. No design should be the same. Vary between light and dark themes, different fonts, different aesthetics. NEVER converge on common choices (Space Grotesk, for example) across generations.
+
+**IMPORTANT**: Match implementation complexity to the aesthetic vision. Maximalist designs need elaborate code with extensive animations and effects. Minimalist or refined designs need restraint, precision, and careful attention to spacing, typography, and subtle details. Elegance comes from executing the vision well.
+
+Remember: Claude is capable of extraordinary creative work. Don't hold back, show what can truly be created when thinking outside the box and committing fully to a distinctive vision.
+
+
+ARGUMENTS: Redesign the radio/audio player component for IPTVnator - a cross-platform IPTV player app. The component is at libs/ui/playback/src/lib/audio-player/audio-player.component.ts and .scss. Current state: centered layout with 300px logo, channel name, elapsed time (to be removed), play/pause/prev/next controls, animated playing bars, volume slider with mute. Design system uses Material 3 with custom CSS vars: --app-selection-color for accents, --mat-sys-surface/on-surface for backgrounds/text, --mat-sys-surface-container for card surfaces. Font: DM Sans. Border radius: 14px for cards. The player should feel polished, modern, and consistent with a streaming app aesthetic. Volume must be controllable via keyboard (ArrowUp/ArrowDown). Remove the elapsed time counter. Focus on great typography, spacing, and visual hierarchy.
+
+---
+
+[Image #1] the layout is still not perfectly aligned, see screenshot. can we make more in style of @libs/ui/playback/src/lib/vod-details/  and @libs/ui/components/src/lib/content-hero/content-hero.component.html maybe with blurry backdrop image and centered layout. also maybe the animation could a bit better than now in the icon, maybe some other kind of animation, but it should not create hight cpu load. we have lot of free space which would be cool to somehow design in cool way for radio layout
+
+---
+
+[Image: source: /Users/4gray/.claude/image-cache/724f6ca6-33e2-4d82-9eb3-250c77cf26c9/1.png]
+
+---
+
+i think the radio feature is not documented at all or? please check it and add it to readme but also to instructions like agents.md and claude.md
+
+---
+
+can you make the shadow behind the channel logo as pulsing animation
+
+---
+
+can you also adapt the color of the play/pause button based on the background/logo so that it's fitting by color palette? or is it too much effort?
+
+---
+
+the form of logo has sometimes different form, but right now we are restricting it to a square, can we keep the original form somehow, but so that it still looks amazing?

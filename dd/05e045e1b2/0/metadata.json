@@ -1,0 +1,36 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "dd05e045e1b2",
+  "session_id": "724f6ca6-33e2-4d82-9eb3-250c77cf26c9",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-11T06:13:46.649993Z",
+  "branch": "master",
+  "checkpoints_count": 7,
+  "files_touched": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "README.md",
+    "libs/playlist/m3u/feature-player/src/lib/video-player/video-player.component.html",
+    "libs/playlist/m3u/feature-player/src/lib/video-player/video-player.component.scss",
+    "libs/ui/playback/src/lib/audio-player/audio-player.component.scss",
+    "libs/ui/playback/src/lib/audio-player/audio-player.component.ts",
+    "libs/ui/playback/src/lib/audio-player/extract-color.ts"
+  ],
+  "agent": "Claude Code",
+  "token_usage": {
+    "input_tokens": 202,
+    "cache_creation_tokens": 511723,
+    "cache_read_tokens": 19184764,
+    "output_tokens": 48485,
+    "api_call_count": 172
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-11T06:13:46.486981Z",
+    "agent_lines": 525,
+    "human_added": 5589,
+    "human_modified": 84,
+    "human_removed": 0,
+    "total_committed": 6198,
+    "agent_percentage": 8.470474346563407
+  }
+}
