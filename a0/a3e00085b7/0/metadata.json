@@ -1,0 +1,35 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "a0a3e00085b7",
+  "session_id": "02eb8642-e65b-4dc2-8f25-0f1de6a24d36",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-12T17:27:58.007822Z",
+  "branch": "master",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "libs/playlist/shared/ui/src/lib/playlist-switcher/playlist-switcher.component.html",
+    "libs/playlist/shared/ui/src/lib/playlist-switcher/playlist-switcher.component.scss",
+    "libs/playlist/shared/ui/src/lib/playlist-switcher/playlist-switcher.component.ts",
+    "libs/workspace/shell/feature/src/lib/workspace-shell/components/workspace-shell-header/workspace-shell-header.component.html",
+    "libs/workspace/shell/feature/src/lib/workspace-shell/components/workspace-shell-header/workspace-shell-header.component.scss",
+    "libs/workspace/shell/feature/src/lib/workspace-shell/components/workspace-shell-header/workspace-shell-header.component.ts"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "2167e8b2-aa18-41cc-ac06-b2453a76af76",
+  "token_usage": {
+    "input_tokens": 128,
+    "cache_creation_tokens": 305550,
+    "cache_read_tokens": 10220090,
+    "output_tokens": 44043,
+    "api_call_count": 102
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-12T17:27:57.92501Z",
+    "agent_lines": 0,
+    "human_added": 2365,
+    "human_modified": 344,
+    "human_removed": 0,
+    "total_committed": 2680,
+    "agent_percentage": 0
+  }
+}
