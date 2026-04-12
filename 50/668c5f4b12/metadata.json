@@ -1,0 +1,31 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "50668c5f4b12",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "libs/playlist/shared/ui/src/lib/playlist-switcher/playlist-switcher.component.html",
+    "libs/playlist/shared/ui/src/lib/playlist-switcher/playlist-switcher.component.scss",
+    "libs/playlist/shared/ui/src/lib/playlist-switcher/playlist-switcher.component.ts",
+    "libs/workspace/shell/feature/src/lib/workspace-shell/components/workspace-shell-header/workspace-shell-header.component.html",
+    "libs/workspace/shell/feature/src/lib/workspace-shell/components/workspace-shell-header/workspace-shell-header.component.scss",
+    "libs/workspace/shell/feature/src/lib/workspace-shell/components/workspace-shell-header/workspace-shell-header.component.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/50/668c5f4b12/0/metadata.json",
+      "transcript": "/50/668c5f4b12/0/full.jsonl",
+      "context": "/50/668c5f4b12/0/context.md",
+      "content_hash": "/50/668c5f4b12/0/content_hash.txt",
+      "prompt": "/50/668c5f4b12/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 7,
+    "cache_creation_tokens": 60719,
+    "cache_read_tokens": 99361,
+    "output_tokens": 1808,
+    "api_call_count": 2
+  }
+}
