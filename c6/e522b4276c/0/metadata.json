@@ -1,0 +1,36 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "c6e522b4276c",
+  "session_id": "27761a3e-ccfa-40c2-8ce7-b7fba58263d2",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-16T19:57:25.157497Z",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "libs/portal/stalker/feature/src/lib/stalker-series-view/stalker-series-view.component.ts",
+    "libs/portal/stalker/feature/src/lib/styles/detail-view.scss",
+    "libs/portal/xtream/feature/src/lib/serial-details/serial-details.component.html",
+    "libs/portal/xtream/feature/src/lib/serial-details/serial-details.component.ts",
+    "libs/portal/xtream/feature/src/lib/vod-details/vod-details-route.component.ts",
+    "libs/ui/playback/src/lib/styles/detail-view.scss",
+    "libs/ui/playback/src/lib/vod-details/vod-details.component.html"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "97c8ead1-19f6-4d13-9944-e715591cc676",
+  "token_usage": {
+    "input_tokens": 147,
+    "cache_creation_tokens": 171482,
+    "cache_read_tokens": 3533044,
+    "output_tokens": 22796,
+    "api_call_count": 38
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-16T19:57:25.106723Z",
+    "agent_lines": 0,
+    "human_added": 3689,
+    "human_modified": 1450,
+    "human_removed": 0,
+    "total_committed": 3948,
+    "agent_percentage": 0
+  }
+}

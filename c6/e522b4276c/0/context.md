@@ -1,0 +1,12 @@
+# Session Context
+
+## User Prompts
+
+### Prompt 1
+
+in @libs/ui/playback/src/lib/vod-details/ and @libs/portal/xtream/feature/src/lib/serial-details/serial-details.component.ts and in stalker vod-details and series-details as well, ther are big buttons for play, download, favorites. how do you like it? are they fine from style point of view? can you check it if they are in iptvnator style? use best practices from netflix, sky and other streaming platfrom for styling of the elements. use /plan mode. also use follwoing skills /frontend-design ux an...
+
+### Prompt 2
+
+yes
+

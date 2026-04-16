@@ -1,0 +1,32 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "c6e522b4276c",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "libs/portal/stalker/feature/src/lib/stalker-series-view/stalker-series-view.component.ts",
+    "libs/portal/stalker/feature/src/lib/styles/detail-view.scss",
+    "libs/portal/xtream/feature/src/lib/serial-details/serial-details.component.html",
+    "libs/portal/xtream/feature/src/lib/serial-details/serial-details.component.ts",
+    "libs/portal/xtream/feature/src/lib/vod-details/vod-details-route.component.ts",
+    "libs/ui/playback/src/lib/styles/detail-view.scss",
+    "libs/ui/playback/src/lib/vod-details/vod-details.component.html"
+  ],
+  "sessions": [
+    {
+      "metadata": "/c6/e522b4276c/0/metadata.json",
+      "transcript": "/c6/e522b4276c/0/full.jsonl",
+      "context": "/c6/e522b4276c/0/context.md",
+      "content_hash": "/c6/e522b4276c/0/content_hash.txt",
+      "prompt": "/c6/e522b4276c/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 147,
+    "cache_creation_tokens": 171482,
+    "cache_read_tokens": 3533044,
+    "output_tokens": 22796,
+    "api_call_count": 38
+  }
+}
