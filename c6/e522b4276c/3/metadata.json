@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "c6e522b4276c",
+  "session_id": "092ea8b3-cc48-4192-b7f9-8965c3fd7b41",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-17T21:18:37.297378Z",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "apps/web/src/assets/i18n/en.json",
+    "libs/ui/components/src/lib/content-hero/content-hero.component.html",
+    "libs/ui/components/src/lib/content-hero/content-hero.component.scss",
+    "libs/ui/components/src/lib/content-hero/content-hero.component.ts"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "d92b6ec7-b1d8-482c-a146-1a2a37a6e5d4",
+  "token_usage": {
+    "input_tokens": 41,
+    "cache_creation_tokens": 51322,
+    "cache_read_tokens": 1276079,
+    "output_tokens": 9577,
+    "api_call_count": 21
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-17T21:18:37.267909Z",
+    "agent_lines": 144,
+    "human_added": 0,
+    "human_modified": 2,
+    "human_removed": 4,
+    "total_committed": 146,
+    "agent_percentage": 98.63013698630137
+  }
+}
