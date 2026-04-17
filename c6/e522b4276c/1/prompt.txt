@@ -1,0 +1,257 @@
+in epg popup @libs/ui/epg/src/lib/epg-progress-panel/epg-progress-panel.component.html there are two rendered lines somehow, could you check that and fix. also can improve the look & feel of the popup, maybe a border is needed? i feel like it overlaps too much with the background, or a box-shadow? but it should look consistent to the app design. use /frontend-design  skill
+
+---
+
+Base directory for this skill: /Users/4gray/.claude/plugins/marketplaces/anthropic-agent-skills/skills/frontend-design
+
+This skill guides creation of distinctive, production-grade frontend interfaces that avoid generic "AI slop" aesthetics. Implement real working code with exceptional attention to aesthetic details and creative choices.
+
+The user provides frontend requirements: a component, page, application, or interface to build. They may include context about the purpose, audience, or technical constraints.
+
+## Design Thinking
+
+Before coding, understand the context and commit to a BOLD aesthetic direction:
+- **Purpose**: What problem does this interface solve? Who uses it?
+- **Tone**: Pick an extreme: brutally minimal, maximalist chaos, retro-futuristic, organic/natural, luxury/refined, playful/toy-like, editorial/magazine, brutalist/raw, art deco/geometric, soft/pastel, industrial/utilitarian, etc. There are so many flavors to choose from. Use these for inspiration but design one that is true to the aesthetic direction.
+- **Constraints**: Technical requirements (framework, performance, accessibility).
+- **Differentiation**: What makes this UNFORGETTABLE? What's the one thing someone will remember?
+
+**CRITICAL**: Choose a clear conceptual direction and execute it with precision. Bold maximalism and refined minimalism both work - the key is intentionality, not intensity.
+
+Then implement working code (HTML/CSS/JS, React, Vue, etc.) that is:
+- Production-grade and functional
+- Visually striking and memorable
+- Cohesive with a clear aesthetic point-of-view
+- Meticulously refined in every detail
+
+## Frontend Aesthetics Guidelines
+
+Focus on:
+- **Typography**: Choose fonts that are beautiful, unique, and interesting. Avoid generic fonts like Arial and Inter; opt instead for distinctive choices that elevate the frontend's aesthetics; unexpected, characterful font choices. Pair a distinctive display font with a refined body font.
+- **Color & Theme**: Commit to a cohesive aesthetic. Use CSS variables for consistency. Dominant colors with sharp accents outperform timid, evenly-distributed palettes.
+- **Motion**: Use animations for effects and micro-interactions. Prioritize CSS-only solutions for HTML. Use Motion library for React when available. Focus on high-impact moments: one well-orchestrated page load with staggered reveals (animation-delay) creates more delight than scattered micro-interactions. Use scroll-triggering and hover states that surprise.
+- **Spatial Composition**: Unexpected layouts. Asymmetry. Overlap. Diagonal flow. Grid-breaking elements. Generous negative space OR controlled density.
+- **Backgrounds & Visual Details**: Create atmosphere and depth rather than defaulting to solid colors. Add contextual effects and textures that match the overall aesthetic. Apply creative forms like gradient meshes, noise textures, geometric patterns, layered transparencies, dramatic shadows, decorative borders, custom cursors, and grain overlays.
+
+NEVER use generic AI-generated aesthetics like overused font families (Inter, Roboto, Arial, system fonts), cliched color schemes (particularly purple gradients on white backgrounds), predictable layouts and component patterns, and cookie-cutter design that lacks context-specific character.
+
+Interpret creatively and make unexpected choices that feel genuinely designed for the context. No design should be the same. Vary between light and dark themes, different fonts, different aesthetics. NEVER converge on common choices (Space Grotesk, for example) across generations.
+
+**IMPORTANT**: Match implementation complexity to the aesthetic vision. Maximalist designs need elaborate code with extensive animations and effects. Minimalist or refined designs need restraint, precision, and careful attention to spacing, typography, and subtle details. Elegance comes from executing the vision well.
+
+Remember: Claude is capable of extraordinary creative work. Don't hold back, show what can truly be created when thinking outside the box and committing fully to a distinctive vision.
+
+---
+
+it looks good, but now i have another question about functionallity. right now it says "Queued (3)" but nothing happens, why? what is the current state of the epg? is it up to date and not needede to be updated or is there an element missing to re-trigger, could you check it?  use /electron  skill and also agent-browser cli to connect to the current app which is running to create screenshots snapshots and test
+
+---
+
+Base directory for this skill: /Users/4gray/.claude/skills/electron
+
+# Electron App Automation
+
+Automate any Electron desktop app using agent-browser. Electron apps are built on Chromium and expose a Chrome DevTools Protocol (CDP) port that agent-browser can connect to, enabling the same snapshot-interact workflow used for web pages.
+
+## Core Workflow
+
+1. **Launch** the Electron app with remote debugging enabled
+2. **Connect** agent-browser to the CDP port
+3. **Snapshot** to discover interactive elements
+4. **Interact** using element refs
+5. **Re-snapshot** after navigation or state changes
+
+```bash
+# Launch an Electron app with remote debugging
+open -a "Slack" --args --remote-debugging-port=9222
+
+# Connect agent-browser to the app
+agent-browser connect 9222
+
+# Standard workflow from here
+agent-browser snapshot -i
+agent-browser click @e5
+agent-browser screenshot slack-desktop.png
+```
+
+## Launching Electron Apps with CDP
+
+Every Electron app supports the `--remote-debugging-port` flag since it's built into Chromium.
+
+### macOS
+
+```bash
+# Slack
+open -a "Slack" --args --remote-debugging-port=9222
+
+# VS Code
+open -a "Visual Studio Code" --args --remote-debugging-port=9223
+
+# Discord
+open -a "Discord" --args --remote-debugging-port=9224
+
+# Figma
+open -a "Figma" --args --remote-debugging-port=9225
+
+# Notion
+open -a "Notion" --args --remote-debugging-port=9226
+
+# Spotify
+open -a "Spotify" --args --remote-debugging-port=9227
+```
+
+### Linux
+
+```bash
+slack --remote-debugging-port=9222
+code --remote-debugging-port=9223
+discord --remote-debugging-port=9224
+```
+
+### Windows
+
+```bash
+"C:\Users\%USERNAME%\AppData\Local\slack\slack.exe" --remote-debugging-port=9222
+"C:\Users\%USERNAME%\AppData\Local\Programs\Microsoft VS Code\Code.exe" --remote-debugging-port=9223
+```
+
+**Important:** If the app is already running, quit it first, then relaunch with the flag. The `--remote-debugging-port` flag must be present at launch time.
+
+## Connecting
+
+```bash
+# Connect to a specific port
+agent-browser connect 9222
+
+# Or use --cdp on each command
+agent-browser --cdp 9222 snapshot -i
+
+# Auto-discover a running Chromium-based app
+agent-browser --auto-connect snapshot -i
+```
+
+After `connect`, all subsequent commands target the connected app without needing `--cdp`.
+
+## Tab Management
+
+Electron apps often have multiple windows or webviews. Use tab commands to list and switch between them:
+
+```bash
+# List all available targets (windows, webviews, etc.)
+agent-browser tab
+
+# Switch to a specific tab by index
+agent-browser tab 2
+
+# Switch by URL pattern
+agent-browser tab --url "*settings*"
+```
+
+## Common Patterns
+
+### Inspect and Navigate an App
+
+```bash
+open -a "Slack" --args --remote-debugging-port=9222
+sleep 3  # Wait for app to start
+agent-browser connect 9222
+agent-browser snapshot -i
+# Read the snapshot output to identify UI elements
+agent-browser click @e10  # Navigate to a section
+agent-browser snapshot -i  # Re-snapshot after navigation
+```
+
+### Take Screenshots of Desktop Apps
+
+```bash
+agent-browser connect 9222
+agent-browser screenshot app-state.png
+agent-browser screenshot --full full-app.png
+agent-browser screenshot --annotate annotated-app.png
+```
+
+### Extract Data from a Desktop App
+
+```bash
+agent-browser connect 9222
+agent-browser snapshot -i
+agent-browser get text @e5
+agent-browser snapshot --json > app-state.json
+```
+
+### Fill Forms in Desktop Apps
+
+```bash
+agent-browser connect 9222
+agent-browser snapshot -i
+agent-browser fill @e3 "search query"
+agent-browser press Enter
+agent-browser wait 1000
+agent-browser snapshot -i
+```
+
+### Run Multiple Apps Simultaneously
+
+Use named sessions to control multiple Electron apps at the same time:
+
+```bash
+# Connect to Slack
+agent-browser --session slack connect 9222
+
+# Connect to VS Code
+agent-browser --session vscode connect 9223
+
+# Interact with each independently
+agent-browser --session slack snapshot -i
+agent-browser --session vscode snapshot -i
+```
+
+## Color Scheme
+
+Playwright overrides the color scheme to `light` by default when connecting via CDP. To preserve dark mode:
+
+```bash
+agent-browser connect 9222
+agent-browser --color-scheme dark snapshot -i
+```
+
+Or set it globally:
+
+```bash
+AGENT_BROWSER_COLOR_SCHEME=dark agent-browser connect 9222
+```
+
+## Troubleshooting
+
+### "Connection refused" or "Cannot connect"
+
+- Make sure the app was launched with `--remote-debugging-port=NNNN`
+- If the app was already running, quit and relaunch with the flag
+- Check that the port isn't in use by another process: `lsof -i :9222`
+
+### App launches but connect fails
+
+- Wait a few seconds after launch before connecting (`sleep 3`)
+- Some apps take time to initialize their webview
+
+### Elements not appearing in snapshot
+
+- The app may use multiple webviews. Use `agent-browser tab` to list targets and switch to the right one
+- Use `agent-browser snapshot -i -C` to include cursor-interactive elements (divs with onclick handlers)
+
+### Cannot type in input fields
+
+- Try `agent-browser keyboard type "text"` to type at the current focus without a selector
+- Some Electron apps use custom input components; use `agent-browser keyboard inserttext "text"` to bypass key events
+
+## Supported Apps
+
+Any app built on Electron works, including:
+
+- **Communication:** Slack, Discord, Microsoft Teams, Signal, Telegram Desktop
+- **Development:** VS Code, GitHub Desktop, Postman, Insomnia
+- **Design:** Figma, Notion, Obsidian
+- **Media:** Spotify, Tidal
+- **Productivity:** Todoist, Linear, 1Password
+
+If an app is built with Electron, it supports `--remote-debugging-port` and can be automated with agent-browser.

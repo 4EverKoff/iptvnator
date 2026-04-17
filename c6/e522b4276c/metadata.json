@@ -3,13 +3,21 @@
   "checkpoint_id": "c6e522b4276c",
   "strategy": "manual-commit",
   "branch": "master",
-  "checkpoints_count": 1,
+  "checkpoints_count": 3,
   "files_touched": [
+    "apps/electron-backend/src/app/events/epg.events.ts",
+    "apps/web/src/assets/i18n/el.json",
+    "apps/web/src/assets/i18n/en.json",
+    "apps/web/src/assets/i18n/tr.json",
+    "libs/epg/data-access/src/lib/epg-progress.service.ts",
     "libs/portal/stalker/feature/src/lib/stalker-series-view/stalker-series-view.component.ts",
     "libs/portal/stalker/feature/src/lib/styles/detail-view.scss",
     "libs/portal/xtream/feature/src/lib/serial-details/serial-details.component.html",
     "libs/portal/xtream/feature/src/lib/serial-details/serial-details.component.ts",
     "libs/portal/xtream/feature/src/lib/vod-details/vod-details-route.component.ts",
+    "libs/ui/epg/src/lib/epg-progress-panel/epg-progress-panel.component.html",
+    "libs/ui/epg/src/lib/epg-progress-panel/epg-progress-panel.component.scss",
+    "libs/ui/epg/src/lib/epg-progress-panel/epg-progress-panel.component.ts",
     "libs/ui/playback/src/lib/styles/detail-view.scss",
     "libs/ui/playback/src/lib/vod-details/vod-details.component.html"
   ],
@@ -20,13 +28,20 @@
       "context": "/c6/e522b4276c/0/context.md",
       "content_hash": "/c6/e522b4276c/0/content_hash.txt",
       "prompt": "/c6/e522b4276c/0/prompt.txt"
+    },
+    {
+      "metadata": "/c6/e522b4276c/1/metadata.json",
+      "transcript": "/c6/e522b4276c/1/full.jsonl",
+      "context": "/c6/e522b4276c/1/context.md",
+      "content_hash": "/c6/e522b4276c/1/content_hash.txt",
+      "prompt": "/c6/e522b4276c/1/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 147,
-    "cache_creation_tokens": 171482,
-    "cache_read_tokens": 3533044,
-    "output_tokens": 22796,
-    "api_call_count": 38
+    "input_tokens": 240,
+    "cache_creation_tokens": 457113,
+    "cache_read_tokens": 10811754,
+    "output_tokens": 80030,
+    "api_call_count": 98
   }
 }
