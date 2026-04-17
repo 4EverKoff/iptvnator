@@ -1,0 +1,16 @@
+# Session Context
+
+## User Prompts
+
+### Prompt 1
+
+i have @libs/workspace/shell/feature/src/lib/workspace-command-palette in my app, can it be designed in similar way like @libs/ui/epg/src/lib/epg-progress-panel  (background color and border), because the background colors overlaps too much with the app background color. or what do you think? or should we keep the dafule background,but just add border? can you check it it with /electron   skill and agent-browser cli to create screenshots, the app is running. use /frontend-design  but the design ...
+
+### Prompt 2
+
+the border radius in 4 corners looks bad, it's cut off , see screenshot
+
+### Prompt 3
+
+no it's not, please double check, seems like border radius is defined at wrong div element or? in corners its still cut off
+
