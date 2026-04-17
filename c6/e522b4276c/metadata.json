@@ -3,18 +3,30 @@
   "checkpoint_id": "c6e522b4276c",
   "strategy": "manual-commit",
   "branch": "master",
-  "checkpoints_count": 8,
+  "checkpoints_count": 18,
   "files_touched": [
     "apps/electron-backend/src/app/events/epg.events.ts",
+    "apps/web/src/app/app.config.ts",
     "apps/web/src/app/services/workspace-shell-actions.service.ts",
+    "apps/web/src/app/settings/settings.component.html",
+    "apps/web/src/app/settings/settings.component.scss",
     "apps/web/src/assets/i18n/el.json",
     "apps/web/src/assets/i18n/en.json",
     "apps/web/src/assets/i18n/tr.json",
+    "apps/web/src/m3-theme.scss",
     "apps/web/src/styles.scss",
     "libs/epg/data-access/src/lib/epg-progress.service.ts",
     "libs/playlist/import/feature/src/lib/add-playlist-dialog/add-playlist-dialog.component.html",
     "libs/playlist/import/feature/src/lib/add-playlist-dialog/add-playlist-dialog.component.scss",
     "libs/playlist/import/feature/src/lib/add-playlist-dialog/add-playlist-dialog.component.ts",
+    "libs/playlist/import/feature/src/lib/file-upload/drag-drop-file-upload.directive.ts",
+    "libs/playlist/import/feature/src/lib/file-upload/file-upload.component.html",
+    "libs/playlist/import/feature/src/lib/file-upload/file-upload.component.scss",
+    "libs/playlist/import/feature/src/lib/file-upload/file-upload.component.ts",
+    "libs/playlist/import/feature/src/lib/stalker-portal-import/stalker-portal-import.component.html",
+    "libs/playlist/import/feature/src/lib/text-import/text-import.component.html",
+    "libs/playlist/import/feature/src/lib/url-upload/url-upload.component.html",
+    "libs/playlist/shared/ui/src/lib/recent-playlists/playlist-info/playlist-info.component.ts",
     "libs/portal/stalker/feature/src/lib/stalker-series-view/stalker-series-view.component.ts",
     "libs/portal/stalker/feature/src/lib/styles/detail-view.scss",
     "libs/portal/xtream/feature/src/lib/serial-details/serial-details.component.html",
@@ -69,10 +81,10 @@
     }
   ],
   "token_usage": {
-    "input_tokens": 433,
-    "cache_creation_tokens": 683806,
-    "cache_read_tokens": 20875034,
-    "output_tokens": 139204,
-    "api_call_count": 228
+    "input_tokens": 686,
+    "cache_creation_tokens": 1597094,
+    "cache_read_tokens": 61067343,
+    "output_tokens": 225210,
+    "api_call_count": 374
   }
 }
