@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "c6e522b4276c",
+  "session_id": "59f1fccd-db21-4133-b32b-9ccf08290ef0",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-18T08:34:43.066588Z",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "apps/web/src/assets/i18n/de.json",
+    "apps/web/src/assets/i18n/en.json",
+    "apps/web/src/assets/i18n/ru.json",
+    "libs/portal/shared/ui/src/lib/components/unified-collection/unified-collection-page.component.ts"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "1e4355e6-01b9-4334-8987-4cad71fdd579",
+  "token_usage": {
+    "input_tokens": 49,
+    "cache_creation_tokens": 87317,
+    "cache_read_tokens": 2167162,
+    "output_tokens": 14392,
+    "api_call_count": 34
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-18T08:34:43.026701Z",
+    "agent_lines": 30,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 30,
+    "agent_percentage": 100
+  }
+}
