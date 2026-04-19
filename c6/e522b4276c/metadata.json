@@ -3,7 +3,7 @@
   "checkpoint_id": "c6e522b4276c",
   "strategy": "manual-commit",
   "branch": "master",
-  "checkpoints_count": 25,
+  "checkpoints_count": 29,
   "files_touched": [
     "apps/electron-backend-e2e/src/recent.e2e.ts",
     "apps/electron-backend/src/app/app.ts",
@@ -38,6 +38,7 @@
     "libs/portal/shared/ui/src/lib/components/unified-collection/unified-collection-page.component.scss",
     "libs/portal/shared/ui/src/lib/components/unified-collection/unified-collection-page.component.ts",
     "libs/portal/shared/ui/src/lib/components/unified-collection/unified-live-tab.component.html",
+    "libs/portal/shared/ui/src/lib/components/unified-collection/unified-live-tab.component.scss",
     "libs/portal/shared/ui/src/lib/components/unified-collection/unified-live-tab.component.ts",
     "libs/portal/stalker/feature/src/lib/stalker-series-view/stalker-series-view.component.ts",
     "libs/portal/stalker/feature/src/lib/styles/detail-view.scss",
@@ -111,13 +112,20 @@
       "context": "/c6/e522b4276c/7/context.md",
       "content_hash": "/c6/e522b4276c/7/content_hash.txt",
       "prompt": "/c6/e522b4276c/7/prompt.txt"
+    },
+    {
+      "metadata": "/c6/e522b4276c/8/metadata.json",
+      "transcript": "/c6/e522b4276c/8/full.jsonl",
+      "context": "/c6/e522b4276c/8/context.md",
+      "content_hash": "/c6/e522b4276c/8/content_hash.txt",
+      "prompt": "/c6/e522b4276c/8/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 1015,
-    "cache_creation_tokens": 2561101,
-    "cache_read_tokens": 81252916,
-    "output_tokens": 342878,
-    "api_call_count": 570
+    "input_tokens": 1247,
+    "cache_creation_tokens": 3073582,
+    "cache_read_tokens": 99095274,
+    "output_tokens": 441764,
+    "api_call_count": 739
   }
 }

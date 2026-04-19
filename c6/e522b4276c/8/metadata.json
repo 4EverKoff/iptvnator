@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "c6e522b4276c",
+  "session_id": "dd1be699-1e55-4c3c-a892-f12a53e377f3",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-19T20:31:58.119088Z",
+  "branch": "master",
+  "checkpoints_count": 4,
+  "files_touched": [
+    "libs/portal/shared/ui/src/lib/components/global-favorites-list/global-favorites-list.component.html",
+    "libs/portal/shared/ui/src/lib/components/unified-collection/unified-collection-page.component.scss",
+    "libs/portal/shared/ui/src/lib/components/unified-collection/unified-live-tab.component.html",
+    "libs/portal/shared/ui/src/lib/components/unified-collection/unified-live-tab.component.scss",
+    "libs/portal/shared/ui/src/lib/components/unified-collection/unified-live-tab.component.ts"
+  ],
+  "agent": "Claude Code",
+  "token_usage": {
+    "input_tokens": 232,
+    "cache_creation_tokens": 512481,
+    "cache_read_tokens": 17842358,
+    "output_tokens": 98886,
+    "api_call_count": 169
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-19T20:31:57.926705Z",
+    "agent_lines": 87,
+    "human_added": 268,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 355,
+    "agent_percentage": 24.507042253521128
+  }
+}

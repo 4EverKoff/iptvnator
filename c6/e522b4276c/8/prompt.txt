@@ -1,0 +1,546 @@
+in favorites view when i scroll down the list with channels and click on a checnnel the list view automatically scrolls up on channel selection. can you check and fix this behaviour, so that the list is not automatically scrolls up without user intention. use agent-browser cli to check, the app is already running. also use /electron and /angular-developer and /frontend-design skills
+
+---
+
+Base directory for this skill: /Users/4gray/.claude/skills/electron
+
+# Electron App Automation
+
+Automate any Electron desktop app using agent-browser. Electron apps are built on Chromium and expose a Chrome DevTools Protocol (CDP) port that agent-browser can connect to, enabling the same snapshot-interact workflow used for web pages.
+
+## Core Workflow
+
+1. **Launch** the Electron app with remote debugging enabled
+2. **Connect** agent-browser to the CDP port
+3. **Snapshot** to discover interactive elements
+4. **Interact** using element refs
+5. **Re-snapshot** after navigation or state changes
+
+```bash
+# Launch an Electron app with remote debugging
+open -a "Slack" --args --remote-debugging-port=9222
+
+# Connect agent-browser to the app
+agent-browser connect 9222
+
+# Standard workflow from here
+agent-browser snapshot -i
+agent-browser click @e5
+agent-browser screenshot slack-desktop.png
+```
+
+## Launching Electron Apps with CDP
+
+Every Electron app supports the `--remote-debugging-port` flag since it's built into Chromium.
+
+### macOS
+
+```bash
+# Slack
+open -a "Slack" --args --remote-debugging-port=9222
+
+# VS Code
+open -a "Visual Studio Code" --args --remote-debugging-port=9223
+
+# Discord
+open -a "Discord" --args --remote-debugging-port=9224
+
+# Figma
+open -a "Figma" --args --remote-debugging-port=9225
+
+# Notion
+open -a "Notion" --args --remote-debugging-port=9226
+
+# Spotify
+open -a "Spotify" --args --remote-debugging-port=9227
+```
+
+### Linux
+
+```bash
+slack --remote-debugging-port=9222
+code --remote-debugging-port=9223
+discord --remote-debugging-port=9224
+```
+
+### Windows
+
+```bash
+"C:\Users\%USERNAME%\AppData\Local\slack\slack.exe" --remote-debugging-port=9222
+"C:\Users\%USERNAME%\AppData\Local\Programs\Microsoft VS Code\Code.exe" --remote-debugging-port=9223
+```
+
+**Important:** If the app is already running, quit it first, then relaunch with the flag. The `--remote-debugging-port` flag must be present at launch time.
+
+## Connecting
+
+```bash
+# Connect to a specific port
+agent-browser connect 9222
+
+# Or use --cdp on each command
+agent-browser --cdp 9222 snapshot -i
+
+# Auto-discover a running Chromium-based app
+agent-browser --auto-connect snapshot -i
+```
+
+After `connect`, all subsequent commands target the connected app without needing `--cdp`.
+
+## Tab Management
+
+Electron apps often have multiple windows or webviews. Use tab commands to list and switch between them:
+
+```bash
+# List all available targets (windows, webviews, etc.)
+agent-browser tab
+
+# Switch to a specific tab by index
+agent-browser tab 2
+
+# Switch by URL pattern
+agent-browser tab --url "*settings*"
+```
+
+## Common Patterns
+
+### Inspect and Navigate an App
+
+```bash
+open -a "Slack" --args --remote-debugging-port=9222
+sleep 3  # Wait for app to start
+agent-browser connect 9222
+agent-browser snapshot -i
+# Read the snapshot output to identify UI elements
+agent-browser click @e10  # Navigate to a section
+agent-browser snapshot -i  # Re-snapshot after navigation
+```
+
+### Take Screenshots of Desktop Apps
+
+```bash
+agent-browser connect 9222
+agent-browser screenshot app-state.png
+agent-browser screenshot --full full-app.png
+agent-browser screenshot --annotate annotated-app.png
+```
+
+### Extract Data from a Desktop App
+
+```bash
+agent-browser connect 9222
+agent-browser snapshot -i
+agent-browser get text @e5
+agent-browser snapshot --json > app-state.json
+```
+
+### Fill Forms in Desktop Apps
+
+```bash
+agent-browser connect 9222
+agent-browser snapshot -i
+agent-browser fill @e3 "search query"
+agent-browser press Enter
+agent-browser wait 1000
+agent-browser snapshot -i
+```
+
+### Run Multiple Apps Simultaneously
+
+Use named sessions to control multiple Electron apps at the same time:
+
+```bash
+# Connect to Slack
+agent-browser --session slack connect 9222
+
+# Connect to VS Code
+agent-browser --session vscode connect 9223
+
+# Interact with each independently
+agent-browser --session slack snapshot -i
+agent-browser --session vscode snapshot -i
+```
+
+## Color Scheme
+
+Playwright overrides the color scheme to `light` by default when connecting via CDP. To preserve dark mode:
+
+```bash
+agent-browser connect 9222
+agent-browser --color-scheme dark snapshot -i
+```
+
+Or set it globally:
+
+```bash
+AGENT_BROWSER_COLOR_SCHEME=dark agent-browser connect 9222
+```
+
+## Troubleshooting
+
+### "Connection refused" or "Cannot connect"
+
+- Make sure the app was launched with `--remote-debugging-port=NNNN`
+- If the app was already running, quit and relaunch with the flag
+- Check that the port isn't in use by another process: `lsof -i :9222`
+
+### App launches but connect fails
+
+- Wait a few seconds after launch before connecting (`sleep 3`)
+- Some apps take time to initialize their webview
+
+### Elements not appearing in snapshot
+
+- The app may use multiple webviews. Use `agent-browser tab` to list targets and switch to the right one
+- Use `agent-browser snapshot -i -C` to include cursor-interactive elements (divs with onclick handlers)
+
+### Cannot type in input fields
+
+- Try `agent-browser keyboard type "text"` to type at the current focus without a selector
+- Some Electron apps use custom input components; use `agent-browser keyboard inserttext "text"` to bypass key events
+
+## Supported Apps
+
+Any app built on Electron works, including:
+
+- **Communication:** Slack, Discord, Microsoft Teams, Signal, Telegram Desktop
+- **Development:** VS Code, GitHub Desktop, Postman, Insomnia
+- **Design:** Figma, Notion, Obsidian
+- **Media:** Spotify, Tidal
+- **Productivity:** Todoist, Linear, 1Password
+
+If an app is built with Electron, it supports `--remote-debugging-port` and can be automated with agent-browser.
+
+---
+
+Base directory for this skill: /Users/4gray/.claude/skills/angular-developer
+
+# Angular Developer Guidelines
+
+1. Always analyze the project's Angular version before providing guidance, as best practices and available features can vary significantly between versions. If creating a new project with Angular CLI, do not specify a version unless prompted by the user.
+
+2. When generating code, follow Angular's style guide and best practices for maintainability and performance. Use the Angular CLI for scaffolding components, services, directives, pipes, and routes to ensure consistency.
+
+3. Once you finish generating code, run `ng build` to ensure there are no build errors. If there are errors, analyze the error messages and fix them before proceeding. Do not skip this step, as it is critical for ensuring the generated code is correct and functional.
+
+## Creating New Projects
+
+If no guidelines are provided by the user, here are same default rules to follow when creating a new Angular project:
+
+1. Use the latest stable version of Angular unless the user specifies otherwise.
+2. Use Signals Forms for form management in new projects (available in Angular v21 and newer) [Find out more](references/signal-forms.md).
+
+**Execution Rules for `ng new`:**
+When asked to create a new Angular project, you must determine the correct execution command by following these strict steps:
+
+**Step 1: Check for an explicit user version.**
+
+- **IF** the user requests a specific version (e.g., Angular 15), bypass local installations and strictly use `npx`.
+- **Command:** `npx @angular/cli@<requested_version> new <project-name>`
+
+**Step 2: Check for an existing Angular installation.**
+
+- **IF** no specific version is requested, run `ng version` in the terminal to check if the Angular CLI is already installed on the system.
+- **IF** the command succeeds and returns an installed version, use the local/global installation directly.
+- **Command:** `ng new <project-name>`
+
+**Step 3: Fallback to Latest.**
+
+- **IF** no specific version is requested AND the `ng version` command fails (indicating no Angular installation exists), you must use `npx` to fetch the latest version.
+- **Command:** `npx @angular/cli@latest new <project-name>`
+
+## Components
+
+When working with Angular components, consult the following references based on the task:
+
+- **Fundamentals**: Anatomy, metadata, core concepts, and template control flow (@if, @for, @switch). Read [components.md](references/components.md)
+- **Inputs**: Signal-based inputs, transforms, and model inputs. Read [inputs.md](references/inputs.md)
+- **Outputs**: Signal-based outputs and custom event best practices. Read [outputs.md](references/outputs.md)
+- **Host Elements**: Host bindings and attribute injection. Read [host-elements.md](references/host-elements.md)
+
+If you require deeper documentation not found in the references above, read the documentation at `https://angular.dev/guide/components`.
+
+## Reactivity and Data Management
+
+When managing state and data reactivity, use Angular Signals and consult the following references:
+
+- **Signals Overview**: Core signal concepts (`signal`, `computed`), reactive contexts, and `untracked`. Read [signals-overview.md](references/signals-overview.md)
+- **Dependent State (`linkedSignal`)**: Creating writable state linked to source signals. Read [linked-signal.md](references/linked-signal.md)
+- **Async Reactivity (`resource`)**: Fetching asynchronous data directly into signal state. Read [resource.md](references/resource.md)
+- **Side Effects (`effect`)**: Logging, third-party DOM manipulation (`afterRenderEffect`), and when NOT to use effects. Read [effects.md](references/effects.md)
+
+## Forms
+
+In most cases for new apps, **prefer signal forms**. When making a forms decision, analyze the project and consider the following guidelines:
+
+- if the application is using v21 or newer and this is a new form, **prefer signal forms**.
+  -For older applications or when working with existing forms, use the appropriate form type that matches the applications current form strategy.
+
+- **Signal Forms**: Use signals for form state management. Read [signal-forms.md](references/signal-forms.md)
+- **Template-driven forms**: Use for simple forms. Read [template-driven-forms.md](references/template-driven-forms.md)
+- **Reactive forms**: Use for complex forms. Read [reactive-forms.md](references/reactive-forms.md)
+
+## Dependency Injection
+
+When implementing dependency injection in Angular, follow these guidelines:
+
+- **Fundamentals**: Overview of Dependency Injection, services, and the `inject()` function. Read [di-fundamentals.md](references/di-fundamentals.md)
+- **Creating and Using Services**: Creating services, the `providedIn: 'root'` option, and injecting into components or other services. Read [creating-services.md](references/creating-services.md)
+- **Defining Dependency Providers**: Automatic vs manual provision, `InjectionToken`, `useClass`, `useValue`, `useFactory`, and scopes. Read [defining-providers.md](references/defining-providers.md)
+- **Injection Context**: Where `inject()` is allowed, `runInInjectionContext`, and `assertInInjectionContext`. Read [injection-context.md](references/injection-context.md)
+- **Hierarchical Injectors**: The `EnvironmentInjector` vs `ElementInjector`, resolution rules, modifiers (`optional`, `skipSelf`), and `providers` vs `viewProviders`. Read [hierarchical-injectors.md](references/hierarchical-injectors.md)
+
+## Angular Aria
+
+When building accessible custom components for any of the following patterns: Accordion, Listbox, Combobox, Menu, Tabs, Toolbar, Tree, Grid, consult the following reference:
+
+- **Angular Aria Components**: Building headless, accessible components (Accordion, Listbox, Combobox, Menu, Tabs, Toolbar, Tree, Grid) and styling ARIA attributes. Read [angular-aria.md](references/angular-aria.md)
+
+## Routing
+
+When implementing navigation in Angular, consult the following references:
+
+- **Define Routes**: URL paths, static vs dynamic segments, wildcards, and redirects. Read [define-routes.md](references/define-routes.md)
+- **Route Loading Strategies**: Eager vs lazy loading, and context-aware loading. Read [loading-strategies.md](references/loading-strategies.md)
+- **Show Routes with Outlets**: Using `<router-outlet>`, nested outlets, and named outlets. Read [show-routes-with-outlets.md](references/show-routes-with-outlets.md)
+- **Navigate to Routes**: Declarative navigation with `RouterLink` and programmatic navigation with `Router`. Read [navigate-to-routes.md](references/navigate-to-routes.md)
+- **Control Route Access with Guards**: Implementing `CanActivate`, `CanMatch`, and other guards for security. Read [route-guards.md](references/route-guards.md)
+- **Data Resolvers**: Pre-fetching data before route activation with `ResolveFn`. Read [data-resolvers.md](references/data-resolvers.md)
+- **Router Lifecycle and Events**: Chronological order of navigation events and debugging. Read [router-lifecycle.md](references/router-lifecycle.md)
+- **Rendering Strategies**: CSR, SSG (Prerendering), and SSR with hydration. Read [rendering-strategies.md](references/rendering-strategies.md)
+- **Route Transition Animations**: Enabling and customizing the View Transitions API. Read [route-animations.md](references/route-animations.md)
+
+If you require deeper documentation or more context, visit the [official Angular Routing guide](https://angular.dev/guide/routing).
+
+## Styling and Animations
+
+When implementing styling and animations in Angular, consult the following references:
+
+- **Using Tailwind CSS with Angular**: Integrating Tailwind CSS into Angular projects. Read [tailwind-css.md](references/tailwind-css.md)
+- **Angular Animations**: Using native CSS (recommended) or the legacy DSL for dynamic effects. Read [angular-animations.md](references/angular-animations.md)
+- **Styling components**: Best practices for component styles and encapsulation. Read [component-styling.md](references/component-styling.md)
+
+## Testing
+
+When writing or updating tests, consult the following references based on the task:
+
+- **Fundamentals**: Best practices for unit testing (Vitest), async patterns, and `TestBed`. Read [testing-fundamentals.md](references/testing-fundamentals.md)
+- **Component Harnesses**: Standard patterns for robust component interaction. Read [component-harnesses.md](references/component-harnesses.md)
+- **Router Testing**: Using `RouterTestingHarness` for reliable navigation tests. Read [router-testing.md](references/router-testing.md)
+- **End-to-End (E2E) Testing**: Best practices for E2E tests with Cypress. Read [e2e-testing.md](references/e2e-testing.md)
+
+## Tooling
+
+When working with Angular tooling, consult the following references:
+
+- **Angular CLI**: Creating applications, generating code (components, routes, services), serving, and building. Read [cli.md](references/cli.md)
+- **Angular MCP Server**: Available tools, configuration, and experimental features. Read [mcp.md](references/mcp.md)
+
+---
+
+Base directory for this skill: /Users/4gray/.claude/plugins/marketplaces/anthropic-agent-skills/skills/frontend-design
+
+This skill guides creation of distinctive, production-grade frontend interfaces that avoid generic "AI slop" aesthetics. Implement real working code with exceptional attention to aesthetic details and creative choices.
+
+The user provides frontend requirements: a component, page, application, or interface to build. They may include context about the purpose, audience, or technical constraints.
+
+## Design Thinking
+
+Before coding, understand the context and commit to a BOLD aesthetic direction:
+- **Purpose**: What problem does this interface solve? Who uses it?
+- **Tone**: Pick an extreme: brutally minimal, maximalist chaos, retro-futuristic, organic/natural, luxury/refined, playful/toy-like, editorial/magazine, brutalist/raw, art deco/geometric, soft/pastel, industrial/utilitarian, etc. There are so many flavors to choose from. Use these for inspiration but design one that is true to the aesthetic direction.
+- **Constraints**: Technical requirements (framework, performance, accessibility).
+- **Differentiation**: What makes this UNFORGETTABLE? What's the one thing someone will remember?
+
+**CRITICAL**: Choose a clear conceptual direction and execute it with precision. Bold maximalism and refined minimalism both work - the key is intentionality, not intensity.
+
+Then implement working code (HTML/CSS/JS, React, Vue, etc.) that is:
+- Production-grade and functional
+- Visually striking and memorable
+- Cohesive with a clear aesthetic point-of-view
+- Meticulously refined in every detail
+
+## Frontend Aesthetics Guidelines
+
+Focus on:
+- **Typography**: Choose fonts that are beautiful, unique, and interesting. Avoid generic fonts like Arial and Inter; opt instead for distinctive choices that elevate the frontend's aesthetics; unexpected, characterful font choices. Pair a distinctive display font with a refined body font.
+- **Color & Theme**: Commit to a cohesive aesthetic. Use CSS variables for consistency. Dominant colors with sharp accents outperform timid, evenly-distributed palettes.
+- **Motion**: Use animations for effects and micro-interactions. Prioritize CSS-only solutions for HTML. Use Motion library for React when available. Focus on high-impact moments: one well-orchestrated page load with staggered reveals (animation-delay) creates more delight than scattered micro-interactions. Use scroll-triggering and hover states that surprise.
+- **Spatial Composition**: Unexpected layouts. Asymmetry. Overlap. Diagonal flow. Grid-breaking elements. Generous negative space OR controlled density.
+- **Backgrounds & Visual Details**: Create atmosphere and depth rather than defaulting to solid colors. Add contextual effects and textures that match the overall aesthetic. Apply creative forms like gradient meshes, noise textures, geometric patterns, layered transparencies, dramatic shadows, decorative borders, custom cursors, and grain overlays.
+
+NEVER use generic AI-generated aesthetics like overused font families (Inter, Roboto, Arial, system fonts), cliched color schemes (particularly purple gradients on white backgrounds), predictable layouts and component patterns, and cookie-cutter design that lacks context-specific character.
+
+Interpret creatively and make unexpected choices that feel genuinely designed for the context. No design should be the same. Vary between light and dark themes, different fonts, different aesthetics. NEVER converge on common choices (Space Grotesk, for example) across generations.
+
+**IMPORTANT**: Match implementation complexity to the aesthetic vision. Maximalist designs need elaborate code with extensive animations and effects. Minimalist or refined designs need restraint, precision, and careful attention to spacing, typography, and subtle details. Elegance comes from executing the vision well.
+
+Remember: Claude is capable of extraordinary creative work. Don't hold back, show what can truly be created when thinking outside the box and committing fully to a distinctive vision.
+
+---
+
+it's still scrolling/jumping, can you check one more time, i feel like the list is getting re-rendered somehow, is there a fundementional angular component init issue? maybe /angular-component skill /angular-signals and /angular-developer skills could help me here to investigate deeper
+
+---
+
+better now, but the sidebar is resizing and is shaky after click selection, any idea why that happens? so when i click on channel i want that the sidebar rezises to one size and stays like this, could it be related to size defined in component and later on the size which is defined/persisted in the resize directive?
+
+---
+
+This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation.
+
+Summary:
+1. Primary Request and Intent:
+   The user reported a UX bug in IPTVnator: when scrolling down the favorites list (at URL `/workspace/stalker/.../favorites` — the unified-live-tab favorites view), then clicking a channel, the list automatically scrolls up, losing the user's scroll position. They want the scroll position preserved on channel selection.
+   
+   The user explicitly asked me to:
+   - Use agent-browser CLI to verify (app already running on CDP port 9222)
+   - Use the /electron, /angular-developer, and /frontend-design skills
+   - Later: use /angular-component, /angular-signals, /angular-developer skills for deeper investigation
+   
+   Latest user concern (not yet fully resolved): "the sidebar is resizing and is shaky after click selection... when i click on channel i want that the sidebar rezises to one size and stays like this, could it be related to size defined in component and later on the size which is defined/persisted in the resize directive?"
+
+2. Key Technical Concepts:
+   - Angular 20+ signal-based APIs (`signal`, `computed`, `effect`, `input`, `output`, `viewChild`)
+   - Angular control flow (`@if`, `@for`, `@switch`)
+   - NgRx Signal Store feature composition (`signalStoreFeature`)
+   - CSS `container-type: inline-size` with container queries
+   - FLIP animation pattern (First, Last, Invert, Play) for scroll preservation
+   - `@angular/cdk/drag-drop` for reorderable lists
+   - ResizableDirective with CSS transitions and localStorage persistence
+   - Electron app with CDP debugging via agent-browser
+   - Nx monorepo structure
+   - Master-detail UX pattern with conditional layout switching
+
+3. Files and Code Sections:
+
+   - `libs/portal/shared/ui/src/lib/components/unified-collection/unified-live-tab.component.html`
+     - Main template that was causing the bug via `@if/@else` component destruction
+     - **Changed**: Removed `@if (activeDetail()) {...} @else {...}` pattern; list always rendered inside a stable `.sidebar` div that toggles `.sidebar--full` class
+     - Added `#sidebarRef` viewChild reference
+     - Final structure:
+     ```html
+     <div [class]="layoutClass()">
+         <div #sidebarRef class="sidebar" [class.sidebar--full]="!activeDetail()" appResizable ...>
+             <app-global-favorites-list [channels]="channelsForList()" ... />
+         </div>
+         @if (activeDetail()) {
+             @if (shouldUseInlinePlayer()) { <div class="video-player">...</div> }
+             @if (!isRadioSelection()) { <div class="epg">...</div> }
+         }
+     </div>
+     ```
+
+   - `libs/portal/shared/ui/src/lib/components/unified-collection/unified-live-tab.component.ts`
+     - Added `ElementRef` and `viewChild` imports
+     - Added `sidebarRef` viewChild: `private readonly sidebarRef = viewChild<ElementRef<HTMLElement>>('sidebarRef');`
+     - Updated `layoutClass` computed to include `'itv-container itv-container--empty'` when no activeDetail
+     - Modified `onChannelSelected` to use captureScrollAnchor pattern
+     - Added FLIP scroll anchor methods:
+     ```typescript
+     private captureScrollAnchor(uid: string): () => void {
+         const scrollContainer = this.findScrollContainer();
+         const clickedEl = this.findItemEl(uid);
+         if (!scrollContainer || !clickedEl) return () => undefined;
+         const topBefore = clickedEl.getBoundingClientRect().top;
+         return () => {
+             const adjust = () => {
+                 const currentEl = this.findItemEl(uid);
+                 const currentContainer = this.findScrollContainer();
+                 if (!currentEl || !currentContainer) return;
+                 const topAfter = currentEl.getBoundingClientRect().top;
+                 const delta = topAfter - topBefore;
+                 if (Math.abs(delta) > 0.5) currentContainer.scrollTop += delta;
+             };
+             requestAnimationFrame(adjust);
+             setTimeout(adjust, 200);
+         };
+     }
+     private findScrollContainer(): HTMLElement | null { ... }
+     private findItemEl(uid: string): HTMLElement | null { ... }
+     ```
+
+   - `libs/portal/shared/ui/src/lib/components/unified-collection/unified-live-tab.component.scss`
+     - Added `.itv-container--empty` layout
+     - Added `.sidebar--full` modifier (width: 100% !important, hides resize handle)
+     - **MOST RECENT EDIT**: Added transition override to fix shakiness:
+     ```scss
+     .sidebar {
+         ...
+         &.resizable-element {
+             transition: none;
+         }
+     }
+     ```
+
+   - `libs/portal/shared/ui/src/lib/components/global-favorites-list/global-favorites-list.component.html`
+     - Added `[attr.data-uid]="ch.uid"` on `<app-channel-list-item>` for FLIP anchor lookup
+
+   - `libs/ui/components/src/lib/channel-list-container/channel-list-item/channel-list-item.component.scss`
+     - Examined (not modified) — has `container-type: inline-size` with breakpoints at 360/310/270/220px that cause row reflow when container width changes
+
+   - `libs/ui/components/src/lib/resizable/resizable.scss`
+     - Examined — contains `.resizable-element:not(.is-resizing) { transition: width 0.15s ease-out; }` which causes the 150ms width animation
+
+   - `libs/ui/components/src/lib/resizable/resizable.directive.ts`
+     - Examined — the directive persists width to localStorage key `unified-live-tab-sidebar-width` and sets inline `style.width = Xpx`
+
+4. Errors and fixes:
+   - **First fix attempt scrolled to 0 (component destruction)**: Fixed by keeping `<app-global-favorites-list>` in a single stable DOM position outside @if/@else.
+   - **Second issue: scroll still jumped despite DOM preservation**: User feedback: "is there a fundamental angular component init issue?" Fixed by identifying container queries as the cause and implementing FLIP-style scroll preservation with `data-uid` and `getBoundingClientRect()` compensation.
+   - **Third issue (still being addressed): sidebar shaky after click**: User feedback: "the sidebar is resizing and is shaky after click selection... I want that the sidebar rezises to one size and stays like this, could it be related to size defined in component and later on the size which is defined/persisted in the resize directive?" Started fixing by disabling the CSS width transition on `.sidebar.resizable-element` but haven't finished addressing the full concern.
+
+5. Problem Solving:
+   - **Solved**: Component destruction on `@if/@else` branch swap — by restructuring template to keep list in stable DOM position.
+   - **Solved**: Container query reflow causing visual scroll jump — by implementing FLIP-style scroll anchor using `data-uid` attribute and `getBoundingClientRect()`.
+   - **In Progress**: Width transition causing shakiness — partial fix applied (transition: none on sidebar); still need to simplify FLIP logic (redundant setTimeout 200ms now that transition is instant) and verify fix.
+   - **Not yet investigated**: User's hypothesis about conflict between "size defined in component" vs "size defined/persisted in the resize directive" — need to check if there's a conflict between the `[defaultWidth]="360"` input and the localStorage-persisted width.
+
+6. All user messages:
+   - Initial: "in favorites view when i scroll down the list with channels and click on a channel the list view automatically scrolls up on channel selection. can you check and fix this behaviour, so that the list is not automatically scrolls up without user intention. use agent-browser cli to check, the app is already running. also use /electron and /angular-developer and /frontend-design skills"
+   - Second: "it's still scrolling/jumping, can you check one more time, i feel like the list is getting re-rendered somehow, is there a fundementional angular component init issue? maybe /angular-component skill /angular-signals and /angular-developer skills could help me here to investigate deeper"
+   - Third (most recent): "better now, but the sidebar is resizing and is shaky after click selection, any idea why that happens? so when i click on channel i want that the sidebar rezises to one size and stays like this, could it be related to size defined in component and later on the size which is defined/persisted in the resize directive?"
+
+7. Pending Tasks:
+   - Simplify FLIP scroll anchor logic: remove the redundant `setTimeout(adjust, 200)` since transition is now disabled (only `requestAnimationFrame(adjust)` needed)
+   - Verify the shakiness fix with agent-browser
+   - Investigate potential conflict between `[defaultWidth]="360"` in template vs localStorage-persisted width (user's hypothesis)
+   - Run `pnpm nx build web` to verify build passes
+   - Run unit tests for `portal-shared-ui`
+
+8. Current Work:
+   Working on fixing the shakiness/resizing issue the user reported. I diagnosed the cause as:
+   1. The `.resizable-element` CSS class applies `transition: width 0.15s ease-out`
+   2. During this 150ms width animation from full-width → 360px, container queries inside channel-list-item re-fire multiple times as width interpolates
+   3. My FLIP anchor runs twice (rAF + setTimeout 200ms), compounding the jitter
+   
+   I just made an edit to `libs/portal/shared/ui/src/lib/components/unified-collection/unified-live-tab.component.scss` adding:
+   ```scss
+   .sidebar {
+       ...
+       &.resizable-element {
+           transition: none;
+       }
+   }
+   ```
+   
+   The edit was successful but I was interrupted by a system reminder and haven't yet:
+   - Simplified the FLIP logic in the TS file to remove the now-redundant setTimeout
+   - Verified the fix with agent-browser
+   - Addressed the user's specific hypothesis about component-defined size vs directive-persisted size
+
+9. Optional Next Step:
+   Based on the user's most recent feedback: "the sidebar is resizing and is shaky after click selection... could it be related to size defined in component and later on the size which is defined/persisted in the resize directive?"
+   
+   Next steps:
+   1. Simplify the FLIP anchor in `unified-live-tab.component.ts` to use only `requestAnimationFrame(adjust)` (remove the `setTimeout(adjust, 200)` since transition is now instant)
+   2. Investigate the user's hypothesis about size definition conflict — verify that `[defaultWidth]="360"` and the persisted localStorage width don't cause a race condition where the sidebar briefly shows default width then switches to persisted width
+   3. Verify the fix with agent-browser by reloading the app, scrolling, clicking a channel, and confirming no shakiness
+   4. Run `pnpm nx build web` and `pnpm nx test portal-shared-ui` to confirm nothing is broken
+
+If you need specific details from before compaction (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/4gray/.REDACTED.jsonl
+Continue the conversation from where it left off without asking the user any further questions. Resume directly — do not acknowledge the summary, do not recap what was happening, do not preface with "I'll continue" or similar. Pick up the last task as if the break never happened.
+
+---
+
+ok, other idea, to avoid issues with jumping sidebar sizes etc. what do you think about showing a two column layout initially just like for m3u module, where sidebar has initially restricted size and resize directive is used to change it by user, and at the right side when no channel is selected there is a placeholder . in m3u module it should be in @libs/playlist/m3u/feature-player/src/lib/video-player and @libs/playlist/shared/ui/src/lib/recent-playlists/empty-state/empty-state.component.html where the placeholder is defined, what do you think? please reuse as much as possible if it makes sense and do not break other things
