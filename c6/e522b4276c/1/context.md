@@ -32,3 +32,7 @@ Automate any Electron desktop app using agent-browser. Electron apps are built o
 2. **Connect** agent-browser to the CDP port
 3. **Snapshot** to discover interactive...
 
+### Prompt 5
+
+now somehow after every app restart (epg worker restart) one epg url (from 3 which i added) is always starts to re-fetch,  should it be like this? or what could be the issue. the app is running now, could you check it? use /electron  and agent-browser cli to check if needed
+

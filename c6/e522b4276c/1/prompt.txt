@@ -255,3 +255,7 @@ Any app built on Electron works, including:
 - **Productivity:** Todoist, Linear, 1Password
 
 If an app is built with Electron, it supports `--remote-debugging-port` and can be automated with agent-browser.
+
+---
+
+now somehow after every app restart (epg worker restart) one epg url (from 3 which i added) is always starts to re-fetch,  should it be like this? or what could be the issue. the app is running now, could you check it? use /electron  and agent-browser cli to check if needed
