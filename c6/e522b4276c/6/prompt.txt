@@ -1,0 +1,513 @@
+in m3u module @libs/playlist/m3u/feature-player/src/lib/video-player  we have sorting feature for channels, sort by name, server order or custom. i want to add similar sorting for favorited items (check favorite view from sidebar navigation rail). the custom one with drag and drop should be default, but i want also to provide sorting options like name (desc, asc, and added_at in case we save the date/timstamp when it was favorited, if not then this option is not needed). also persist the latest user selectino for sorting. use /electron  and /angular-developer  skills, and try to reuse icon, button, style of sorting menu if possible. use agent-browser cli to test, the app is already running
+
+---
+
+Base directory for this skill: /Users/4gray/.claude/skills/electron
+
+# Electron App Automation
+
+Automate any Electron desktop app using agent-browser. Electron apps are built on Chromium and expose a Chrome DevTools Protocol (CDP) port that agent-browser can connect to, enabling the same snapshot-interact workflow used for web pages.
+
+## Core Workflow
+
+1. **Launch** the Electron app with remote debugging enabled
+2. **Connect** agent-browser to the CDP port
+3. **Snapshot** to discover interactive elements
+4. **Interact** using element refs
+5. **Re-snapshot** after navigation or state changes
+
+```bash
+# Launch an Electron app with remote debugging
+open -a "Slack" --args --remote-debugging-port=9222
+
+# Connect agent-browser to the app
+agent-browser connect 9222
+
+# Standard workflow from here
+agent-browser snapshot -i
+agent-browser click @e5
+agent-browser screenshot slack-desktop.png
+```
+
+## Launching Electron Apps with CDP
+
+Every Electron app supports the `--remote-debugging-port` flag since it's built into Chromium.
+
+### macOS
+
+```bash
+# Slack
+open -a "Slack" --args --remote-debugging-port=9222
+
+# VS Code
+open -a "Visual Studio Code" --args --remote-debugging-port=9223
+
+# Discord
+open -a "Discord" --args --remote-debugging-port=9224
+
+# Figma
+open -a "Figma" --args --remote-debugging-port=9225
+
+# Notion
+open -a "Notion" --args --remote-debugging-port=9226
+
+# Spotify
+open -a "Spotify" --args --remote-debugging-port=9227
+```
+
+### Linux
+
+```bash
+slack --remote-debugging-port=9222
+code --remote-debugging-port=9223
+discord --remote-debugging-port=9224
+```
+
+### Windows
+
+```bash
+"C:\Users\%USERNAME%\AppData\Local\slack\slack.exe" --remote-debugging-port=9222
+"C:\Users\%USERNAME%\AppData\Local\Programs\Microsoft VS Code\Code.exe" --remote-debugging-port=9223
+```
+
+**Important:** If the app is already running, quit it first, then relaunch with the flag. The `--remote-debugging-port` flag must be present at launch time.
+
+## Connecting
+
+```bash
+# Connect to a specific port
+agent-browser connect 9222
+
+# Or use --cdp on each command
+agent-browser --cdp 9222 snapshot -i
+
+# Auto-discover a running Chromium-based app
+agent-browser --auto-connect snapshot -i
+```
+
+After `connect`, all subsequent commands target the connected app without needing `--cdp`.
+
+## Tab Management
+
+Electron apps often have multiple windows or webviews. Use tab commands to list and switch between them:
+
+```bash
+# List all available targets (windows, webviews, etc.)
+agent-browser tab
+
+# Switch to a specific tab by index
+agent-browser tab 2
+
+# Switch by URL pattern
+agent-browser tab --url "*settings*"
+```
+
+## Common Patterns
+
+### Inspect and Navigate an App
+
+```bash
+open -a "Slack" --args --remote-debugging-port=9222
+sleep 3  # Wait for app to start
+agent-browser connect 9222
+agent-browser snapshot -i
+# Read the snapshot output to identify UI elements
+agent-browser click @e10  # Navigate to a section
+agent-browser snapshot -i  # Re-snapshot after navigation
+```
+
+### Take Screenshots of Desktop Apps
+
+```bash
+agent-browser connect 9222
+agent-browser screenshot app-state.png
+agent-browser screenshot --full full-app.png
+agent-browser screenshot --annotate annotated-app.png
+```
+
+### Extract Data from a Desktop App
+
+```bash
+agent-browser connect 9222
+agent-browser snapshot -i
+agent-browser get text @e5
+agent-browser snapshot --json > app-state.json
+```
+
+### Fill Forms in Desktop Apps
+
+```bash
+agent-browser connect 9222
+agent-browser snapshot -i
+agent-browser fill @e3 "search query"
+agent-browser press Enter
+agent-browser wait 1000
+agent-browser snapshot -i
+```
+
+### Run Multiple Apps Simultaneously
+
+Use named sessions to control multiple Electron apps at the same time:
+
+```bash
+# Connect to Slack
+agent-browser --session slack connect 9222
+
+# Connect to VS Code
+agent-browser --session vscode connect 9223
+
+# Interact with each independently
+agent-browser --session slack snapshot -i
+agent-browser --session vscode snapshot -i
+```
+
+## Color Scheme
+
+Playwright overrides the color scheme to `light` by default when connecting via CDP. To preserve dark mode:
+
+```bash
+agent-browser connect 9222
+agent-browser --color-scheme dark snapshot -i
+```
+
+Or set it globally:
+
+```bash
+AGENT_BROWSER_COLOR_SCHEME=dark agent-browser connect 9222
+```
+
+## Troubleshooting
+
+### "Connection refused" or "Cannot connect"
+
+- Make sure the app was launched with `--remote-debugging-port=NNNN`
+- If the app was already running, quit and relaunch with the flag
+- Check that the port isn't in use by another process: `lsof -i :9222`
+
+### App launches but connect fails
+
+- Wait a few seconds after launch before connecting (`sleep 3`)
+- Some apps take time to initialize their webview
+
+### Elements not appearing in snapshot
+
+- The app may use multiple webviews. Use `agent-browser tab` to list targets and switch to the right one
+- Use `agent-browser snapshot -i -C` to include cursor-interactive elements (divs with onclick handlers)
+
+### Cannot type in input fields
+
+- Try `agent-browser keyboard type "text"` to type at the current focus without a selector
+- Some Electron apps use custom input components; use `agent-browser keyboard inserttext "text"` to bypass key events
+
+## Supported Apps
+
+Any app built on Electron works, including:
+
+- **Communication:** Slack, Discord, Microsoft Teams, Signal, Telegram Desktop
+- **Development:** VS Code, GitHub Desktop, Postman, Insomnia
+- **Design:** Figma, Notion, Obsidian
+- **Media:** Spotify, Tidal
+- **Productivity:** Todoist, Linear, 1Password
+
+If an app is built with Electron, it supports `--remote-debugging-port` and can be automated with agent-browser.
+
+---
+
+Base directory for this skill: /Users/4gray/.claude/skills/angular-developer
+
+# Angular Developer Guidelines
+
+1. Always analyze the project's Angular version before providing guidance, as best practices and available features can vary significantly between versions. If creating a new project with Angular CLI, do not specify a version unless prompted by the user.
+
+2. When generating code, follow Angular's style guide and best practices for maintainability and performance. Use the Angular CLI for scaffolding components, services, directives, pipes, and routes to ensure consistency.
+
+3. Once you finish generating code, run `ng build` to ensure there are no build errors. If there are errors, analyze the error messages and fix them before proceeding. Do not skip this step, as it is critical for ensuring the generated code is correct and functional.
+
+## Creating New Projects
+
+If no guidelines are provided by the user, here are same default rules to follow when creating a new Angular project:
+
+1. Use the latest stable version of Angular unless the user specifies otherwise.
+2. Use Signals Forms for form management in new projects (available in Angular v21 and newer) [Find out more](references/signal-forms.md).
+
+**Execution Rules for `ng new`:**
+When asked to create a new Angular project, you must determine the correct execution command by following these strict steps:
+
+**Step 1: Check for an explicit user version.**
+
+- **IF** the user requests a specific version (e.g., Angular 15), bypass local installations and strictly use `npx`.
+- **Command:** `npx @angular/cli@<requested_version> new <project-name>`
+
+**Step 2: Check for an existing Angular installation.**
+
+- **IF** no specific version is requested, run `ng version` in the terminal to check if the Angular CLI is already installed on the system.
+- **IF** the command succeeds and returns an installed version, use the local/global installation directly.
+- **Command:** `ng new <project-name>`
+
+**Step 3: Fallback to Latest.**
+
+- **IF** no specific version is requested AND the `ng version` command fails (indicating no Angular installation exists), you must use `npx` to fetch the latest version.
+- **Command:** `npx @angular/cli@latest new <project-name>`
+
+## Components
+
+When working with Angular components, consult the following references based on the task:
+
+- **Fundamentals**: Anatomy, metadata, core concepts, and template control flow (@if, @for, @switch). Read [components.md](references/components.md)
+- **Inputs**: Signal-based inputs, transforms, and model inputs. Read [inputs.md](references/inputs.md)
+- **Outputs**: Signal-based outputs and custom event best practices. Read [outputs.md](references/outputs.md)
+- **Host Elements**: Host bindings and attribute injection. Read [host-elements.md](references/host-elements.md)
+
+If you require deeper documentation not found in the references above, read the documentation at `https://angular.dev/guide/components`.
+
+## Reactivity and Data Management
+
+When managing state and data reactivity, use Angular Signals and consult the following references:
+
+- **Signals Overview**: Core signal concepts (`signal`, `computed`), reactive contexts, and `untracked`. Read [signals-overview.md](references/signals-overview.md)
+- **Dependent State (`linkedSignal`)**: Creating writable state linked to source signals. Read [linked-signal.md](references/linked-signal.md)
+- **Async Reactivity (`resource`)**: Fetching asynchronous data directly into signal state. Read [resource.md](references/resource.md)
+- **Side Effects (`effect`)**: Logging, third-party DOM manipulation (`afterRenderEffect`), and when NOT to use effects. Read [effects.md](references/effects.md)
+
+## Forms
+
+In most cases for new apps, **prefer signal forms**. When making a forms decision, analyze the project and consider the following guidelines:
+
+- if the application is using v21 or newer and this is a new form, **prefer signal forms**.
+  -For older applications or when working with existing forms, use the appropriate form type that matches the applications current form strategy.
+
+- **Signal Forms**: Use signals for form state management. Read [signal-forms.md](references/signal-forms.md)
+- **Template-driven forms**: Use for simple forms. Read [template-driven-forms.md](references/template-driven-forms.md)
+- **Reactive forms**: Use for complex forms. Read [reactive-forms.md](references/reactive-forms.md)
+
+## Dependency Injection
+
+When implementing dependency injection in Angular, follow these guidelines:
+
+- **Fundamentals**: Overview of Dependency Injection, services, and the `inject()` function. Read [di-fundamentals.md](references/di-fundamentals.md)
+- **Creating and Using Services**: Creating services, the `providedIn: 'root'` option, and injecting into components or other services. Read [creating-services.md](references/creating-services.md)
+- **Defining Dependency Providers**: Automatic vs manual provision, `InjectionToken`, `useClass`, `useValue`, `useFactory`, and scopes. Read [defining-providers.md](references/defining-providers.md)
+- **Injection Context**: Where `inject()` is allowed, `runInInjectionContext`, and `assertInInjectionContext`. Read [injection-context.md](references/injection-context.md)
+- **Hierarchical Injectors**: The `EnvironmentInjector` vs `ElementInjector`, resolution rules, modifiers (`optional`, `skipSelf`), and `providers` vs `viewProviders`. Read [hierarchical-injectors.md](references/hierarchical-injectors.md)
+
+## Angular Aria
+
+When building accessible custom components for any of the following patterns: Accordion, Listbox, Combobox, Menu, Tabs, Toolbar, Tree, Grid, consult the following reference:
+
+- **Angular Aria Components**: Building headless, accessible components (Accordion, Listbox, Combobox, Menu, Tabs, Toolbar, Tree, Grid) and styling ARIA attributes. Read [angular-aria.md](references/angular-aria.md)
+
+## Routing
+
+When implementing navigation in Angular, consult the following references:
+
+- **Define Routes**: URL paths, static vs dynamic segments, wildcards, and redirects. Read [define-routes.md](references/define-routes.md)
+- **Route Loading Strategies**: Eager vs lazy loading, and context-aware loading. Read [loading-strategies.md](references/loading-strategies.md)
+- **Show Routes with Outlets**: Using `<router-outlet>`, nested outlets, and named outlets. Read [show-routes-with-outlets.md](references/show-routes-with-outlets.md)
+- **Navigate to Routes**: Declarative navigation with `RouterLink` and programmatic navigation with `Router`. Read [navigate-to-routes.md](references/navigate-to-routes.md)
+- **Control Route Access with Guards**: Implementing `CanActivate`, `CanMatch`, and other guards for security. Read [route-guards.md](references/route-guards.md)
+- **Data Resolvers**: Pre-fetching data before route activation with `ResolveFn`. Read [data-resolvers.md](references/data-resolvers.md)
+- **Router Lifecycle and Events**: Chronological order of navigation events and debugging. Read [router-lifecycle.md](references/router-lifecycle.md)
+- **Rendering Strategies**: CSR, SSG (Prerendering), and SSR with hydration. Read [rendering-strategies.md](references/rendering-strategies.md)
+- **Route Transition Animations**: Enabling and customizing the View Transitions API. Read [route-animations.md](references/route-animations.md)
+
+If you require deeper documentation or more context, visit the [official Angular Routing guide](https://angular.dev/guide/routing).
+
+## Styling and Animations
+
+When implementing styling and animations in Angular, consult the following references:
+
+- **Using Tailwind CSS with Angular**: Integrating Tailwind CSS into Angular projects. Read [tailwind-css.md](references/tailwind-css.md)
+- **Angular Animations**: Using native CSS (recommended) or the legacy DSL for dynamic effects. Read [angular-animations.md](references/angular-animations.md)
+- **Styling components**: Best practices for component styles and encapsulation. Read [component-styling.md](references/component-styling.md)
+
+## Testing
+
+When writing or updating tests, consult the following references based on the task:
+
+- **Fundamentals**: Best practices for unit testing (Vitest), async patterns, and `TestBed`. Read [testing-fundamentals.md](references/testing-fundamentals.md)
+- **Component Harnesses**: Standard patterns for robust component interaction. Read [component-harnesses.md](references/component-harnesses.md)
+- **Router Testing**: Using `RouterTestingHarness` for reliable navigation tests. Read [router-testing.md](references/router-testing.md)
+- **End-to-End (E2E) Testing**: Best practices for E2E tests with Cypress. Read [e2e-testing.md](references/e2e-testing.md)
+
+## Tooling
+
+When working with Angular tooling, consult the following references:
+
+- **Angular CLI**: Creating applications, generating code (components, routes, services), serving, and building. Read [cli.md](references/cli.md)
+- **Angular MCP Server**: Available tools, configuration, and experimental features. Read [mcp.md](references/mcp.md)
+
+---
+
+[Request interrupted by user]
+
+---
+
+are you done? if not continue please
+
+---
+
+This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation.
+
+Summary:
+1. Primary Request and Intent:
+   The user wants to add sorting functionality to favorited items in the favorites view from the sidebar navigation rail (at `/workspace/global-favorites`). Requirements:
+   - Similar to channel sorting in `libs/playlist/m3u/feature-player/src/lib/video-player` which supports "sort by name, server order or custom"
+   - Sort options for favorites: name (asc/desc), added_at (date/timestamp if available), custom drag-drop
+   - Custom drag-drop must be the default
+   - Persist the user's latest sort selection in localStorage
+   - Reuse icon/button/style of existing sorting menu
+   - Use `/electron` and `/angular-developer` skills
+   - Test via agent-browser CLI (app is already running)
+
+2. Key Technical Concepts:
+   - Angular 21+ signal-based APIs (`input()`, `output()`, `signal()`, `computed()`, `viewChild()`)
+   - Modern control flow (`@if`, `@for`, `@switch`)
+   - Angular Material components (MatMenu, MatButton, MatIcon, MatTooltip)
+   - CDK Drag-Drop for reordering
+   - NgRx Signal Store with feature composition
+   - CDP (Chrome DevTools Protocol) via agent-browser on port 9222
+   - Intl.Collator for locale-aware sorting
+   - localStorage for persistence
+   - Nx monorepo structure
+   - Factory pattern for Electron vs PWA dual environment
+
+3. Files and Code Sections:
+
+   - `libs/portal/shared/util/src/lib/channel-sort.ts` (REFERENCE — existing pattern to model after):
+     - Has `PortalChannelSortMode = 'server' | 'name-asc' | 'name-desc'` with helpers `restorePortalChannelSortMode`, `persistPortalChannelSortMode`, `sortPortalChannelItems`
+   
+   - `libs/ui/components/src/lib/channel-list-container/groups-view/groups-view.component.ts` and `.html` (REFERENCE — existing sort UI pattern):
+     - Uses `mat-icon-button` with `[matMenuTriggerFor]="channelSortMenu"`, icon `sort_by_alpha`, menu items with check indicator when active
+     - Storage key pattern: `GROUP_CHANNEL_SORT_STORAGE_KEY = 'm3u-groups-channel-sort-mode'`
+
+   - `libs/portal/shared/util/src/lib/collection/unified-favorite-channel.interface.ts` (REFERENCE):
+     - `UnifiedFavoriteChannel` has `addedAt: string` ISO timestamp field
+
+   - `libs/portal/shared/util/src/lib/collection/unified-favorites-data.service.ts` (REFERENCE):
+     - M3U favorites: `addedAt: new Date(0).toISOString()` (epoch)
+     - Xtream: `addedAt: row.added_at ?? new Date(0).toISOString()`
+     - Stalker: `addedAt: normalizeStalkerDate(fav.added_at) || new Date(0).toISOString()`
+
+   - `libs/portal/shared/util/src/lib/favorites-channel-sort.ts` (CREATED):
+     ```typescript
+     const FAVORITES_SORT_COLLATOR = new Intl.Collator(undefined, {
+         numeric: true,
+         sensitivity: 'base',
+     });
+
+     export type FavoritesChannelSortMode =
+         | 'custom'
+         | 'name-asc'
+         | 'name-desc'
+         | 'date-desc';
+
+     export const DEFAULT_FAVORITES_CHANNEL_SORT_MODE: FavoritesChannelSortMode =
+         'custom';
+
+     export const FAVORITES_CHANNEL_SORT_STORAGE_KEY =
+         'favorites-channel-sort-mode';
+
+     export function isFavoritesChannelSortMode(value: unknown): value is FavoritesChannelSortMode { ... }
+     export function restoreFavoritesChannelSortMode(storageKey?, fallback?): FavoritesChannelSortMode { ... }
+     export function persistFavoritesChannelSortMode(mode, storageKey?): void { ... }
+     export function getFavoritesChannelSortModeTranslationKey(mode): string {
+         // Returns 'WORKSPACE.SORT_CUSTOM', 'WORKSPACE.SORT_NAME_ASC', etc.
+     }
+     export function sortFavoriteChannelItems<T>(items, mode, accessors): readonly T[] {
+         // Handles custom (passthrough), date-desc, name-asc, name-desc
+     }
+     ```
+
+   - `libs/portal/shared/util/src/index.ts` (MODIFIED):
+     - Added: `export * from './lib/favorites-channel-sort';`
+
+   - `libs/portal/shared/ui/src/lib/components/global-favorites-list/global-favorites-list.component.ts` (MODIFIED — the target component):
+     ```typescript
+     // Added imports: MatButtonModule, MatIconModule, MatMenuModule, MatTooltipModule, TranslateModule, signal
+     // Added imports from portal/shared/util: FavoritesChannelSortMode, getFavoritesChannelSortModeTranslationKey, persistFavoritesChannelSortMode, restoreFavoritesChannelSortMode, sortFavoriteChannelItems
+     
+     readonly sortMode = signal<FavoritesChannelSortMode>(
+         restoreFavoritesChannelSortMode()
+     );
+     readonly activeSortLabelKey = computed(() =>
+         getFavoritesChannelSortModeTranslationKey(this.sortMode())
+     );
+     readonly isCustomSort = computed(() => this.sortMode() === 'custom');
+     readonly canDragDrop = computed(
+         () => this.draggable() && this.isCustomSort() && !this.hasSearchTerm()
+     );
+     readonly sortOptions = [
+         { mode: 'custom', translationKey: 'WORKSPACE.SORT_CUSTOM', icon: 'drag_indicator' },
+         { mode: 'name-asc', translationKey: 'WORKSPACE.SORT_NAME_ASC', icon: 'sort_by_alpha' },
+         { mode: 'name-desc', translationKey: 'WORKSPACE.SORT_NAME_DESC', icon: 'sort_by_alpha' },
+         { mode: 'date-desc', translationKey: 'WORKSPACE.SORT_DATE_DESC', icon: 'schedule' },
+     ];
+     
+     // Modified enrichedChannels: now applies sortFavoriteChannelItems() on filtered list
+     // Modified onDrop: checks canDragDrop() instead of just hasSearchTerm()
+     // Added setSortMode(mode) method that persists to localStorage
+     ```
+
+   - `libs/portal/shared/ui/src/lib/components/global-favorites-list/global-favorites-list.component.html` (NEEDS UPDATE):
+     Current structure uses `<div class="nav-list">` — needs a header with sort button above it. Update `[cdkDropListDisabled]` to use `!canDragDrop()` and `[isDraggable]` to use `canDragDrop()`.
+
+   - `libs/portal/shared/ui/src/lib/components/global-favorites-list/global-favorites-list.component.scss` (NEEDS UPDATE):
+     Add styles for the sort header.
+
+   - `apps/web/src/assets/i18n/en.json`, `de.json`, `ru.json` and other language files (NEED UPDATE):
+     Add `WORKSPACE.SORT_CUSTOM` key (existing keys SORT_NAME_ASC, SORT_NAME_DESC, SORT_DATE_DESC, SORT_LABEL are already present in en/de/ru)
+
+4. Errors and fixes:
+   - Agent-browser couldn't connect to CDP port 9222 despite Electron running with `--remote-debugging-port=9222`: Connection was refused. This needs to be flagged to the user — possibly the port binding failed or needs app restart. Did not attempt to fix; continued with implementation first.
+
+5. Problem Solving:
+   - Identified the correct component (`GlobalFavoritesListComponent`) used in the sidebar navigation rail favorites view (route `/workspace/global-favorites` → `GlobalCollectionRouteComponent` → `UnifiedCollectionPageComponent` → `UnifiedLiveTabComponent` → `GlobalFavoritesListComponent`).
+   - Determined that `UnifiedFavoriteChannel.addedAt` is available (with caveat: M3U items are epoch), so "date-desc" sort is viable.
+   - Chose to localize sort state inside `GlobalFavoritesListComponent` rather than lifting it up, since the component already owns enrichment logic.
+   - Modeled the implementation on the existing `channel-sort.ts` pattern for API consistency.
+
+6. All user messages:
+   - "in m3u module @libs/playlist/m3u/feature-player/src/lib/video-player we have sorting feature for channels, sort by name, server order or custom. i want to add similar sorting for favorited items (check favorite view from sidebar navigation rail). the custom one with drag and drop should be default, but i want also to provide sorting options like name (desc, asc, and added_at in case we save the date/timstamp when it was favorited, if not then this option is not needed). also persist the latest user selectino for sorting. use /electron and /angular-developer skills, and try to reuse icon, button, style of sorting menu if possible. use agent-browser cli to test, the app is already running"
+   - "are you done? if not continue please" (interrupting to ask if task is complete)
+
+7. Pending Tasks:
+   - Update `global-favorites-list.component.html` to add the sort button + mat-menu header above `<div class="nav-list">`, and change `[cdkDropListDisabled]="!canDragDrop()"` and `[isDraggable]="canDragDrop()"`
+   - Update `global-favorites-list.component.scss` to style the sort header
+   - Add `"SORT_CUSTOM": "Custom order"` (and translations) to i18n files: en.json, de.json, ru.json, and other language files (16 total languages — may need to add at least to the edited ones: en, de, ru)
+   - Run `nx build` to verify no build errors
+   - Test via agent-browser CLI (needs CDP connection fix)
+   - Consider documentation updates per CLAUDE.md rules
+
+8. Current Work:
+   Just finished writing the modified `global-favorites-list.component.ts` file with the sort state/logic. The user interrupted with "are you done? if not continue please" before I could update the HTML template, SCSS, and i18n files. The component TypeScript now has:
+   - Sort mode signal initialized from localStorage
+   - Sort options array with 4 modes (custom, name-asc, name-desc, date-desc)
+   - `canDragDrop` computed signal that combines draggable + isCustomSort + !hasSearchTerm
+   - Applied `sortFavoriteChannelItems()` in `enrichedChannels` computed
+   - `setSortMode()` method that persists to localStorage
+   
+   The HTML template still references the old pattern and doesn't yet render the sort button/menu. SCSS lacks the header styles. i18n files need `SORT_CUSTOM` key.
+
+9. Optional Next Step:
+   Continue implementation by:
+   (1) Updating `libs/portal/shared/ui/src/lib/components/global-favorites-list/global-favorites-list.component.html` to add a sort header with `mat-icon-button` + `mat-menu` reusing the pattern from `groups-view.component.html` (icon `sort_by_alpha`, menu items with check indicator, `setSortMode(option.mode)` on click). Also change `[cdkDropListDisabled]="!canDragDrop()"` and `[isDraggable]="canDragDrop()"`.
+   (2) Updating the SCSS file to style the new header.
+   (3) Adding `SORT_CUSTOM` i18n key to at least en.json, de.json, ru.json (the modified ones per git status).
+   (4) Running `nx build web` to verify.
+   
+   Direct quote from the last assistant action before interruption: the `global-favorites-list.component.ts` was rewritten with "Added Material module imports (MatButtonModule, MatIconModule, MatMenuModule, MatTooltipModule, TranslateModule)... Added `sortMode` signal... Apply sort in `enrichedChannels` computed... Added `setSortMode` method".
+
+If you need specific details from before compaction (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/4gray/.REDACTED.jsonl
+Continue the conversation from where it left off without asking the user any further questions. Resume directly — do not acknowledge the summary, do not recap what was happening, do not preface with "I'll continue" or similar. Pick up the last task as if the break never happened.
+
+---
+
+move the sort button to header of the channels sidebar, just right from the favorites title, because now it takes additional place vertically
+
+---
+
+now it's on the right side in header, can you move to the left, closer to the list title "favorites"? more like on the screenshot
+
+---
+
+[Image: original 3064x1606, displayed at 2576x1350. Multiply coordinates by 1.19 to map to original image.]
