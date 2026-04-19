@@ -14,3 +14,30 @@ yes, but simple version, undo is not needed. maybe just show a popup dialog befo
 
 can you check if the "clear" button is scope related and just removes the selected scope items, like depending on whether all playlsits or this playlist is selected?
 
+### Prompt 4
+
+what do you think about considering the select type for the "clear" action, so to not delete all the tpes in scope, but just from the type which is selected? is is that a bad mental model? use /userinterface-wiki  and /frontend-design  to think about good solution
+
+### Prompt 5
+
+Base directory for this skill: /Users/4gray/.claude/skills/userinterface-wiki
+
+# User Interface Wiki
+
+Comprehensive UI/UX best practices guide for web interfaces. Contains 152 rules across 12 categories, prioritized by impact to guide automated code review and generation.
+
+## When to Apply
+
+Reference these guidelines when:
+- Implementing or reviewing animations (CSS transitions, Motion/Framer Motion)
+- Choosing between springs, easing curves, or no animation
+- Working with AnimatePresence and ex...
+
+### Prompt 6
+
+yes
+
+### Prompt 7
+
+add same "clear" button function for favorites view
+
