@@ -98,3 +98,43 @@ how do you like generally the style of settings page, is it in sync with other s
 
 we have a border radius in this component, but can you see these "dirty corners" from screenshot, can we improve that? /frontend-design  /sc-brainstorm  @libs/ui/components/src/lib/external-playback-dock/external-playback-dock.component.html
 
+### Prompt 25
+
+hm, but now you changed the background color and the border is just visible on top part of the panel, also there is apdding from right and left side. and now with the new colors it overlaps too much with the background, or would you it is better that the dark before? /userinterface-wiki  /frontend-design  /sc-brainstorm
+
+### Prompt 26
+
+do A, 12 is fine
+
+### Prompt 27
+
+let's set the padding to 0 and also remove the border radius at the bottom of the dock panel, also remove box-shadow and filter
+
+### Prompt 28
+
+but now the border color on top is not visible, is there a border?
+
+### Prompt 29
+
+[Image: original 2680x1306, displayed at 2576x1255. Multiply coordinates by 1.04 to map to original image.]
+
+### Prompt 30
+
+what do you think about the style of the close player button, is that fine? /frontend-design  /userinterface-wiki  /sc-brainstorm
+
+### Prompt 31
+
+yes, it Stops MPV/VLC and dismisses the dock
+
+### Prompt 32
+
+how do you like the positioning of other elements like player name, labels etc in the dock? /userinterface-wiki  /frontend-design  /sc-brainstorm
+
+### Prompt 33
+
+do option A with artwork-clickable, icon honesty and Status-text honesty
+
+### Prompt 34
+
+hm, somehow the artwork is missing in the dock, I'm testing it with live tv channels now from m3u module /angular-developer  /electron
+
