@@ -135,3 +135,354 @@ hm, somehow the artwork is missing in the dock, I'm testing it with live tv chan
 ---
 
 we need to fix the spec of the dock component, i think translation service or pipe is missing, try to execute it to see
+
+---
+
+after the changes on settings page, some e2e tests started to fail, i think we need to adapt them after changes in code, here is the log:  NX   Successfully ran target build for project web and 2 tasks it depends on
+
+
+
+✅ > nx run electron-backend:build-e2e
+> nx run electron-backend-e2e:e2e
+
+> playwright test
+
+
+Running 62 tests using 1 worker
+
+  ok  1 [electron] › src\catalog-sorting.e2e.ts:29:9 › Electron Catalog Sorting › sorts Xtream live channels by server order and name, with persistence after revisit (14.3s)
+  ok  2 [electron] › src\catalog-sorting.e2e.ts:91:9 › Electron Catalog Sorting › sorts Xtream VOD and series content, and keeps the chosen sort after revisiting the section (7.0s)
+  ok  3 [electron] › src\catalog-sorting.e2e.ts:182:9 › Electron Catalog Sorting › does not expose local sorting controls on Stalker category routes (4.2s)
+  ok  4 [electron] › src\catalog-sorting.e2e.ts:214:9 › Electron Catalog Sorting › keeps Xtream catalog page after opening VOD and series details, and resets grid scroll on page changes (5.8s)
+  ok  5 [electron] › src\catalog-sorting.e2e.ts:269:9 › Electron Catalog Sorting › resets Stalker VOD and series grid scroll when changing pages (5.4s)
+  ok  6 [electron] › src\category-management.e2e.ts:20:9 › Electron Xtream Category Management › hides and restores categories, supports search and bulk actions, and persists hidden selections after refresh (15.2s)
+  ok  7 [electron] › src\category-management.e2e.ts:134:9 › Electron Xtream Category Management › persists hidden selections after refreshing from the workspace header (15.6s)
+  ok  8 [electron] › src\dashboard-activation.e2e.ts:27:9 › Dashboard Activation › opens live favorites in the collection route and movies/series in global collection detail views from the dashboard (8.5s)
+  ok  9 [electron] › src\epg.e2e.ts:32:9 › Electron EPG › adds an EPG source, fetches guide data, removes the source row, and clears stored EPG data (4.3s)
+  ok 10 [electron] › src\epg.e2e.ts:88:9 › Electron EPG › uses the XMLTV channel icon as a fallback when the playlist has no tvg-logo (4.5s)
+  ok 11 [electron] › src\favorites.e2e.ts:46:9 › Electron Favorites › shows M3U favorites in playlist and all-playlists scope, and preserves them after restart (7.2s)
+  ok 12 [electron] › src\favorites.e2e.ts:109:9 › Electron Favorites › keeps playlist M3U favorites cleared after navigating away and back (4.6s)
+  ok 13 [electron] › src\favorites.e2e.ts:175:9 › Electron Favorites › shows Xtream live, movie, and series favorites in playlist and all-playlists scope, and preserves them after restart (15.2s)
+  ok 14 [electron] › src\favorites.e2e.ts:281:9 › Electron Favorites › opens Xtream favorite movies and series inline from favorites without switching the playlist or showing the sidebar (13.0s)
+  ok 15 [electron] › src\favorites.e2e.ts:377:9 › Electron Favorites › shows Stalker live, movie, and series favorites in playlist and all-playlists scope, and preserves them after restart (10.0s)
+  ok 16 [electron] › src\favorites.e2e.ts:486:9 › Electron Favorites › opens Stalker favorite movies and series inline from favorites without showing the sidebar (6.3s)
+  ok 17 [electron] › src\file-import.e2e.ts:11:9 › Electron Native Playlist Import › imports an M3U playlist via the native file picker path (3.8s)
+  ok 18 [electron] › src\playlist-switcher.e2e.ts:57:9 › Electron Playlist Switcher › preserves same-type sections and cross-type mappings when switching from the workspace header (45.7s)
+  ok 19 [electron] › src\playlist-switcher.e2e.ts:187:9 › Electron Playlist Switcher › refreshes M3U unified collections immediately when switching same-type playlists from the header (7.4s)
+  ok 20 [electron] › src\playlist-switcher.e2e.ts:280:9 › Electron Playlist Switcher › switches away from importing Xtream playlists, returns before completion, and avoids redundant reimport after caching (30.6s)
+  ok 21 [electron] › src\playlist-switcher.e2e.ts:361:9 › Electron Playlist Switcher › keeps cached Xtream content browseable with an unavailable warning after the portal goes offline and after restart (25.3s)
+  ok 22 [electron] › src\providers.e2e.ts:21:9 › Electron Provider Smoke Tests › loads Xtream content through the Electron IPC path (4.7s)
+  ok 23 [electron] › src\providers.e2e.ts:44:9 › Electron Provider Smoke Tests › loads Stalker content through the Electron IPC path (3.9s)
+  ok 24 [electron] › src\recent.e2e.ts:46:9 › Electron Recently Viewed › keeps unified live detail open when re-clicking the active M3U recent item (4.7s)
+  ok 25 [electron] › src\recent.e2e.ts:90:9 › Electron Recently Viewed › tracks M3U recent channels in newest-first order, supports all-playlists scope, and persists removals after restart (8.3s)
+  ok 26 [electron] › src\recent.e2e.ts:154:9 › Electron Recently Viewed › tracks Xtream live, movie, and series history across playlist and all-playlists scope, persists after restart, and supports clearing (18.3s)
+  ok 27 [electron] › src\recent.e2e.ts:277:9 › Electron Recently Viewed › opens Xtream recent movies and series inline from recent without switching the playlist or showing the sidebar (7.2s)
+  ok 28 [electron] › src\recent.e2e.ts:360:9 › Electron Recently Viewed › tracks Stalker live, movie, and series history across playlist and all-playlists scope, and preserves it after restart (12.8s)
+  ok 29 [electron] › src\recent.e2e.ts:469:9 › Electron Recently Viewed › opens Stalker recent movies and series inline from recent without showing the sidebar (7.6s)
+  ok 30 [electron] › src\search.e2e.ts:102:9 › Electron Workspace Search › @search @m3u filters all channels from the workspace header on playlist routes (4.4s)
+  ok 31 [electron] › src\search.e2e.ts:131:9 › Electron Workspace Search › @search @m3u filters grouped channels by group and channel title from the workspace header (5.4s)
+  ok 32 [electron] › src\search.e2e.ts:194:9 › Electron Workspace Search › @search @m3u filters playlist favorites from the workspace header (5.3s)
+  ok 33 [electron] › src\search.e2e.ts:226:9 › Electron Workspace Search › @search @m3u filters global favorites from the workspace rail without leaving the persisted query model (4.9s)
+  ok 34 [electron] › src\search.e2e.ts:261:9 › Electron Workspace Search › @search @xtream filters VOD content from the workspace header on a category route (4.9s)
+  ok 35 [electron] › src\search.e2e.ts:330:9 › Electron Workspace Search › @search @xtream filters series content from the workspace header on a category route (5.2s)
+  ok 36 [electron] › src\search.e2e.ts:414:9 › Electron Workspace Search › @search @xtream promotes dashboard header search into advanced playlist search (4.7s)
+  ok 37 [electron] › src\search.e2e.ts:450:9 › Electron Workspace Search › @search @xtream restores the search term and results after returning from a result detail route (5.0s)
+  ok 38 [electron] › src\search.e2e.ts:502:9 › Electron Workspace Search › @search @xtream filters playlist favorites from the workspace header (6.3s)
+  ok 39 [electron] › src\search.e2e.ts:606:9 › Electron Workspace Search › @search @stalker sends category search through Electron IPC on the VOD route (5.2s)
+  ok 40 [electron] › src\search.e2e.ts:664:9 › Electron Workspace Search › @search @stalker sends category search through Electron IPC on the series route (5.5s)
+  ok 41 [electron] › src\search.e2e.ts:727:9 › Electron Workspace Search › @search @stalker drives advanced search from the workspace header without an inline form (5.5s)
+  ok 42 [electron] › src\search.e2e.ts:774:9 › Electron Workspace Search › @search @stalker filters playlist favorites from the workspace header (5.6s)
+  ok 43 [electron] › src\search.e2e.ts:830:9 › Electron Workspace Search › @search @stalker shows loaded-only scope and filters channels on ITV routes (5.2s)
+  ok 44 [electron] › src\settings.e2e.ts:39:9 › Electron Settings › persists changed desktop settings across app restart (8.9s)
+  ok 45 [electron] › src\settings.e2e.ts:125:9 › Electron Settings › starts on sources when dashboard is disabled (6.5s)
+  x  46 [electron] › src\settings.e2e.ts:159:9 › Electron Settings › restores the last section-level view across restart when configured (40.8s)
+  x  47 [electron] › src\settings.e2e.ts:159:9 › Electron Settings › restores the last section-level view across restart when configured (retry #1) (36.4s)
+  x  48 [electron] › src\settings.e2e.ts:159:9 › Electron Settings › restores the last section-level view across restart when configured (retry #2) (37.7s)
+  ok 49 [electron] › src\settings.e2e.ts:185:9 › Electron Settings › ignores settings and restores only the section root after a detail route (9.1s)
+  ok 50 [electron] › src\smoke.e2e.ts:9:9 › Electron App Smoke Test › app should start and display the dashboard (3.0s)
+  ok 51 [electron] › src\smoke.e2e.ts:30:9 › Electron App Smoke Test › app should expose the expected main window properties (3.0s)
+  x  52 [electron] › src\smoke.e2e.ts:60:9 › Electron App Smoke Test › app should render workspace content (13.0s)
+  x  53 [electron] › src\smoke.e2e.ts:60:9 › Electron App Smoke Test › app should render workspace content (retry #1) (13.2s)
+  x  54 [electron] › src\smoke.e2e.ts:60:9 › Electron App Smoke Test › app should render workspace content (retry #2) (16.4s)
+  ok 55 [electron] › src\sources.e2e.ts:43:9 › Electron Sources View › filters and sorts sources, including persisted custom order (13.4s)
+  x  56 [electron] › src\sources.e2e.ts:194:9 › Electron Sources View › edits M3U, Xtream, and Stalker source details and keeps them after restart (17.2s)
+  ok 57 [electron] › src\sources.e2e.ts:194:9 › Electron Sources View › edits M3U, Xtream, and Stalker source details and keeps them after restart (retry #1) (11.9s)
+  ok 58 [electron] › src\sources.e2e.ts:343:9 › Electron Sources View › deletes M3U, Stalker, and Xtream sources from the sources view (7.4s)
+  ok 59 [electron] › src\sources.e2e.ts:399:9 › Electron Sources View › refreshes local-file M3U, URL M3U, and Xtream sources from the sources view (8.0s)
+  ok 60 [electron] › src\xtream-epg.e2e.ts:26:9 › renders Xtream EPG previews and selected-channel schedule in UTC (12.7s)
+  ok 61 [electron] › src\xtream-epg.e2e.ts:26:9 › renders Xtream EPG previews and selected-channel schedule in Europe/Berlin (5.1s)
+  ok 62 [electron] › src\xtream-responsiveness.e2e.ts:37:9 › Electron Xtream Responsiveness › keeps the UI responsive during large Xtream imports (9.2s)
+  ok 63 [electron] › src\xtream-responsiveness.e2e.ts:115:9 › Electron Xtream Responsiveness › stops importing after cancel until the user explicitly retries (13.0s)
+  ok 64 [electron] › src\xtream-responsiveness.e2e.ts:176:9 › Electron Xtream Responsiveness › blocks expired and inactive Xtream accounts before import starts (5.3s)
+  ok 65 [electron] › src\xtream-responsiveness.e2e.ts:219:9 › Electron Xtream Responsiveness › blocks unreachable Xtream portals immediately without an import loop (5.0s)
+  ok 66 [electron] › src\xtream-responsiveness.e2e.ts:251:9 › Electron Xtream Responsiveness › keeps the UI responsive during large Xtream playlist deletion (23.1s)
+  ok 67 [electron] › src\xtream-vod-details.e2e.ts:24:9 › Xtream VOD Details › shows a curated fallback when the portal returns empty VOD metadata (4.5s)
+
+
+  1) [electron] › src\settings.e2e.ts:159:9 › Electron Settings › restores the last section-level view across restart when configured 
+
+    TimeoutError: [locator.click](http://locator.click): Timeout 30000ms exceeded.
+    Call log:
+      - waiting for locator('app-workspace-shell-header .command-trigger')
+
+
+       at electron-test-fixtures.ts:1539
+
+      1537 |
+      1538 | async function openCommandPalette(page: Page): Promise<Locator> {
+    > 1539 |     await page.locator('app-workspace-shell-header .command-trigger').click();
+           |                                                                       ^
+      1540 |     const dialog = page.locator(
+      1541 |         'mat-dialog-container app-workspace-command-palette'
+      1542 |     );
+        at openCommandPalette (D:\a\iptvnator\iptvnator\apps\electron-backend-e2e\src\electron-test-fixtures.ts:1539:71)
+        at openGlobalRecent (D:\a\iptvnator\iptvnator\apps\electron-backend-e2e\src\electron-test-fixtures.ts:694:26)
+        at D:\a\iptvnator\iptvnator\apps\electron-backend-e2e\src\settings.e2e.ts:173:35
+
+    Error: EBUSY: resource busy or locked, unlink 'C:\Users\RUNNER~1\AppData\Local\Temp\iptvnator-electron-e2e-WzIYgy\databases\iptvnator.db'
+
+       at electron-test-fixtures.ts:116
+
+      114 |         await use(dataDir);
+      115 |
+    > 116 |         rmSync(dataDir, { force: true, recursive: true });
+          |               ^
+      117 |     },
+      118 | });
+      119 |
+        at Object.dataDir (D:\a\iptvnator\iptvnator\apps\electron-backend-e2e\src\electron-test-fixtures.ts:116:15)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\dist\test-results\electron-backend-e2e\settings.e2e.ts-Electron-S-5c97d-oss-restart-when-configured-electron\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    TimeoutError: [locator.click](http://locator.click): Timeout 30000ms exceeded.
+    Call log:
+      - waiting for locator('app-workspace-shell-header .command-trigger')
+
+
+       at electron-test-fixtures.ts:1539
+
+      1537 |
+      1538 | async function openCommandPalette(page: Page): Promise<Locator> {
+    > 1539 |     await page.locator('app-workspace-shell-header .command-trigger').click();
+           |                                                                       ^
+      1540 |     const dialog = page.locator(
+      1541 |         'mat-dialog-container app-workspace-command-palette'
+      1542 |     );
+        at openCommandPalette (D:\a\iptvnator\iptvnator\apps\electron-backend-e2e\src\electron-test-fixtures.ts:1539:71)
+        at openGlobalRecent (D:\a\iptvnator\iptvnator\apps\electron-backend-e2e\src\electron-test-fixtures.ts:694:26)
+        at D:\a\iptvnator\iptvnator\apps\electron-backend-e2e\src\settings.e2e.ts:173:35
+
+    Error: EBUSY: resource busy or locked, unlink 'C:\Users\RUNNER~1\AppData\Local\Temp\iptvnator-electron-e2e-JBqr3A\databases\iptvnator.db'
+
+       at electron-test-fixtures.ts:116
+
+      114 |         await use(dataDir);
+      115 |
+    > 116 |         rmSync(dataDir, { force: true, recursive: true });
+          |               ^
+      117 |     },
+      118 | });
+      119 |
+        at Object.dataDir (D:\a\iptvnator\iptvnator\apps\electron-backend-e2e\src\electron-test-fixtures.ts:116:15)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\dist\test-results\electron-backend-e2e\settings.e2e.ts-Electron-S-5c97d-oss-restart-when-configured-electron-retry1\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\dist\test-results\electron-backend-e2e\settings.e2e.ts-Electron-S-5c97d-oss-restart-when-configured-electron-retry1\[trace.zip](http://trace.zip)
+    Usage:
+
+        pnpm exec playwright show-trace ..\..\dist\test-results\electron-backend-e2e\settings.e2e.ts-Electron-S-5c97d-oss-restart-when-configured-electron-retry1\[trace.zip](http://trace.zip)
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    TimeoutError: [locator.click](http://locator.click): Timeout 30000ms exceeded.
+    Call log:
+      - waiting for locator('app-workspace-shell-header .command-trigger')
+
+
+       at electron-test-fixtures.ts:1539
+
+      1537 |
+      1538 | async function openCommandPalette(page: Page): Promise<Locator> {
+    > 1539 |     await page.locator('app-workspace-shell-header .command-trigger').click();
+           |                                                                       ^
+      1540 |     const dialog = page.locator(
+      1541 |         'mat-dialog-container app-workspace-command-palette'
+      1542 |     );
+        at openCommandPalette (D:\a\iptvnator\iptvnator\apps\electron-backend-e2e\src\electron-test-fixtures.ts:1539:71)
+        at openGlobalRecent (D:\a\iptvnator\iptvnator\apps\electron-backend-e2e\src\electron-test-fixtures.ts:694:26)
+        at D:\a\iptvnator\iptvnator\apps\electron-backend-e2e\src\settings.e2e.ts:173:35
+
+    Error: EBUSY: resource busy or locked, unlink 'C:\Users\RUNNER~1\AppData\Local\Temp\iptvnator-electron-e2e-mJyMlr\databases\iptvnator.db'
+
+       at electron-test-fixtures.ts:116
+
+      114 |         await use(dataDir);
+      115 |
+    > 116 |         rmSync(dataDir, { force: true, recursive: true });
+          |               ^
+      117 |     },
+      118 | });
+      119 |
+        at Object.dataDir (D:\a\iptvnator\iptvnator\apps\electron-backend-e2e\src\electron-test-fixtures.ts:116:15)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\dist\test-results\electron-backend-e2e\settings.e2e.ts-Electron-S-5c97d-oss-restart-when-configured-electron-retry2\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [electron] › src\smoke.e2e.ts:60:9 › Electron App Smoke Test › app should render workspace content 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: 'Open command palette' })
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for getByRole('button', { name: 'Open command palette' })
+
+
+      66 |                     name: 'Open command palette',
+      67 |                 })
+    > 68 |             ).toBeVisible();
+         |               ^
+      69 |             await expect(
+      70 |                 app.mainWindow.getByRole('button', { name: 'Add playlist' })
+      71 |             ).toBeVisible();
+        at D:\a\iptvnator\iptvnator\apps\electron-backend-e2e\src\smoke.e2e.ts:68:15
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\dist\test-results\electron-backend-e2e\smoke.e2e.ts-Electron-App--35aa4-ld-render-workspace-content-electron\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: 'Open command palette' })
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for getByRole('button', { name: 'Open command palette' })
+
+
+      66 |                     name: 'Open command palette',
+      67 |                 })
+    > 68 |             ).toBeVisible();
+         |               ^
+      69 |             await expect(
+      70 |                 app.mainWindow.getByRole('button', { name: 'Add playlist' })
+      71 |             ).toBeVisible();
+        at D:\a\iptvnator\iptvnator\apps\electron-backend-e2e\src\smoke.e2e.ts:68:15
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\dist\test-results\electron-backend-e2e\smoke.e2e.ts-Electron-App--35aa4-ld-render-workspace-content-electron-retry1\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\dist\test-results\electron-backend-e2e\smoke.e2e.ts-Electron-App--35aa4-ld-render-workspace-content-electron-retry1\[trace.zip](http://trace.zip)
+    Usage:
+
+        pnpm exec playwright show-trace ..\..\dist\test-results\electron-backend-e2e\smoke.e2e.ts-Electron-App--35aa4-ld-render-workspace-content-electron-retry1\[trace.zip](http://trace.zip)
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: 'Open command palette' })
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for getByRole('button', { name: 'Open command palette' })
+
+
+      66 |                     name: 'Open command palette',
+      67 |                 })
+    > 68 |             ).toBeVisible();
+         |               ^
+      69 |             await expect(
+      70 |                 app.mainWindow.getByRole('button', { name: 'Add playlist' })
+      71 |             ).toBeVisible();
+        at D:\a\iptvnator\iptvnator\apps\electron-backend-e2e\src\smoke.e2e.ts:68:15
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\dist\test-results\electron-backend-e2e\smoke.e2e.ts-Electron-App--35aa4-ld-render-workspace-content-electron-retry2\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [electron] › src\sources.e2e.ts:194:9 › Electron Sources View › edits M3U, Xtream, and Stalker source details and keeps them after restart 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator:  locator('mat-dialog-container').last().locator('input[formcontrolname="title"]')
+    Expected: "Edited Xtream Source"
+    Received: "Edited Xtream Sourceuser1"
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveValue" with timeout 10000ms
+      - waiting for locator('mat-dialog-container').last().locator('input[formcontrolname="title"]')
+        14 × locator resolved to <input matinput="" required="" id="mat-input-44" aria-invalid="false" aria-required="true" formcontrolname="title" _ngcontent-ng-c3393197785="" class="mat-mdc-input-element mat-mdc-form-field-input-control mdc-text-field__input ng-untouched ng-pristine ng-valid cdk-text-field-autofill-monitored"/>
+           - unexpected value "Edited Xtream Sourceuser1"
+
+
+       at electron-test-fixtures.ts:1102
+
+      1100 |         await expect(
+      1101 |             dialog.locator(`input[formcontrolname="${field}"]`)
+    > 1102 |         ).toHaveValue(value as string);
+           |           ^
+      1103 |     }
+      1104 |
+      1105 |     if (typeof expected.autoRefresh === 'boolean') {
+        at expectSourceDialogValues (D:\a\iptvnator\iptvnator\apps\electron-backend-e2e\src\electron-test-fixtures.ts:1102:11)
+        at D:\a\iptvnator\iptvnator\apps\electron-backend-e2e\src\sources.e2e.ts:273:13
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\dist\test-results\electron-backend-e2e\sources.e2e.ts-Electron-So-c7974-nd-keeps-them-after-restart-electron\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [electron] › src\settings.e2e.ts:159:9 › Electron Settings › restores the last section-level view across restart when configured 
+    [electron] › src\smoke.e2e.ts:60:9 › Electron App Smoke Test › app should render workspace content 
+  1 flaky
+    [electron] › src\sources.e2e.ts:194:9 › Electron Sources View › edits M3U, Xtream, and Stalker source details and keeps them after restart 
+  59 passed (12.3m)
+
+
+
+ NX   Running target e2e for project electron-backend-e2e and 4 tasks it depends on failed
+
+Failed tasks:
+
+- electron-backend-e2e:e2e
+
+Hint: run the command with --verbose for more details.
+
+Warning: command "playwright test" exited with non-zero status code
+Error: Process completed with exit code 1. use /playwright
+
+---
+
+no, i don't like that change, revert it completelly. for tests use cmk/ctrl+k shortcut to open the command palette, that should be enough
+
+---
+
+oh, i found a bug, when i click cmd/ctrl+k multiple times it opens the command palette multiple times over each other, we should prevent and fix it

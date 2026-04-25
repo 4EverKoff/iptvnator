@@ -142,3 +142,27 @@ hm, somehow the artwork is missing in the dock, I'm testing it with live tv chan
 
 we need to fix the spec of the dock component, i think translation service or pipe is missing, try to execute it to see
 
+### Prompt 36
+
+after the changes on settings page, some e2e tests started to fail, i think we need to adapt them after changes in code, here is the log:  NX   Successfully ran target build for project web and 2 tasks it depends on
+
+
+
+✅ > nx run electron-backend:build-e2e
+> nx run electron-backend-e2e:e2e
+
+> playwright test
+
+
+Running 62 tests using 1 worker
+
+  ok  1 [electron] › src\catalog-sorting.e2e.ts:29:9 › Electron Catalog Sorting › sorts Xtream live channels by server order and name, with persist...
+
+### Prompt 37
+
+no, i don't like that change, revert it completelly. for tests use cmk/ctrl+k shortcut to open the command palette, that should be enough
+
+### Prompt 38
+
+oh, i found a bug, when i click cmd/ctrl+k multiple times it opens the command palette multiple times over each other, we should prevent and fix it
+

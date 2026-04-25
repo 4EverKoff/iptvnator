@@ -3,11 +3,13 @@
   "checkpoint_id": "c6e522b4276c",
   "strategy": "manual-commit",
   "branch": "master",
-  "checkpoints_count": 54,
+  "checkpoints_count": 56,
   "files_touched": [
     "--full-page",
     ".plans/2026-04-22-xtream-recently-added-dashboard-rail.md",
+    "apps/electron-backend-e2e/src/electron-test-fixtures.ts",
     "apps/electron-backend-e2e/src/recent.e2e.ts",
+    "apps/electron-backend-e2e/src/smoke.e2e.ts",
     "apps/electron-backend/src/app/api/main.preload.ts",
     "apps/electron-backend/src/app/app.ts",
     "apps/electron-backend/src/app/database/operations/content.operations.ts",
@@ -100,7 +102,6 @@
     "libs/ui/components/src/lib/content-hero/content-hero.component.html",
     "libs/ui/components/src/lib/content-hero/content-hero.component.scss",
     "libs/ui/components/src/lib/content-hero/content-hero.component.ts",
-    "libs/ui/components/src/lib/external-playback-dock/external-playback-dock.component.spec.ts",
     "libs/ui/epg/src/index.ts",
     "libs/ui/epg/src/lib/epg-progress-panel/epg-progress-panel.component.html",
     "libs/ui/epg/src/lib/epg-progress-panel/epg-progress-panel.component.scss",
@@ -168,6 +169,9 @@
     "libs/workspace/dashboard/ui/tsconfig.lib.json",
     "libs/workspace/dashboard/ui/tsconfig.spec.json",
     "libs/workspace/shell/feature/src/lib/workspace-command-palette/workspace-command-palette.component.scss",
+    "libs/workspace/shell/feature/src/lib/workspace-shell/components/workspace-shell-header/workspace-shell-header.component.html",
+    "libs/workspace/shell/feature/src/lib/workspace-shell/components/workspace-shell-header/workspace-shell-header.component.scss",
+    "libs/workspace/shell/feature/src/lib/workspace-shell/services/workspace-shell.facade.ts",
     "libs/workspace/shell/feature/src/lib/workspace-shell/workspace-shell.component.scss",
     "tsconfig.base.json"
   ],
@@ -258,10 +262,10 @@
     }
   ],
   "token_usage": {
-    "input_tokens": 2499,
-    "cache_creation_tokens": 7869497,
-    "cache_read_tokens": 323561406,
-    "output_tokens": 804809,
-    "api_call_count": 1368
+    "input_tokens": 2535,
+    "cache_creation_tokens": 8530852,
+    "cache_read_tokens": 333720622,
+    "output_tokens": 818541,
+    "api_call_count": 1384
   }
 }

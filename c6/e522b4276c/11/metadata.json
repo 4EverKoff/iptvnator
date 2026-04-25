@@ -3,30 +3,34 @@
   "checkpoint_id": "c6e522b4276c",
   "session_id": "bb4f0aa2-ca96-4c57-ab5d-4f03518fbc0e",
   "strategy": "manual-commit",
-  "created_at": "2026-04-25T22:31:37.819827Z",
+  "created_at": "2026-04-25T23:05:05.631262Z",
   "branch": "master",
-  "checkpoints_count": 1,
+  "checkpoints_count": 3,
   "files_touched": [
-    "libs/ui/components/src/lib/external-playback-dock/external-playback-dock.component.spec.ts"
+    "apps/electron-backend-e2e/src/electron-test-fixtures.ts",
+    "apps/electron-backend-e2e/src/smoke.e2e.ts",
+    "libs/workspace/shell/feature/src/lib/workspace-shell/components/workspace-shell-header/workspace-shell-header.component.html",
+    "libs/workspace/shell/feature/src/lib/workspace-shell/components/workspace-shell-header/workspace-shell-header.component.scss",
+    "libs/workspace/shell/feature/src/lib/workspace-shell/services/workspace-shell.facade.ts"
   ],
   "agent": "Claude Code",
-  "transcript_identifier_at_start": "373f147e-188f-4891-adbb-2407c9653a55",
-  "checkpoint_transcript_start": 1402,
-  "transcript_lines_at_start": 1402,
+  "transcript_identifier_at_start": "01fa3282-9a20-4557-8d32-8020a832e941",
+  "checkpoint_transcript_start": 1446,
+  "transcript_lines_at_start": 1446,
   "token_usage": {
-    "input_tokens": 14,
-    "cache_creation_tokens": 23735,
-    "cache_read_tokens": 5513569,
-    "output_tokens": 7358,
-    "api_call_count": 9
+    "input_tokens": 50,
+    "cache_creation_tokens": 685090,
+    "cache_read_tokens": 15672785,
+    "output_tokens": 21090,
+    "api_call_count": 25
   },
   "initial_attribution": {
-    "calculated_at": "2026-04-25T22:31:37.343858Z",
-    "agent_lines": 75,
-    "human_added": 152,
-    "human_modified": 7,
-    "human_removed": 0,
-    "total_committed": 234,
-    "agent_percentage": 32.05128205128205
+    "calculated_at": "2026-04-25T23:05:05.050134Z",
+    "agent_lines": 12,
+    "human_added": 0,
+    "human_modified": 1,
+    "human_removed": 11,
+    "total_committed": 13,
+    "agent_percentage": 92.3076923076923
   }
 }
