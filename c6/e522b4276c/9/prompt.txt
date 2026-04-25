@@ -1,0 +1,150 @@
+for the app dashboard, what do you think does it make sense to add a new rail to show in aggregated form the recently added items from all added xtream playlists (would show the rail only if user added at least one xtream playlist). so basically one combined rail with series and vods like in @libs/portal/xtream/feature/src/lib/recently-added , but just one on dashboard.  does it some value for the user ? what do you think? use /frontend-design and /userinterface-wiki and /sc-brainstorm to think about it. but also /electron and /angular-developer
+
+---
+
+This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation.
+
+Summary:
+1. Primary Request and Intent:
+   The user asked whether it makes sense to add a new rail to the Workspace Dashboard showing aggregated "Recently Added" items from all added Xtream playlists. The rail should show only when the user has at least one Xtream playlist added, display one combined rail with series and VODs (similar to `libs/portal/xtream/feature/src/lib/recently-added`, but just one on the dashboard), and asked me to use skills `/frontend-design`, `/userinterface-wiki`, `/sc-brainstorm`, `/electron`, and `/angular-developer` to think about it.
+   
+   After I affirmed value and asked scoping questions, the user chose:
+   - **Environment**: Electron only
+   - **Layout**: One mixed rail
+   - **Attribution**: Yes — small playlist-name badge on each card
+   
+   The user then approved the plan and implementation began.
+
+2. Key Technical Concepts:
+   - IPTVnator Nx monorepo (Angular + Electron)
+   - Angular signal-based APIs (`signal()`, `computed()`, `effect()`, `input()`, `output()`)
+   - Dashboard rail pattern (`<lib-dashboard-rail>` with `@if (cards.length > 0)` visibility)
+   - Electron IPC plumbing (preload → event handler → worker → DB operation)
+   - Drizzle ORM for SQLite queries
+   - NgRx signal store with feature composition
+   - Factory pattern for Electron vs PWA environment switching
+   - Dual environment support (Electron has SQLite content table, PWA is API-only)
+   - `DashboardRailCard` interface with `subtitle` field used for attribution
+   - i18n via `@ngx-translate`
+
+3. Files and Code Sections:
+
+   - **`/Users/4gray/.claude/plans/for-the-app-dashboard-compiled-allen.md`** (created)
+     - Plan file written during plan mode with full context, approach, files to modify, verification steps
+   
+   - **`/Users/4gray/Code/iptvnator/.plans/2026-04-22-xtream-recently-added-dashboard-rail.md`** (created)
+     - Finalized plan saved to repo per CLAUDE.md convention
+   
+   - **`/Users/4gray/Code/iptvnator/apps/electron-backend/src/app/database/operations/content.operations.ts`** (modified)
+     - Added `RecentlyAddedPlaylistType` export and optional `playlistType` param to `getGlobalRecentlyAdded()`
+     ```typescript
+     export type RecentlyAddedPlaylistType =
+         | 'xtream' | 'stalker' | 'm3u-file' | 'm3u-text' | 'm3u-url';
+     
+     export async function getGlobalRecentlyAdded(
+         db: AppDatabase,
+         kind: GlobalRecentlyAddedKind = 'all',
+         limit = 200,
+         playlistType?: RecentlyAddedPlaylistType
+     ) {
+         // ... builds whereConditions array, conditionally pushes
+         // eq(schema.playlists.type, playlistType) when provided
+     }
+     ```
+
+   - **`/Users/4gray/Code/iptvnator/apps/electron-backend/src/app/workers/database.worker.ts`** (modified)
+     - Case `DB_GET_GLOBAL_RECENTLY_ADDED` payload extended with `playlistType` field, passed through to `getGlobalRecentlyAdded`
+   
+   - **`/Users/4gray/Code/iptvnator/apps/electron-backend/src/app/events/database/content.events.ts`** (modified)
+     - `handleWorkerRequest` for `DB_GET_GLOBAL_RECENTLY_ADDED` signature extended with third `playlistType` param
+   
+   - **`/Users/4gray/Code/iptvnator/apps/electron-backend/src/app/api/main.preload.ts`** (modified)
+     - `dbGetGlobalRecentlyAdded` now takes third optional `playlistType` param, passed via `ipcRenderer.invoke`
+   
+   - **`/Users/4gray/Code/iptvnator/global.d.ts`** (modified)
+     - `dbGetGlobalRecentlyAdded` TS decl extended with `playlistType` param
+   
+   - **`/Users/4gray/Code/iptvnator/libs/services/src/lib/database-electron.service.ts`** (modified)
+     - Added `GlobalRecentlyAddedPlaylistType` type export
+     - `getGlobalRecentlyAdded()` method signature extended with `playlistType?` param
+   
+   - **`/Users/4gray/Code/iptvnator/libs/workspace/dashboard/data-access/src/lib/dashboard-data.service.ts`** (modified)
+     - Added `xtreamRecentlyAddedItemsState` signal and `xtreamRecentlyAddedItems` public readonly
+     - Added `getXtreamRecentlyAddedItems(limit=20)` and `reloadXtreamRecentlyAddedItems(limit=20)` methods
+     ```typescript
+     async reloadXtreamRecentlyAddedItems(limit = 20): Promise<void> {
+         if (!window.electron) {
+             this.xtreamRecentlyAddedItemsState.set([]);
+             return;
+         }
+         try {
+             const items = await this.getXtreamRecentlyAddedItems(limit);
+             this.ngZone.run(() => this.xtreamRecentlyAddedItemsState.set(items));
+         } catch (err) { /* ... */ }
+     }
+     ```
+   
+   - **`/Users/4gray/Code/iptvnator/libs/workspace/dashboard/feature/src/lib/rails/workspace-dashboard-rails.component.ts`** (modified)
+     - Imported `effect` from `@angular/core` and `DashboardRecentlyAddedItem`
+     - Added `xtreamPlaylistCount` computed
+     - Added `xtreamRecentlyAddedCards` computed
+     - Added effect in constructor triggered by `xtreamPlaylistCount()` that calls `reloadXtreamRecentlyAddedItems(RAIL_ITEM_LIMIT)`
+     - Added `toRecentlyAddedCard()` helper that builds subtitle as `"playlist_name · typeLabel"` (implements the badge UX)
+   
+   - **`/Users/4gray/Code/iptvnator/libs/workspace/dashboard/feature/src/lib/rails/workspace-dashboard-rails.component.html`** (modified)
+     - Added new `<lib-dashboard-rail>` block between "Recently Watched" and "Favorites" rails, gated by `@if (xtreamRecentlyAddedCards().length > 0)` using translation key `WORKSPACE.DASHBOARD.XTREAM_RECENTLY_ADDED`
+     - Note: No `seeAllLink` on this rail (no global aggregated "recently added" route exists)
+   
+   - **`/Users/4gray/Code/iptvnator/apps/web/src/assets/i18n/en.json`** (modified)
+     - Added `"XTREAM_RECENTLY_ADDED": "Recently Added on Xtream"`
+   
+   - **`/Users/4gray/Code/iptvnator/apps/web/src/assets/i18n/de.json`** (modified)
+     - Added `"XTREAM_RECENTLY_ADDED": "Neu auf Xtream"`
+   
+   - **`/Users/4gray/Code/iptvnator/apps/web/src/assets/i18n/ru.json`** (modified)
+     - Added `"XTREAM_RECENTLY_ADDED": "Недавно добавленные на Xtream"`
+   
+   - **`/Users/4gray/Code/iptvnator/docs/architecture/workspace-dashboard.md`** (modified)
+     - Updated ASCII diagram to include the new rail
+     - Updated "Data Flow" section from "four signals" to "five signals" with detailed description of `xtreamRecentlyAddedCards`
+
+4. Errors and fixes:
+   - **Edit failed on `database.worker.ts`**: "File has not been read yet. Read it first before writing to it." → Fixed by using Read tool on the relevant lines before re-running Edit.
+   - **Edit failed on `main.preload.ts`**: Same issue → Fixed by reading the file first.
+   - **Edit failed on `de.json`**: Same issue → Fixed by reading the file first.
+
+5. Problem Solving:
+   - Correctly identified that the infrastructure was ~90% already built (existing DB query, IPC channel, mapper, navigation helpers)
+   - Decided to filter at DB layer (not frontend) to prevent M3U content squeezing out Xtream items from the top-N
+   - Chose to NOT reuse the existing per-playlist `recently-added.component.ts` (three rails, XtreamStore-scoped, relative routing)
+   - Chose to implement playlist-name badge via `DashboardRailCard.subtitle` field (already existed as `"playlist_name · type"`), avoiding new component props
+   - Distinguished current plan from the older `.plans/2026-03-27-dashboard-recently-added-widget.md` which was a different UX pattern (card widget with dropdowns)
+   - Used an `effect()` on `xtreamPlaylistCount` so the rail refreshes when users add new Xtream playlists
+
+6. All user messages:
+   - "for the app dashboard, what do you think does it make sense to add a new rail to show in aggregated form the recently added items from all added xtream playlists (would show the rail only if user added at least one xtream playlist). so basically one combined rail with series and vods like in @libs/portal/xtream/feature/src/lib/recently-added , but just one on dashboard. does it some value for the user ? what do you think? use /frontend-design and /userinterface-wiki and /sc-brainstorm to think about it. but also /electron and /angular-developer"
+   - [Answer to AskUserQuestion]: Environment="Electron only", Layout="One mixed rail", Attribution="Yes — small badge/label"
+   - [Plan approval]: User approved the plan
+   - "CRITICAL: Respond with TEXT ONLY. Do NOT call any tools..." (summary request)
+
+7. Pending Tasks:
+   - Run backend + frontend tests and lint (was in-progress when summary requested)
+   - Potentially add tests for the new `playlistType` filter in `getGlobalRecentlyAdded`
+   - Manual E2E verification in Electron per plan (adding Xtream playlist and seeing rail appear, verifying badges, click routing, PWA hiding)
+   - If `IPTVNATOR_WIKI_VAULT` configured: run `pnpm wiki:export --mode changed`
+
+8. Current Work:
+   All code changes for the feature are complete. The most recent file edit was to `docs/architecture/workspace-dashboard.md` updating the data flow section from "four signals" to "five signals" and describing the new `xtreamRecentlyAddedCards`. After that, I marked the todos showing all implementation items complete and set "Run backend + frontend tests and lint" as in_progress. Immediately before the summary request, I had updated todos to track that testing was the current step — but I had not yet executed any test commands. The user then sent the summary request interrupting test execution.
+
+9. Optional Next Step:
+   Run backend and frontend tests/lint per the plan's verification section. Specifically execute:
+   - `nx test electron-backend` (verify backend DB operation changes don't break existing tests)
+   - `nx test web` (verify frontend changes, especially `dashboard-data.service.spec.ts` still passes)
+   - `nx lint web` and `nx lint electron-backend`
+   
+   Direct quote from the todo list showing the current task: `[in_progress] Run backend + frontend tests and lint`. The plan's verification section specifies: "Backend unit test — add/extend tests in `apps/electron-backend/src/app/database/operations/content.operations.spec.ts` (if it exists) covering: `playlistType='xtream'` filter returns only rows whose playlist type is `xtream`" and "Frontend unit test — add test in `dashboard-data.service.spec.ts` (or closest existing file) for `getXtreamRecentlyAddedItems()` mocking the DB service."
+   
+   Before running tests, I should confirm with the user that they want me to proceed with running tests and adding unit tests per the plan, since this is the next explicit step in the approved plan's verification section.
+
+If you need specific details from before compaction (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/4gray/.REDACTED.jsonl
+Continue the conversation from where it left off without asking the user any further questions. Resume directly — do not acknowledge the summary, do not recap what was happening, do not preface with "I'll continue" or similar. Pick up the last task as if the break never happened.
