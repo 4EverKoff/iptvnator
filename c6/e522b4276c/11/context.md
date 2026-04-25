@@ -66,3 +66,23 @@ i have a command palette for quick actions and there is just one command to add 
 
 dot that one: "Dialog deduplication — the existing add-playlist-dialog and its FileUploadComponent still implement their own copy of the parse/dispatch path. They could be migrated to call PlaylistFileImportService.importFile() for a single source of truth, but that's a separate refactor."
 
+### Prompt 17
+
+on settings page when there are no epgs added (see screenshot) it looks a bit strange there is no empty state, what do you think should we improve it? /sc-brainstorm  /frontend-design  @apps/web/src/app/settings/settings.component.html
+
+### Prompt 18
+
+[Image: original 2742x1284, displayed at 2576x1206. Multiply coordinates by 1.06 to map to original image.]
+
+### Prompt 19
+
+implement option A. the footer button is enough
+
+### Prompt 20
+
+also in settings view, the delete label and section looks misaligned, can you fix it? also the info stat sount info looks strange, maybe we shoudl design it as kind of chips?  use /sc-brainstorm  and /frontend-design
+
+### Prompt 21
+
+[Image: original 2742x1284, displayed at 2576x1206. Multiply coordinates by 1.06 to map to original image.]
+
