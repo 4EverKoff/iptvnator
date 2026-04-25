@@ -138,3 +138,7 @@ do option A with artwork-clickable, icon honesty and Status-text honesty
 
 hm, somehow the artwork is missing in the dock, I'm testing it with live tv channels now from m3u module /angular-developer  /electron
 
+### Prompt 35
+
+we need to fix the spec of the dock component, i think translation service or pipe is missing, try to execute it to see
+
