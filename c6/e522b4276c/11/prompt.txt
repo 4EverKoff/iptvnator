@@ -27,3 +27,31 @@ better, can you also bring back the background pattern which was there in the pr
 ---
 
 perfect! in dashboard header, in empty state but not only, the buttons alignement looks a bit strange, what do you think about moving the download button to the right in the header? /userinterface-wiki /frontend-design
+
+---
+
+perfect, one more question about button positions. in non empty state and with selected playlist we have add and refresh buttons which are rendered after the search, what do you think, is that fine like now? or should be move them before the search (would that look fine?) and that way move more to playlist switcher (since they belong to selected playlist), or event add them to playlist switcher component panel? /userinterface-wiki  /frontend-design  /sc-brainstorm
+
+---
+
+yes
+
+---
+
+the padding icon in the button is a bit missaligned, it's because of mat-button or mat-icon can you add padding:0
+
+---
+
+how easy is it to make a sources main view to support drop playlist interaction, so i could just drag and drop file from file system into it? there is already a component in @libs/playlist/import/feature/src/lib/add-playlist-dialog that supports that maybe something could be reused? /angular-developer . also does it make sense /sc-brainstorm  ? or is it better to make it in dashboard. or generally in @apps/web/src/app/app.component.html  so that a new playlist can be dragged in from everywhere. also would be cool to have some indication in that case
+
+---
+
+or maybe not in app, maybe somewhere in workspace components
+
+---
+
+1. m3u and m3u8 2. just one file 3. recommended sounds good
+
+---
+
+i have a command palette for quick actions and there is just one command to add new source, can we additionally add specific commands, with the shorthand to proper tab which should be selected @libs/workspace/shell/feature/src/lib/workspace-command-palette  like add xtream, stalker or m3u
