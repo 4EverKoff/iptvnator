@@ -3,44 +3,32 @@
   "checkpoint_id": "c6e522b4276c",
   "session_id": "bb4f0aa2-ca96-4c57-ab5d-4f03518fbc0e",
   "strategy": "manual-commit",
-  "created_at": "2026-04-25T20:08:18.198949Z",
+  "created_at": "2026-04-25T20:32:24.031711Z",
   "branch": "master",
-  "checkpoints_count": 4,
+  "checkpoints_count": 1,
   "files_touched": [
-    "apps/web/src/assets/i18n/en.json",
-    "libs/playlist/shared/ui/src/lib/playlist-switcher/playlist-switcher.component.html",
-    "libs/playlist/shared/ui/src/lib/playlist-switcher/playlist-switcher.component.scss",
-    "libs/playlist/shared/ui/src/lib/playlist-switcher/playlist-switcher.component.ts",
-    "libs/playlist/shared/util/src/index.ts",
-    "libs/playlist/shared/util/src/lib/playlist-file-import.service.ts",
-    "libs/workspace/shell/feature/src/lib/playlist-drop-overlay/index.ts",
-    "libs/workspace/shell/feature/src/lib/playlist-drop-overlay/playlist-drop-overlay.component.html",
-    "libs/workspace/shell/feature/src/lib/playlist-drop-overlay/playlist-drop-overlay.component.scss",
-    "libs/workspace/shell/feature/src/lib/playlist-drop-overlay/playlist-drop-overlay.component.ts",
-    "libs/workspace/shell/feature/src/lib/playlist-drop-overlay/playlist-drop-zone.directive.ts",
-    "libs/workspace/shell/feature/src/lib/workspace-shell/components/workspace-shell-header/workspace-shell-header.component.html",
-    "libs/workspace/shell/feature/src/lib/workspace-shell/services/workspace-shell.facade.ts",
-    "libs/workspace/shell/feature/src/lib/workspace-shell/workspace-shell.component.html",
-    "libs/workspace/shell/feature/src/lib/workspace-shell/workspace-shell.component.ts"
+    "libs/playlist/import/feature/src/lib/add-playlist-dialog/add-playlist-dialog.component.html",
+    "libs/playlist/import/feature/src/lib/add-playlist-dialog/add-playlist-dialog.component.ts",
+    "libs/playlist/import/feature/src/lib/file-upload/file-upload.component.ts"
   ],
   "agent": "Claude Code",
-  "transcript_identifier_at_start": "df5770f5-04ab-4887-bf61-2ca87930ffa3",
-  "checkpoint_transcript_start": 764,
-  "transcript_lines_at_start": 764,
+  "transcript_identifier_at_start": "453845ba-278b-4375-84f2-f72e1ccdbe74",
+  "checkpoint_transcript_start": 995,
+  "transcript_lines_at_start": 995,
   "token_usage": {
-    "input_tokens": 109,
-    "cache_creation_tokens": 1234443,
-    "cache_read_tokens": 18898675,
-    "output_tokens": 38154,
-    "api_call_count": 49
+    "input_tokens": 19,
+    "cache_creation_tokens": 10767,
+    "cache_read_tokens": 4050362,
+    "output_tokens": 7502,
+    "api_call_count": 9
   },
   "initial_attribution": {
-    "calculated_at": "2026-04-25T20:08:17.853818Z",
-    "agent_lines": 265,
-    "human_added": 442,
-    "human_modified": 400,
+    "calculated_at": "2026-04-25T20:32:23.696633Z",
+    "agent_lines": 25,
+    "human_added": 7738,
+    "human_modified": 0,
     "human_removed": 0,
-    "total_committed": 1105,
-    "agent_percentage": 23.981900452488688
+    "total_committed": 7763,
+    "agent_percentage": 0.32204044828030404
   }
 }

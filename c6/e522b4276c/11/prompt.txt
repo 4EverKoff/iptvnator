@@ -55,3 +55,7 @@ or maybe not in app, maybe somewhere in workspace components
 ---
 
 i have a command palette for quick actions and there is just one command to add new source, can we additionally add specific commands, with the shorthand to proper tab which should be selected @libs/workspace/shell/feature/src/lib/workspace-command-palette  like add xtream, stalker or m3u
+
+---
+
+dot that one: "Dialog deduplication — the existing add-playlist-dialog and its FileUploadComponent still implement their own copy of the parse/dispatch path. They could be migrated to call PlaylistFileImportService.importFile() for a single source of truth, but that's a separate refactor."
