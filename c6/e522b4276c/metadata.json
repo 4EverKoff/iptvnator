@@ -100,6 +100,7 @@
     "libs/ui/components/src/lib/content-hero/content-hero.component.html",
     "libs/ui/components/src/lib/content-hero/content-hero.component.scss",
     "libs/ui/components/src/lib/content-hero/content-hero.component.ts",
+    "libs/ui/components/src/lib/external-playback-dock/external-playback-dock.component.scss",
     "libs/ui/epg/src/index.ts",
     "libs/ui/epg/src/lib/epg-progress-panel/epg-progress-panel.component.html",
     "libs/ui/epg/src/lib/epg-progress-panel/epg-progress-panel.component.scss",
@@ -257,10 +258,10 @@
     }
   ],
   "token_usage": {
-    "input_tokens": 2523,
-    "cache_creation_tokens": 8354168,
-    "cache_read_tokens": 323860802,
-    "output_tokens": 812110,
-    "api_call_count": 1372
+    "input_tokens": 2538,
+    "cache_creation_tokens": 8390634,
+    "cache_read_tokens": 329417555,
+    "output_tokens": 821339,
+    "api_call_count": 1382
   }
 }

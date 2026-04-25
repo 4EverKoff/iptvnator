@@ -86,3 +86,15 @@ also in settings view, the delete label and section looks misaligned, can you fi
 
 [Image: original 2742x1284, displayed at 2576x1206. Multiply coordinates by 1.06 to map to original image.]
 
+### Prompt 22
+
+how do you like generally the style of settings page, is it in sync with other styling in the app, do you see any potential layout, ux , style improvements? i see in header on top of the title of the settings panel there is an almost invisible border, feels like it could be removed. but generally how is it, analyse? /frontend-design  /userinterface-wiki  /sc-brainstorm
+
+### Prompt 23
+
+1+2+3
+
+### Prompt 24
+
+we have a border radius in this component, but can you see these "dirty corners" from screenshot, can we improve that? /frontend-design  /sc-brainstorm  @libs/ui/components/src/lib/external-playback-dock/external-playback-dock.component.html
+
