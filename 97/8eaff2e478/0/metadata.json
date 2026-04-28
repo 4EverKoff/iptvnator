@@ -1,0 +1,31 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "978eaff2e478",
+  "session_id": "36833cfd-18cf-4cfc-95ed-9f74c3dfd8b7",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-28T22:43:00.763689Z",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "apps/web/src/m3-theme.scss",
+    "libs/ui/epg/src/lib/epg-list/epg-list-item/epg-list-item.component.scss",
+    "libs/ui/epg/src/lib/epg-list/epg-list.component.scss"
+  ],
+  "agent": "Claude Code",
+  "token_usage": {
+    "input_tokens": 115,
+    "cache_creation_tokens": 201096,
+    "cache_read_tokens": 3963354,
+    "output_tokens": 29024,
+    "api_call_count": 38
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-28T22:43:00.661885Z",
+    "agent_lines": 0,
+    "human_added": 1281,
+    "human_modified": 337,
+    "human_removed": 0,
+    "total_committed": 1326,
+    "agent_percentage": 0
+  }
+}
