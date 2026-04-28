@@ -1,0 +1,34 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "0518c49b948d",
+  "session_id": "2bca73af-4fae-41e4-abf2-05e7b71f74e6",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-28T18:01:02.56485Z",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "libs/workspace/dashboard/feature/src/lib/rails/dashboard-rail.component.html",
+    "libs/workspace/dashboard/feature/src/lib/rails/dashboard-rail.component.scss",
+    "libs/workspace/dashboard/feature/src/lib/rails/dashboard-rail.component.ts",
+    "libs/workspace/dashboard/feature/src/lib/rails/workspace-dashboard-rails.component.html",
+    "libs/workspace/dashboard/feature/src/lib/rails/workspace-dashboard-rails.component.scss",
+    "libs/workspace/dashboard/feature/src/lib/rails/workspace-dashboard-rails.component.ts"
+  ],
+  "agent": "Claude Code",
+  "token_usage": {
+    "input_tokens": 56,
+    "cache_creation_tokens": 180008,
+    "cache_read_tokens": 2934769,
+    "output_tokens": 25110,
+    "api_call_count": 31
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-28T18:01:02.495263Z",
+    "agent_lines": 0,
+    "human_added": 24539,
+    "human_modified": 118,
+    "human_removed": 0,
+    "total_committed": 24605,
+    "agent_percentage": 0
+  }
+}

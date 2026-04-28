@@ -1,0 +1,31 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "0518c49b948d",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "libs/workspace/dashboard/feature/src/lib/rails/dashboard-rail.component.html",
+    "libs/workspace/dashboard/feature/src/lib/rails/dashboard-rail.component.scss",
+    "libs/workspace/dashboard/feature/src/lib/rails/dashboard-rail.component.ts",
+    "libs/workspace/dashboard/feature/src/lib/rails/workspace-dashboard-rails.component.html",
+    "libs/workspace/dashboard/feature/src/lib/rails/workspace-dashboard-rails.component.scss",
+    "libs/workspace/dashboard/feature/src/lib/rails/workspace-dashboard-rails.component.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/05/18c49b948d/0/metadata.json",
+      "transcript": "/05/18c49b948d/0/full.jsonl",
+      "context": "/05/18c49b948d/0/context.md",
+      "content_hash": "/05/18c49b948d/0/content_hash.txt",
+      "prompt": "/05/18c49b948d/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 56,
+    "cache_creation_tokens": 180008,
+    "cache_read_tokens": 2934769,
+    "output_tokens": 25110,
+    "api_call_count": 31
+  }
+}
