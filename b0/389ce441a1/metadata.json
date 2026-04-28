@@ -1,0 +1,28 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "b0389ce441a1",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "libs/ui/epg/src/lib/epg-list/epg-list-item/epg-list-item.component.html",
+    "libs/ui/epg/src/lib/epg-list/epg-list-item/epg-list-item.component.scss",
+    "libs/ui/epg/src/lib/epg-list/epg-list.component.scss"
+  ],
+  "sessions": [
+    {
+      "metadata": "/b0/389ce441a1/0/metadata.json",
+      "transcript": "/b0/389ce441a1/0/full.jsonl",
+      "context": "/b0/389ce441a1/0/context.md",
+      "content_hash": "/b0/389ce441a1/0/content_hash.txt",
+      "prompt": "/b0/389ce441a1/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 39,
+    "cache_creation_tokens": 14516,
+    "cache_read_tokens": 2727806,
+    "output_tokens": 8712,
+    "api_call_count": 19
+  }
+}
