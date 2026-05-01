@@ -1,0 +1,29 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "6719280e397b",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "apps/web/src/assets/i18n/en.json",
+    "libs/portal/shared/ui/src/lib/components/portal-empty-state/portal-empty-state.component.scss",
+    "libs/ui/components/src/lib/channel-list-container/groups-view/groups-view.component.html",
+    "libs/ui/components/src/lib/channel-list-container/groups-view/groups-view.component.scss"
+  ],
+  "sessions": [
+    {
+      "metadata": "/67/19280e397b/0/metadata.json",
+      "transcript": "/67/19280e397b/0/full.jsonl",
+      "context": "/67/19280e397b/0/context.md",
+      "content_hash": "/67/19280e397b/0/content_hash.txt",
+      "prompt": "/67/19280e397b/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 18,
+    "cache_creation_tokens": 21025,
+    "cache_read_tokens": 2096946,
+    "output_tokens": 8106,
+    "api_call_count": 8
+  }
+}
