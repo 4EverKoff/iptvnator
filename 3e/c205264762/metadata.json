@@ -1,0 +1,28 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "3ec205264762",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "libs/m3u-state/src/lib/effects.ts",
+    "libs/services/src/lib/playlist-backup.service.ts",
+    "libs/services/src/lib/playlists.service.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/3e/c205264762/0/metadata.json",
+      "transcript": "/3e/c205264762/0/full.jsonl",
+      "context": "/3e/c205264762/0/context.md",
+      "content_hash": "/3e/c205264762/0/content_hash.txt",
+      "prompt": "/3e/c205264762/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 65,
+    "cache_creation_tokens": 58062,
+    "cache_read_tokens": 14699285,
+    "output_tokens": 33755,
+    "api_call_count": 60
+  }
+}
