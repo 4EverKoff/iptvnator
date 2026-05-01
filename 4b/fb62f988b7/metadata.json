@@ -1,0 +1,37 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "4bfb62f988b7",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "apps/electron-backend/src/app/api/main.preload.ts",
+    "apps/electron-backend/src/app/database/operations/recently-viewed.operations.ts",
+    "apps/electron-backend/src/app/events/database/recently-viewed.events.ts",
+    "apps/electron-backend/src/app/workers/database-worker.types.ts",
+    "apps/electron-backend/src/app/workers/database.worker.ts",
+    "apps/web/src/typings.d.ts",
+    "global.d.ts",
+    "libs/portal/shared/ui/src/lib/components/unified-collection/unified-collection-page.component.spec.ts",
+    "libs/portal/shared/ui/src/lib/components/unified-collection/unified-collection-page.component.ts",
+    "libs/portal/shared/util/src/lib/collection/unified-recent-data.service.spec.ts",
+    "libs/portal/shared/util/src/lib/collection/unified-recent-data.service.ts",
+    "libs/services/src/lib/database-electron.service.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/4b/fb62f988b7/0/metadata.json",
+      "transcript": "/4b/fb62f988b7/0/full.jsonl",
+      "context": "/4b/fb62f988b7/0/context.md",
+      "content_hash": "/4b/fb62f988b7/0/content_hash.txt",
+      "prompt": "/4b/fb62f988b7/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 52,
+    "cache_creation_tokens": 217031,
+    "cache_read_tokens": 9242541,
+    "output_tokens": 17653,
+    "api_call_count": 47
+  }
+}

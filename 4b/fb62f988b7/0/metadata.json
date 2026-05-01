@@ -1,0 +1,43 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "4bfb62f988b7",
+  "session_id": "0c589c1b-56d3-41b1-9467-9cfc3983e8a7",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-01T21:01:28.503619Z",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "apps/electron-backend/src/app/api/main.preload.ts",
+    "apps/electron-backend/src/app/database/operations/recently-viewed.operations.ts",
+    "apps/electron-backend/src/app/events/database/recently-viewed.events.ts",
+    "apps/electron-backend/src/app/workers/database-worker.types.ts",
+    "apps/electron-backend/src/app/workers/database.worker.ts",
+    "apps/web/src/typings.d.ts",
+    "global.d.ts",
+    "libs/portal/shared/ui/src/lib/components/unified-collection/unified-collection-page.component.spec.ts",
+    "libs/portal/shared/ui/src/lib/components/unified-collection/unified-collection-page.component.ts",
+    "libs/portal/shared/util/src/lib/collection/unified-recent-data.service.spec.ts",
+    "libs/portal/shared/util/src/lib/collection/unified-recent-data.service.ts",
+    "libs/services/src/lib/database-electron.service.ts"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "35a4861f-1978-4243-8e1c-fc757bae8ea5",
+  "checkpoint_transcript_start": 355,
+  "transcript_lines_at_start": 355,
+  "token_usage": {
+    "input_tokens": 52,
+    "cache_creation_tokens": 217031,
+    "cache_read_tokens": 9242541,
+    "output_tokens": 17653,
+    "api_call_count": 47
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-01T21:01:28.424584Z",
+    "agent_lines": 0,
+    "human_added": 179,
+    "human_modified": 153,
+    "human_removed": 0,
+    "total_committed": 327,
+    "agent_percentage": 0
+  }
+}
