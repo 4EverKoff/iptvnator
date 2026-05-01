@@ -1,0 +1,46 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "3d6901072049",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    ".plans/2026-05-01-epg-empty-state.md",
+    "apps/web/src/assets/i18n/ar.json",
+    "apps/web/src/assets/i18n/ary.json",
+    "apps/web/src/assets/i18n/by.json",
+    "apps/web/src/assets/i18n/de.json",
+    "apps/web/src/assets/i18n/el.json",
+    "apps/web/src/assets/i18n/en.json",
+    "apps/web/src/assets/i18n/es.json",
+    "apps/web/src/assets/i18n/fr.json",
+    "apps/web/src/assets/i18n/it.json",
+    "apps/web/src/assets/i18n/ja.json",
+    "apps/web/src/assets/i18n/ko.json",
+    "apps/web/src/assets/i18n/nl.json",
+    "apps/web/src/assets/i18n/pl.json",
+    "apps/web/src/assets/i18n/pt.json",
+    "apps/web/src/assets/i18n/ru.json",
+    "apps/web/src/assets/i18n/tr.json",
+    "apps/web/src/assets/i18n/zh.json",
+    "apps/web/src/assets/i18n/zhtw.json",
+    "libs/ui/epg/src/lib/epg-list/epg-list.component.html",
+    "libs/ui/epg/src/lib/epg-list/epg-list.component.scss"
+  ],
+  "sessions": [
+    {
+      "metadata": "/3d/6901072049/0/metadata.json",
+      "transcript": "/3d/6901072049/0/full.jsonl",
+      "context": "/3d/6901072049/0/context.md",
+      "content_hash": "/3d/6901072049/0/content_hash.txt",
+      "prompt": "/3d/6901072049/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 43,
+    "cache_creation_tokens": 460204,
+    "cache_read_tokens": 1580439,
+    "output_tokens": 34081,
+    "api_call_count": 18
+  }
+}
