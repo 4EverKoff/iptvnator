@@ -5,18 +5,39 @@
   "branch": "master",
   "checkpoints_count": 1,
   "files_touched": [
+    ".plans/2026-05-01-epg-empty-state.md",
     "apps/electron-backend/src/app/api/main.preload.ts",
     "apps/electron-backend/src/app/database/operations/recently-viewed.operations.ts",
     "apps/electron-backend/src/app/events/database/recently-viewed.events.ts",
     "apps/electron-backend/src/app/workers/database-worker.types.ts",
     "apps/electron-backend/src/app/workers/database.worker.ts",
+    "apps/web/src/assets/i18n/ar.json",
+    "apps/web/src/assets/i18n/ary.json",
+    "apps/web/src/assets/i18n/by.json",
+    "apps/web/src/assets/i18n/de.json",
+    "apps/web/src/assets/i18n/el.json",
+    "apps/web/src/assets/i18n/en.json",
+    "apps/web/src/assets/i18n/es.json",
+    "apps/web/src/assets/i18n/fr.json",
+    "apps/web/src/assets/i18n/it.json",
+    "apps/web/src/assets/i18n/ja.json",
+    "apps/web/src/assets/i18n/ko.json",
+    "apps/web/src/assets/i18n/nl.json",
+    "apps/web/src/assets/i18n/pl.json",
+    "apps/web/src/assets/i18n/pt.json",
+    "apps/web/src/assets/i18n/ru.json",
+    "apps/web/src/assets/i18n/tr.json",
+    "apps/web/src/assets/i18n/zh.json",
+    "apps/web/src/assets/i18n/zhtw.json",
     "apps/web/src/typings.d.ts",
     "global.d.ts",
     "libs/portal/shared/ui/src/lib/components/unified-collection/unified-collection-page.component.spec.ts",
     "libs/portal/shared/ui/src/lib/components/unified-collection/unified-collection-page.component.ts",
     "libs/portal/shared/util/src/lib/collection/unified-recent-data.service.spec.ts",
     "libs/portal/shared/util/src/lib/collection/unified-recent-data.service.ts",
-    "libs/services/src/lib/database-electron.service.ts"
+    "libs/services/src/lib/database-electron.service.ts",
+    "libs/ui/epg/src/lib/epg-list/epg-list.component.html",
+    "libs/ui/epg/src/lib/epg-list/epg-list.component.scss"
   ],
   "sessions": [
     {
@@ -25,13 +46,20 @@
       "context": "/4b/fb62f988b7/0/context.md",
       "content_hash": "/4b/fb62f988b7/0/content_hash.txt",
       "prompt": "/4b/fb62f988b7/0/prompt.txt"
+    },
+    {
+      "metadata": "/4b/fb62f988b7/1/metadata.json",
+      "transcript": "/4b/fb62f988b7/1/full.jsonl",
+      "context": "/4b/fb62f988b7/1/context.md",
+      "content_hash": "/4b/fb62f988b7/1/content_hash.txt",
+      "prompt": "/4b/fb62f988b7/1/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 52,
-    "cache_creation_tokens": 217031,
-    "cache_read_tokens": 9242541,
-    "output_tokens": 17653,
-    "api_call_count": 47
+    "input_tokens": 99,
+    "cache_creation_tokens": 385972,
+    "cache_read_tokens": 14314006,
+    "output_tokens": 41580,
+    "api_call_count": 79
   }
 }

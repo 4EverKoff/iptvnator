@@ -1,0 +1,51 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "4bfb62f988b7",
+  "session_id": "f767df3f-8e2e-4234-ae75-cd201585d783",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-01T21:02:39.187802Z",
+  "branch": "master",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".plans/2026-05-01-epg-empty-state.md",
+    "apps/web/src/assets/i18n/ar.json",
+    "apps/web/src/assets/i18n/ary.json",
+    "apps/web/src/assets/i18n/by.json",
+    "apps/web/src/assets/i18n/de.json",
+    "apps/web/src/assets/i18n/el.json",
+    "apps/web/src/assets/i18n/en.json",
+    "apps/web/src/assets/i18n/es.json",
+    "apps/web/src/assets/i18n/fr.json",
+    "apps/web/src/assets/i18n/it.json",
+    "apps/web/src/assets/i18n/ja.json",
+    "apps/web/src/assets/i18n/ko.json",
+    "apps/web/src/assets/i18n/nl.json",
+    "apps/web/src/assets/i18n/pl.json",
+    "apps/web/src/assets/i18n/pt.json",
+    "apps/web/src/assets/i18n/ru.json",
+    "apps/web/src/assets/i18n/tr.json",
+    "apps/web/src/assets/i18n/zh.json",
+    "apps/web/src/assets/i18n/zhtw.json",
+    "libs/ui/epg/src/lib/epg-list/epg-list.component.html",
+    "libs/ui/epg/src/lib/epg-list/epg-list.component.scss"
+  ],
+  "agent": "Claude Code",
+  "checkpoint_transcript_start": 206,
+  "transcript_lines_at_start": 206,
+  "token_usage": {
+    "input_tokens": 47,
+    "cache_creation_tokens": 168941,
+    "cache_read_tokens": 5071465,
+    "output_tokens": 23927,
+    "api_call_count": 32
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-01T21:02:39.091761Z",
+    "agent_lines": 60,
+    "human_added": 89,
+    "human_modified": 64,
+    "human_removed": 0,
+    "total_committed": 213,
+    "agent_percentage": 28.169014084507044
+  }
+}
