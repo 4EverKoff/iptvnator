@@ -1,9 +1,11 @@
 {
   "cli_version": "0.4.2",
   "checkpoint_id": "2e1a36e2f0f6",
+  "session_id": "0c589c1b-56d3-41b1-9467-9cfc3983e8a7",
   "strategy": "manual-commit",
+  "created_at": "2026-05-01T21:25:02.563962Z",
   "branch": "master",
-  "checkpoints_count": 2,
+  "checkpoints_count": 1,
   "files_touched": [
     "libs/playlist/import/feature/jest.config.ts",
     "libs/playlist/import/feature/src/test-setup.ts",
@@ -14,7 +16,6 @@
     "libs/playlist/shared/ui/src/lib/recent-playlists/recent-playlists.component.ts",
     "libs/portal/catalog/feature/src/lib/category-content-view/category-content-view.component.ts",
     "libs/portal/shared/ui/src/lib/components/grid-list/grid-list.component.ts",
-    "libs/portal/shared/ui/src/lib/components/playlist-error-view/playlist-error-view.component.scss",
     "libs/portal/stalker/feature/src/lib/stalker-search/stalker-search.component.ts",
     "libs/portal/xtream/feature/src/lib/category-management-dialog/category-management-dialog.component.ts",
     "libs/portal/xtream/feature/src/lib/recently-added/recently-added.component.ts",
@@ -22,27 +23,24 @@
     "libs/portal/xtream/feature/src/lib/vod-details/vod-details-route.component.ts",
     "libs/ui/components/src/lib/season-container/season-container.component.ts"
   ],
-  "sessions": [
-    {
-      "metadata": "/2e/1a36e2f0f6/0/metadata.json",
-      "transcript": "/2e/1a36e2f0f6/0/full.jsonl",
-      "context": "/2e/1a36e2f0f6/0/context.md",
-      "content_hash": "/2e/1a36e2f0f6/0/content_hash.txt",
-      "prompt": "/2e/1a36e2f0f6/0/prompt.txt"
-    },
-    {
-      "metadata": "/2e/1a36e2f0f6/1/metadata.json",
-      "transcript": "/2e/1a36e2f0f6/1/full.jsonl",
-      "context": "/2e/1a36e2f0f6/1/context.md",
-      "content_hash": "/2e/1a36e2f0f6/1/content_hash.txt",
-      "prompt": "/2e/1a36e2f0f6/1/prompt.txt"
-    }
-  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "6e7a2cc2-c7b7-4663-9393-5c4b6679addb",
+  "checkpoint_transcript_start": 684,
+  "transcript_lines_at_start": 684,
   "token_usage": {
-    "input_tokens": 68,
-    "cache_creation_tokens": 256754,
-    "cache_read_tokens": 17281587,
-    "output_tokens": 21500,
-    "api_call_count": 58
+    "input_tokens": 61,
+    "cache_creation_tokens": 48621,
+    "cache_read_tokens": 17014553,
+    "output_tokens": 20614,
+    "api_call_count": 56
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-01T21:25:02.446229Z",
+    "agent_lines": 0,
+    "human_added": 41,
+    "human_modified": 104,
+    "human_removed": 0,
+    "total_committed": 140,
+    "agent_percentage": 0
   }
 }
