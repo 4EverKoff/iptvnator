@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "2e1a36e2f0f6",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "apps/web/src/assets/i18n/en.json",
+    "libs/portal/catalog/feature/src/lib/category-content-view/category-content-view.component.html",
+    "libs/portal/catalog/feature/src/lib/category-content-view/category-content-view.component.spec.ts",
+    "libs/portal/catalog/feature/src/lib/category-content-view/category-content-view.component.ts",
+    "libs/portal/shared/ui/src/lib/components/grid-list/grid-list.component.ts",
+    "libs/portal/shared/ui/src/lib/components/playlist-error-view/playlist-error-view.component.html",
+    "libs/portal/shared/ui/src/lib/components/playlist-error-view/playlist-error-view.component.scss",
+    "libs/workspace/shell/feature/src/lib/workspace-context-panel/components/workspace-context-error-view.component.html"
+  ],
+  "sessions": [
+    {
+      "metadata": "/2e/1a36e2f0f6/0/metadata.json",
+      "transcript": "/2e/1a36e2f0f6/0/full.jsonl",
+      "context": "/2e/1a36e2f0f6/0/context.md",
+      "content_hash": "/2e/1a36e2f0f6/0/content_hash.txt",
+      "prompt": "/2e/1a36e2f0f6/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 39,
+    "cache_creation_tokens": 32433,
+    "cache_read_tokens": 5204501,
+    "output_tokens": 12540,
+    "api_call_count": 24
+  }
+}

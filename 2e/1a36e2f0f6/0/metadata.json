@@ -1,0 +1,39 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "2e1a36e2f0f6",
+  "session_id": "f767df3f-8e2e-4234-ae75-cd201585d783",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-01T21:18:05.92634Z",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "apps/web/src/assets/i18n/en.json",
+    "libs/portal/catalog/feature/src/lib/category-content-view/category-content-view.component.html",
+    "libs/portal/catalog/feature/src/lib/category-content-view/category-content-view.component.spec.ts",
+    "libs/portal/catalog/feature/src/lib/category-content-view/category-content-view.component.ts",
+    "libs/portal/shared/ui/src/lib/components/grid-list/grid-list.component.ts",
+    "libs/portal/shared/ui/src/lib/components/playlist-error-view/playlist-error-view.component.html",
+    "libs/portal/shared/ui/src/lib/components/playlist-error-view/playlist-error-view.component.scss",
+    "libs/workspace/shell/feature/src/lib/workspace-context-panel/components/workspace-context-error-view.component.html"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "a776c8a8-063e-4272-aee4-08b4b5f17e37",
+  "checkpoint_transcript_start": 364,
+  "transcript_lines_at_start": 364,
+  "token_usage": {
+    "input_tokens": 39,
+    "cache_creation_tokens": 32433,
+    "cache_read_tokens": 5204501,
+    "output_tokens": 12540,
+    "api_call_count": 24
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-01T21:18:05.819537Z",
+    "agent_lines": 0,
+    "human_added": 166,
+    "human_modified": 32,
+    "human_removed": 0,
+    "total_committed": 186,
+    "agent_percentage": 0
+  }
+}
