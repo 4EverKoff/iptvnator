@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "6719280e397b",
+  "session_id": "0c589c1b-56d3-41b1-9467-9cfc3983e8a7",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-01T21:46:02.586914Z",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "apps/web/src/typings.d.ts",
+    "libs/epg/data-access/src/lib/epg.service.ts"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "197dc38e-100d-46ae-8f0d-5791f7eb6666",
+  "checkpoint_transcript_start": 852,
+  "transcript_lines_at_start": 852,
+  "token_usage": {
+    "input_tokens": 35,
+    "cache_creation_tokens": 321380,
+    "cache_read_tokens": 7611531,
+    "output_tokens": 12154,
+    "api_call_count": 26
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-01T21:46:02.455459Z",
+    "agent_lines": 0,
+    "human_added": 456,
+    "human_modified": 195,
+    "human_removed": 0,
+    "total_committed": 491,
+    "agent_percentage": 0
+  }
+}
