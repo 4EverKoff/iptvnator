@@ -1,0 +1,39 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "e400bd558b10",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "libs/ui/components/src/lib/channel-list-container/all-channels-view/all-channels-view.component.html",
+    "libs/ui/components/src/lib/channel-list-container/all-channels-view/all-channels-view.component.spec.ts",
+    "libs/ui/components/src/lib/channel-list-container/all-channels-view/all-channels-view.component.ts",
+    "libs/ui/components/src/lib/channel-list-container/channel-list-item-skeleton/channel-list-item-skeleton.component.html",
+    "libs/ui/components/src/lib/channel-list-container/channel-list-item-skeleton/channel-list-item-skeleton.component.scss",
+    "libs/ui/components/src/lib/channel-list-container/channel-list-item-skeleton/channel-list-item-skeleton.component.ts",
+    "libs/ui/components/src/lib/channel-list-container/channel-list-skeleton/channel-list-skeleton.component.html",
+    "libs/ui/components/src/lib/channel-list-container/channel-list-skeleton/channel-list-skeleton.component.scss",
+    "libs/ui/components/src/lib/channel-list-container/channel-list-skeleton/channel-list-skeleton.component.ts",
+    "libs/ui/components/src/lib/channel-list-container/favorites-view/favorites-view.component.html",
+    "libs/ui/components/src/lib/channel-list-container/favorites-view/favorites-view.component.ts",
+    "libs/ui/components/src/lib/channel-list-container/groups-view/groups-view.component.html",
+    "libs/ui/components/src/lib/channel-list-container/groups-view/groups-view.component.spec.ts",
+    "libs/ui/components/src/lib/channel-list-container/groups-view/groups-view.component.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/e4/00bd558b10/0/metadata.json",
+      "transcript": "/e4/00bd558b10/0/full.jsonl",
+      "context": "/e4/00bd558b10/0/context.md",
+      "content_hash": "/e4/00bd558b10/0/content_hash.txt",
+      "prompt": "/e4/00bd558b10/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 79,
+    "cache_creation_tokens": 69167,
+    "cache_read_tokens": 20180701,
+    "output_tokens": 31144,
+    "api_call_count": 59
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "e400bd558b10",
+  "session_id": "0c589c1b-56d3-41b1-9467-9cfc3983e8a7",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-01T22:07:11.449464Z",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "libs/ui/components/src/lib/channel-list-container/all-channels-view/all-channels-view.component.html",
+    "libs/ui/components/src/lib/channel-list-container/all-channels-view/all-channels-view.component.spec.ts",
+    "libs/ui/components/src/lib/channel-list-container/all-channels-view/all-channels-view.component.ts",
+    "libs/ui/components/src/lib/channel-list-container/channel-list-item-skeleton/channel-list-item-skeleton.component.html",
+    "libs/ui/components/src/lib/channel-list-container/channel-list-item-skeleton/channel-list-item-skeleton.component.scss",
+    "libs/ui/components/src/lib/channel-list-container/channel-list-item-skeleton/channel-list-item-skeleton.component.ts",
+    "libs/ui/components/src/lib/channel-list-container/channel-list-skeleton/channel-list-skeleton.component.html",
+    "libs/ui/components/src/lib/channel-list-container/channel-list-skeleton/channel-list-skeleton.component.scss",
+    "libs/ui/components/src/lib/channel-list-container/channel-list-skeleton/channel-list-skeleton.component.ts",
+    "libs/ui/components/src/lib/channel-list-container/favorites-view/favorites-view.component.html",
+    "libs/ui/components/src/lib/channel-list-container/favorites-view/favorites-view.component.ts",
+    "libs/ui/components/src/lib/channel-list-container/groups-view/groups-view.component.html",
+    "libs/ui/components/src/lib/channel-list-container/groups-view/groups-view.component.spec.ts",
+    "libs/ui/components/src/lib/channel-list-container/groups-view/groups-view.component.ts"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "cac889cd-2b1c-45d8-b6b9-22bdb8b52258",
+  "checkpoint_transcript_start": 932,
+  "transcript_lines_at_start": 932,
+  "token_usage": {
+    "input_tokens": 79,
+    "cache_creation_tokens": 69167,
+    "cache_read_tokens": 20180701,
+    "output_tokens": 31144,
+    "api_call_count": 59
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-01T22:07:11.283828Z",
+    "agent_lines": 0,
+    "human_added": 177,
+    "human_modified": 324,
+    "human_removed": 0,
+    "total_committed": 440,
+    "agent_percentage": 0
+  }
+}
