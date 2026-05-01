@@ -3,37 +3,35 @@
   "checkpoint_id": "2e1a36e2f0f6",
   "session_id": "f767df3f-8e2e-4234-ae75-cd201585d783",
   "strategy": "manual-commit",
-  "created_at": "2026-05-01T21:18:05.92634Z",
+  "created_at": "2026-05-01T21:24:37.782611Z",
   "branch": "master",
   "checkpoints_count": 1,
   "files_touched": [
-    "apps/web/src/assets/i18n/en.json",
-    "libs/portal/catalog/feature/src/lib/category-content-view/category-content-view.component.html",
-    "libs/portal/catalog/feature/src/lib/category-content-view/category-content-view.component.spec.ts",
-    "libs/portal/catalog/feature/src/lib/category-content-view/category-content-view.component.ts",
-    "libs/portal/shared/ui/src/lib/components/grid-list/grid-list.component.ts",
-    "libs/portal/shared/ui/src/lib/components/playlist-error-view/playlist-error-view.component.html",
-    "libs/portal/shared/ui/src/lib/components/playlist-error-view/playlist-error-view.component.scss",
-    "libs/workspace/shell/feature/src/lib/workspace-context-panel/components/workspace-context-error-view.component.html"
+    "libs/playlist/import/feature/jest.config.ts",
+    "libs/playlist/import/feature/src/test-setup.ts",
+    "libs/playlist/import/feature/tsconfig.json",
+    "libs/playlist/import/feature/tsconfig.lib.json",
+    "libs/playlist/import/feature/tsconfig.spec.json",
+    "libs/portal/shared/ui/src/lib/components/playlist-error-view/playlist-error-view.component.scss"
   ],
   "agent": "Claude Code",
-  "transcript_identifier_at_start": "a776c8a8-063e-4272-aee4-08b4b5f17e37",
-  "checkpoint_transcript_start": 364,
-  "transcript_lines_at_start": 364,
+  "transcript_identifier_at_start": "abe4fb7c-e675-4aeb-81a1-b86811d41117",
+  "checkpoint_transcript_start": 463,
+  "transcript_lines_at_start": 463,
   "token_usage": {
-    "input_tokens": 39,
-    "cache_creation_tokens": 32433,
-    "cache_read_tokens": 5204501,
-    "output_tokens": 12540,
-    "api_call_count": 24
+    "input_tokens": 7,
+    "cache_creation_tokens": 208133,
+    "cache_read_tokens": 267034,
+    "output_tokens": 886,
+    "api_call_count": 2
   },
   "initial_attribution": {
-    "calculated_at": "2026-05-01T21:18:05.819537Z",
+    "calculated_at": "2026-05-01T21:24:37.592684Z",
     "agent_lines": 0,
-    "human_added": 166,
-    "human_modified": 32,
+    "human_added": 249,
+    "human_modified": 122,
     "human_removed": 0,
-    "total_committed": 186,
+    "total_committed": 336,
     "agent_percentage": 0
   }
 }

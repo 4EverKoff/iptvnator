@@ -37,3 +37,11 @@ good, commit these changes first. apply the same style change for the search whe
 
 do it
 
+### Prompt 6
+
+feels like the icon is too big, isn't it? /userinterface-wiki  /frontend-design  /sc-brainstorm
+
+### Prompt 7
+
+[Image: original 2836x1644, displayed at 2576x1493. Multiply coordinates by 1.10 to map to original image.]
+
