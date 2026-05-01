@@ -1,0 +1,937 @@
+i found a fork of my repo where this change was done, is it worth do apply that commit ? will it speed up the sql operations or not? https://github.com/matracey/iptvnator/commit/4ad8f886eba172a0471f40dfa2d4e0f4ccacc11a
+
+---
+
+do you see any other similar quick wins to improve the performance?
+
+---
+
+commit current changes and then implement your suggestions step by step
+
+---
+
+done
+
+---
+
+yes, do it
+
+---
+
+yes, do it
+
+---
+
+what about onpush strategy in more components where we load channels, categories etc, probably it's improtant there or? @libs/ui/components/src/lib/channel-list-container/all-channels-view@libs/ui/components/src/lib/channel-list-container/groups-view@libs/portal/shared/ui/src/lib/components/category-view/category-view.component.ts@libs/portal/catalog/feature/src/lib/category-content-view/category-content-view.component.html and so on @libs/portal/stalker/feature/src/lib/stalker-live-stream-layout/stalker-live-stream-layout.component.ts
+
+---
+
+what about that one from the fork repo: https://github.com/matracey/iptvnator/commit/d25a7e89e43b6938ab4dea3f35c06730350932c7 do we have now also something like this?
+
+---
+
+Continue from where you left off.
+
+---
+
+continue
+
+---
+
+good, what about that one,  is that really a bug, do we need to fix that? https://github.com/matracey/iptvnator/commit/e1cf46ec89690da7058e33a21f05a36cfada6dca
+
+---
+
+good, what do you think about those commits: https://github.com/matracey/iptvnator/commit/8d78cc0357354541f6a31f0756614138ccb40b0c https://github.com/matracey/iptvnator/commit/b9e6e82e9e57649d6d8e32260e9c6c8013ad08e7 https://github.com/matracey/iptvnator/commit/296d61ebd234d71cec7bdc6c10fbd512a7f4fb22 use /sc-brainstorm to check
+
+---
+
+Base directory for this skill: /Users/4gray/Code/iptvnator/.claude/skills/sc-brainstorm
+
+# Brainstorming & Requirements Discovery Skill
+
+Transform ambiguous ideas into concrete specifications through structured exploration.
+
+## Quick Start
+
+```bash
+# Basic brainstorm
+/sc:brainstorm [topic]
+
+# Deep systematic exploration
+/sc:brainstorm "AI project management tool" --strategy systematic --depth deep
+
+# Parallel exploration with multiple personas
+/sc:brainstorm "real-time collaboration" --strategy agile --parallel
+```
+
+## Behavioral Flow
+
+1. **Explore** - Transform ambiguous ideas through Socratic dialogue
+2. **Analyze** - Coordinate multiple personas for domain expertise
+3. **Validate** - Apply feasibility assessment across domains
+4. **Specify** - Generate concrete specifications
+5. **Handoff** - Create actionable briefs for implementation
+
+## Flags
+
+| Flag | Type | Default | Description |
+|------|------|---------|-------------|
+| `--strategy` | string | systematic | systematic, agile, enterprise |
+| `--depth` | string | normal | shallow, normal, deep |
+| `--parallel` | bool | false | Enable parallel exploration paths |
+| `--validate` | bool | false | Include feasibility validation |
+
+## Personas Activated
+
+- **architect** - System design and technical feasibility
+- **analyzer** - Requirements analysis and complexity assessment
+- **frontend** - User experience and interface considerations
+- **backend** - API and data architecture
+- **security** - Security requirements and compliance
+- **devops** - Infrastructure and deployment considerations
+- **project-manager** - Timeline and resource planning
+
+## MCP Integration
+
+### PAL MCP (Collaborative Intelligence)
+
+| Tool | When to Use | Purpose |
+|------|-------------|---------|
+| `mcp__pal__consensus` | Conflicting priorities | Multi-model resolution of trade-offs |
+| `mcp__pal__chat` | Brainstorming | Collaborative idea exploration with external model |
+| `mcp__pal__thinkdeep` | Complex problems | Multi-stage deep analysis |
+| `mcp__pal__planner` | Solution design | Sequential planning with branching |
+| `mcp__pal__challenge` | Validate ideas | Force critical thinking on proposed solutions |
+
+### PAL Usage Patterns
+
+```bash
+# Consensus on conflicting priorities
+mcp__pal__consensus(
+    models=[
+        {"model": "gpt-5.2", "stance": "for", "stance_prompt": "Prioritize user experience"},
+        {"model": "gemini-3-pro", "stance": "against", "stance_prompt": "Prioritize technical simplicity"},
+        {"model": "deepseek", "stance": "neutral"}
+    ],
+    step="Evaluate: Should we use real-time sync or eventual consistency?"
+)
+
+# Deep exploration of complex idea
+mcp__pal__thinkdeep(
+    step="Exploring AI-powered analytics dashboard concept",
+    hypothesis="Users need predictive insights, not just historical data",
+    confidence="medium",
+    focus_areas=["user_needs", "technical_feasibility", "market_fit"]
+)
+
+# Collaborative brainstorming
+mcp__pal__chat(
+    prompt="Help me explore innovative approaches for real-time collaboration in document editing",
+    model="gpt-5.2",
+    thinking_mode="high"
+)
+
+# Challenge assumptions
+mcp__pal__challenge(
+    prompt="We assume users want AI-generated summaries. Is this assumption valid?"
+)
+
+# Plan solution architecture
+mcp__pal__planner(
+    step="Planning architecture for real-time notification system",
+    step_number=1,
+    total_steps=4,
+    is_branch_point=True,
+    branch_id="websocket-approach"
+)
+```
+
+### Rube MCP (Research & Persistence)
+
+| Tool | When to Use | Purpose |
+|------|-------------|---------|
+| `mcp__rube__RUBE_SEARCH_TOOLS` | Market research | Find web search, competitor analysis tools |
+| `mcp__rube__RUBE_MULTI_EXECUTE_TOOL` | Documentation | Save ideas to Notion, share in Slack |
+| `mcp__rube__RUBE_CREATE_UPDATE_RECIPE` | Workflows | Save brainstorming processes |
+| `mcp__rube__RUBE_REMOTE_WORKBENCH` | Data analysis | Analyze market data, user research |
+
+### Rube Usage Patterns
+
+```bash
+# Research market and competitors
+mcp__rube__RUBE_SEARCH_TOOLS(queries=[
+    {"use_case": "web search", "known_fields": "query:AI analytics dashboard competitors 2025"}
+])
+
+# Document brainstorming session
+mcp__rube__RUBE_MULTI_EXECUTE_TOOL(tools=[
+    {"tool_slug": "NOTION_CREATE_PAGE", "arguments": {
+        "title": "Brainstorm: AI Analytics Dashboard",
+        "content": "## Key Ideas\n- Predictive insights\n- Natural language queries\n\n## Decisions\n- Real-time sync chosen over eventual consistency"
+    }},
+    {"tool_slug": "SLACK_SEND_MESSAGE", "arguments": {
+        "channel": "#product",
+        "text": "New brainstorm session documented: AI Analytics Dashboard"
+    }}
+])
+
+# Create user research tasks
+mcp__rube__RUBE_MULTI_EXECUTE_TOOL(tools=[
+    {"tool_slug": "JIRA_CREATE_ISSUE", "arguments": {
+        "project": "PROD",
+        "summary": "User research: AI analytics preferences",
+        "issue_type": "Task",
+        "description": "Interview 10 users about analytics needs"
+    }},
+    {"tool_slug": "ASANA_CREATE_TASK", "arguments": {
+        "name": "Competitor analysis: analytics dashboards",
+        "project": "Research"
+    }}
+])
+
+# Analyze existing user feedback
+mcp__rube__RUBE_REMOTE_WORKBENCH(
+    thought="Analyze user feedback data for patterns",
+    code_to_execute='''
+import json
+# Load user feedback from file
+feedback_data = json.load(open("/tmp/user_feedback.json"))
+# Analyze with LLM
+analysis, error = invoke_llm(f"Analyze this user feedback for analytics feature requests: {feedback_data[:5000]}")
+output = {"analysis": analysis, "feedback_count": len(feedback_data)}
+output
+'''
+)
+```
+
+## Flags (Extended)
+
+| Flag | Type | Default | Description |
+|------|------|---------|-------------|
+| `--pal-consensus` | bool | false | Use PAL consensus for trade-offs |
+| `--pal-deep` | bool | false | Use PAL thinkdeep for complex exploration |
+| `--research` | bool | false | Use Rube for market/competitor research |
+| `--document` | string | - | Document to Rube (notion, confluence, google-docs) |
+| `--notify` | string | - | Notify via Rube (slack, teams, email) |
+
+## Evidence Requirements
+
+This skill does NOT require hard evidence. Focus on:
+- Documenting exploration paths and decisions
+- Recording stakeholder input and priorities
+- Capturing specifications and requirements
+
+## Exploration Strategies
+
+### Systematic (`--strategy systematic`)
+- Structured question-driven discovery
+- Comprehensive domain coverage
+- Documentation-heavy approach
+
+### Agile (`--strategy agile`)
+- Rapid iteration cycles
+- User story focused
+- Minimal viable specification
+
+### Enterprise (`--strategy enterprise`)
+- Compliance and governance focus
+- Stakeholder alignment
+- Risk assessment integration
+
+## Examples
+
+### Product Discovery
+```
+/sc:brainstorm "AI-powered analytics dashboard" --strategy systematic --depth deep
+# Multi-persona analysis with comprehensive feasibility
+```
+
+### Feature Exploration
+```
+/sc:brainstorm "real-time notifications" --strategy agile --parallel
+# Parallel paths: frontend UX, backend architecture, security implications
+```
+
+### Enterprise Solution
+```
+/sc:brainstorm "enterprise data platform" --strategy enterprise --validate
+# Compliance-aware exploration with security and devops input
+```
+
+## Tool Coordination
+
+- **Read/Write** - Requirements documentation
+- **TodoWrite** - Exploration progress tracking
+- **Task** - Parallel exploration delegation
+- **WebSearch** - Market research and technology validation
+
+
+ARGUMENTS: Evaluate 3 fork commits for porting to our IPTVnator repo. We've already ported 3 prior commits from this fork (SQLite pragmas, batch current-programs IPC, and assessed the combineLatestWith fix as already-applied). Now analyzing:
+
+1. https://github.com/matracey/iptvnator/commit/8d78cc0357354541f6a31f0756614138ccb40b0c
+2. https://github.com/matracey/iptvnator/commit/b9e6e82e9e57649d6d8e32260e9c6c8013ad08e7
+3. https://github.com/matracey/iptvnator/commit/296d61ebd234d71cec7bdc6c10fbd512a7f4fb22
+
+For each, determine: (a) is it a real bug or improvement, (b) do we already have it / does it apply to our code, (c) is it worth porting and at what risk level. Use multi-persona analysis (perf engineer, code reviewer, product engineer).
+
+---
+
+do it
+
+---
+
+and what about that one? https://github.com/matracey/iptvnator/commit/df7e1dc928941f53b6ce1362fc81650c84e7966c
+
+---
+
+any other quick wins for performance? maybe a concrete one, when i open a playlist switcher it always takes a lot of time for xtream playlist until i see the fetched playlist status indicator, can you check how it's implemented and maybe how some idea how to optimize, improve it? use /userinterface-wiki and /frontend-design and /sc-brainstorm to think about ideas /angular-developer
+
+---
+
+Base directory for this skill: /Users/4gray/Code/iptvnator/.claude/skills/sc-brainstorm
+
+# Brainstorming & Requirements Discovery Skill
+
+Transform ambiguous ideas into concrete specifications through structured exploration.
+
+## Quick Start
+
+```bash
+# Basic brainstorm
+/sc:brainstorm [topic]
+
+# Deep systematic exploration
+/sc:brainstorm "AI project management tool" --strategy systematic --depth deep
+
+# Parallel exploration with multiple personas
+/sc:brainstorm "real-time collaboration" --strategy agile --parallel
+```
+
+## Behavioral Flow
+
+1. **Explore** - Transform ambiguous ideas through Socratic dialogue
+2. **Analyze** - Coordinate multiple personas for domain expertise
+3. **Validate** - Apply feasibility assessment across domains
+4. **Specify** - Generate concrete specifications
+5. **Handoff** - Create actionable briefs for implementation
+
+## Flags
+
+| Flag | Type | Default | Description |
+|------|------|---------|-------------|
+| `--strategy` | string | systematic | systematic, agile, enterprise |
+| `--depth` | string | normal | shallow, normal, deep |
+| `--parallel` | bool | false | Enable parallel exploration paths |
+| `--validate` | bool | false | Include feasibility validation |
+
+## Personas Activated
+
+- **architect** - System design and technical feasibility
+- **analyzer** - Requirements analysis and complexity assessment
+- **frontend** - User experience and interface considerations
+- **backend** - API and data architecture
+- **security** - Security requirements and compliance
+- **devops** - Infrastructure and deployment considerations
+- **project-manager** - Timeline and resource planning
+
+## MCP Integration
+
+### PAL MCP (Collaborative Intelligence)
+
+| Tool | When to Use | Purpose |
+|------|-------------|---------|
+| `mcp__pal__consensus` | Conflicting priorities | Multi-model resolution of trade-offs |
+| `mcp__pal__chat` | Brainstorming | Collaborative idea exploration with external model |
+| `mcp__pal__thinkdeep` | Complex problems | Multi-stage deep analysis |
+| `mcp__pal__planner` | Solution design | Sequential planning with branching |
+| `mcp__pal__challenge` | Validate ideas | Force critical thinking on proposed solutions |
+
+### PAL Usage Patterns
+
+```bash
+# Consensus on conflicting priorities
+mcp__pal__consensus(
+    models=[
+        {"model": "gpt-5.2", "stance": "for", "stance_prompt": "Prioritize user experience"},
+        {"model": "gemini-3-pro", "stance": "against", "stance_prompt": "Prioritize technical simplicity"},
+        {"model": "deepseek", "stance": "neutral"}
+    ],
+    step="Evaluate: Should we use real-time sync or eventual consistency?"
+)
+
+# Deep exploration of complex idea
+mcp__pal__thinkdeep(
+    step="Exploring AI-powered analytics dashboard concept",
+    hypothesis="Users need predictive insights, not just historical data",
+    confidence="medium",
+    focus_areas=["user_needs", "technical_feasibility", "market_fit"]
+)
+
+# Collaborative brainstorming
+mcp__pal__chat(
+    prompt="Help me explore innovative approaches for real-time collaboration in document editing",
+    model="gpt-5.2",
+    thinking_mode="high"
+)
+
+# Challenge assumptions
+mcp__pal__challenge(
+    prompt="We assume users want AI-generated summaries. Is this assumption valid?"
+)
+
+# Plan solution architecture
+mcp__pal__planner(
+    step="Planning architecture for real-time notification system",
+    step_number=1,
+    total_steps=4,
+    is_branch_point=True,
+    branch_id="websocket-approach"
+)
+```
+
+### Rube MCP (Research & Persistence)
+
+| Tool | When to Use | Purpose |
+|------|-------------|---------|
+| `mcp__rube__RUBE_SEARCH_TOOLS` | Market research | Find web search, competitor analysis tools |
+| `mcp__rube__RUBE_MULTI_EXECUTE_TOOL` | Documentation | Save ideas to Notion, share in Slack |
+| `mcp__rube__RUBE_CREATE_UPDATE_RECIPE` | Workflows | Save brainstorming processes |
+| `mcp__rube__RUBE_REMOTE_WORKBENCH` | Data analysis | Analyze market data, user research |
+
+### Rube Usage Patterns
+
+```bash
+# Research market and competitors
+mcp__rube__RUBE_SEARCH_TOOLS(queries=[
+    {"use_case": "web search", "known_fields": "query:AI analytics dashboard competitors 2025"}
+])
+
+# Document brainstorming session
+mcp__rube__RUBE_MULTI_EXECUTE_TOOL(tools=[
+    {"tool_slug": "NOTION_CREATE_PAGE", "arguments": {
+        "title": "Brainstorm: AI Analytics Dashboard",
+        "content": "## Key Ideas\n- Predictive insights\n- Natural language queries\n\n## Decisions\n- Real-time sync chosen over eventual consistency"
+    }},
+    {"tool_slug": "SLACK_SEND_MESSAGE", "arguments": {
+        "channel": "#product",
+        "text": "New brainstorm session documented: AI Analytics Dashboard"
+    }}
+])
+
+# Create user research tasks
+mcp__rube__RUBE_MULTI_EXECUTE_TOOL(tools=[
+    {"tool_slug": "JIRA_CREATE_ISSUE", "arguments": {
+        "project": "PROD",
+        "summary": "User research: AI analytics preferences",
+        "issue_type": "Task",
+        "description": "Interview 10 users about analytics needs"
+    }},
+    {"tool_slug": "ASANA_CREATE_TASK", "arguments": {
+        "name": "Competitor analysis: analytics dashboards",
+        "project": "Research"
+    }}
+])
+
+# Analyze existing user feedback
+mcp__rube__RUBE_REMOTE_WORKBENCH(
+    thought="Analyze user feedback data for patterns",
+    code_to_execute='''
+import json
+# Load user feedback from file
+feedback_data = json.load(open("/tmp/user_feedback.json"))
+# Analyze with LLM
+analysis, error = invoke_llm(f"Analyze this user feedback for analytics feature requests: {feedback_data[:5000]}")
+output = {"analysis": analysis, "feedback_count": len(feedback_data)}
+output
+'''
+)
+```
+
+## Flags (Extended)
+
+| Flag | Type | Default | Description |
+|------|------|---------|-------------|
+| `--pal-consensus` | bool | false | Use PAL consensus for trade-offs |
+| `--pal-deep` | bool | false | Use PAL thinkdeep for complex exploration |
+| `--research` | bool | false | Use Rube for market/competitor research |
+| `--document` | string | - | Document to Rube (notion, confluence, google-docs) |
+| `--notify` | string | - | Notify via Rube (slack, teams, email) |
+
+## Evidence Requirements
+
+This skill does NOT require hard evidence. Focus on:
+- Documenting exploration paths and decisions
+- Recording stakeholder input and priorities
+- Capturing specifications and requirements
+
+## Exploration Strategies
+
+### Systematic (`--strategy systematic`)
+- Structured question-driven discovery
+- Comprehensive domain coverage
+- Documentation-heavy approach
+
+### Agile (`--strategy agile`)
+- Rapid iteration cycles
+- User story focused
+- Minimal viable specification
+
+### Enterprise (`--strategy enterprise`)
+- Compliance and governance focus
+- Stakeholder alignment
+- Risk assessment integration
+
+## Examples
+
+### Product Discovery
+```
+/sc:brainstorm "AI-powered analytics dashboard" --strategy systematic --depth deep
+# Multi-persona analysis with comprehensive feasibility
+```
+
+### Feature Exploration
+```
+/sc:brainstorm "real-time notifications" --strategy agile --parallel
+# Parallel paths: frontend UX, backend architecture, security implications
+```
+
+### Enterprise Solution
+```
+/sc:brainstorm "enterprise data platform" --strategy enterprise --validate
+# Compliance-aware exploration with security and devops input
+```
+
+## Tool Coordination
+
+- **Read/Write** - Requirements documentation
+- **TodoWrite** - Exploration progress tracking
+- **Task** - Parallel exploration delegation
+- **WebSearch** - Market research and technology validation
+
+
+ARGUMENTS: Investigate a concrete UX/perf problem in IPTVnator and propose optimizations.
+
+**Problem report from user:** "When I open the playlist switcher it always takes a lot of time for xtream playlist until I see the fetched playlist status indicator."
+
+I need to:
+1. Find how the playlist switcher is implemented (likely libs/playlist/shared/ui/src/lib/playlist-switcher/)
+2. Trace what happens when an Xtream playlist row is rendered or opened — what fetches/computes block the status indicator
+3. Identify the bottleneck (eager IPC, missing skeleton, blocking computed signals, etc.)
+4. Propose concrete fixes with low/medium risk classification
+
+Use perf engineer + frontend designer + Angular signals expert personas. Include suggested fix shape (code or pseudocode), not just abstract recommendations. Output: under 600 words, action-oriented, file:line specific.
+
+---
+
+Base directory for this skill: /Users/4gray/.claude/skills/userinterface-wiki
+
+# User Interface Wiki
+
+Comprehensive UI/UX best practices guide for web interfaces. Contains 152 rules across 12 categories, prioritized by impact to guide automated code review and generation.
+
+## When to Apply
+
+Reference these guidelines when:
+- Implementing or reviewing animations (CSS transitions, Motion/Framer Motion)
+- Choosing between springs, easing curves, or no animation
+- Working with AnimatePresence and exit animations
+- Writing CSS with pseudo-elements or View Transitions API
+- Adding audio feedback or procedural sound to UI
+- Building morphing icon components
+- Animating container width/height with dynamic content
+- Designing UI that respects cognitive psychology (Fitts's, Hick's, Miller's laws)
+- Implementing predictive prefetching for perceived performance
+- Setting up typography, OpenType features, or numeric formatting
+
+## Rule Categories by Priority
+
+| Priority | Category | Impact | Prefixes |
+|----------|----------|--------|----------|
+| 1 | Animation Principles | CRITICAL | `timing-`, `physics-`, `staging-` |
+| 2 | Timing Functions | HIGH | `spring-`, `easing-`, `duration-`, `none-` |
+| 3 | Exit Animations | HIGH | `exit-`, `presence-`, `mode-`, `nested-` |
+| 4 | CSS Pseudo Elements | MEDIUM | `pseudo-`, `transition-`, `native-` |
+| 5 | Audio Feedback | MEDIUM | `a11y-`, `appropriate-`, `impl-`, `weight-` |
+| 6 | Sound Synthesis | MEDIUM | `context-`, `envelope-`, `design-`, `param-` |
+| 7 | Morphing Icons | LOW | `morphing-` |
+| 8 | Container Animation | MEDIUM | `container-` |
+| 9 | Laws of UX | HIGH | `ux-` |
+| 10 | Predictive Prefetching | MEDIUM | `prefetch-` |
+| 11 | Typography | MEDIUM | `type-` |
+| 12 | Visual Design | HIGH | `visual-` |
+
+## Quick Reference
+
+### 1. Animation Principles (CRITICAL)
+
+- `timing-under-300ms` - User animations must complete within 300ms
+- `timing-consistent` - Similar elements use identical timing values
+- `timing-no-entrance-context-menu` - Context menus: no entrance animation, exit only
+- `easing-natural-decay` - Use exponential ramps for natural decay, not linear
+- `easing-no-linear-motion` - Linear easing only for progress indicators
+- `physics-active-state` - Interactive elements need :active scale transform
+- `physics-subtle-deformation` - Squash/stretch in 0.95-1.05 range
+- `physics-spring-for-overshoot` - Springs for overshoot-and-settle, not easing
+- `physics-no-excessive-stagger` - Stagger delays under 50ms per item
+- `staging-one-focal-point` - One prominent animation at a time
+- `staging-dim-background` - Dim modal/dialog backgrounds
+- `staging-z-index-hierarchy` - Animated elements respect z-index layers
+
+### 2. Timing Functions (HIGH)
+
+- `spring-for-gestures` - Gesture-driven motion (drag, flick) must use springs
+- `spring-for-interruptible` - Interruptible motion must use springs
+- `spring-preserves-velocity` - Springs preserve input energy on release
+- `spring-params-balanced` - Avoid excessive oscillation in spring params
+- `easing-for-state-change` - System state changes use easing curves
+- `easing-entrance-ease-out` - Entrances use ease-out
+- `easing-exit-ease-in` - Exits use ease-in
+- `easing-transition-ease-in-out` - View transitions use ease-in-out
+- `easing-linear-only-progress` - Linear only for progress/time representation
+- `duration-press-hover` - Press/hover: 120-180ms
+- `duration-small-state` - Small state changes: 180-260ms
+- `duration-max-300ms` - User-initiated max 300ms
+- `duration-shorten-before-curve` - Fix slow feel with shorter duration, not curve
+- `none-high-frequency` - No animation for high-frequency interactions
+- `none-keyboard-navigation` - Keyboard navigation instant, no animation
+- `none-context-menu-entrance` - Context menus: no entrance, exit only
+
+### 3. Exit Animations (HIGH)
+
+- `exit-requires-wrapper` - Conditional motion elements need AnimatePresence wrapper
+- `exit-prop-required` - Elements in AnimatePresence need exit prop
+- `exit-key-required` - Dynamic lists need unique keys, not index
+- `exit-matches-initial` - Exit mirrors initial for symmetry
+- `presence-hook-in-child` - useIsPresent in child, not parent
+- `presence-safe-to-remove` - Call safeToRemove after async cleanup
+- `presence-disable-interactions` - Disable interactions on exiting elements
+- `mode-wait-doubles-duration` - Mode "wait" doubles duration; halve timing
+- `mode-sync-layout-conflict` - Mode "sync" causes layout conflicts
+- `mode-pop-layout-for-lists` - Use popLayout for list reordering
+- `nested-propagate-required` - Nested AnimatePresence needs propagate prop
+- `nested-consistent-timing` - Coordinate parent-child exit durations
+
+### 4. CSS Pseudo Elements (MEDIUM)
+
+- `pseudo-content-required` - ::before/::after need content property
+- `pseudo-over-dom-node` - Pseudo-elements over extra DOM nodes for decoration
+- `pseudo-position-relative-parent` - Parent needs position: relative
+- `pseudo-z-index-layering` - Z-index for correct pseudo-element layering
+- `pseudo-hit-target-expansion` - Negative inset for larger hit targets
+- `pseudo-marker-styling` - Use ::marker for custom list bullet styles
+- `pseudo-first-line-styling` - Use ::first-line for typographic treatments
+- `transition-name-required` - View transitions need view-transition-name
+- `transition-name-unique` - Each transition name unique during transition
+- `transition-name-cleanup` - Remove transition name after completion
+- `transition-over-js-library` - Prefer View Transitions API over JS libraries
+- `transition-style-pseudo-elements` - Style ::view-transition-group for custom animations
+- `native-backdrop-styling` - Use ::backdrop for dialog backgrounds
+- `native-placeholder-styling` - Use ::placeholder for input styling
+- `native-selection-styling` - Use ::selection for text selection styling
+
+### 5. Audio Feedback (MEDIUM)
+
+- `a11y-visual-equivalent` - Every sound must have a visual equivalent
+- `a11y-toggle-setting` - Provide toggle to disable sounds
+- `a11y-reduced-motion-check` - Respect prefers-reduced-motion for sound
+- `a11y-volume-control` - Allow independent volume adjustment
+- `appropriate-no-high-frequency` - No sound on typing or keyboard nav
+- `appropriate-confirmations-only` - Sound for payments, uploads, submissions
+- `appropriate-errors-warnings` - Sound for errors that can't be overlooked
+- `appropriate-no-decorative` - No sound on hover or decorative moments
+- `appropriate-no-punishing` - Inform, don't punish with harsh sounds
+- `impl-preload-audio` - Preload audio files to avoid delay
+- `impl-default-subtle` - Default volume subtle (0.3), not loud
+- `impl-reset-current-time` - Reset currentTime before replay
+- `weight-match-action` - Sound weight matches action importance
+- `weight-duration-matches-action` - Sound duration matches action duration
+
+### 6. Sound Synthesis (MEDIUM)
+
+- `context-reuse-single` - Reuse single AudioContext, don't create per sound
+- `context-resume-suspended` - Resume suspended AudioContext before playing
+- `context-cleanup-nodes` - Disconnect audio nodes after playback
+- `envelope-exponential-decay` - Exponential ramps for natural decay
+- `envelope-no-zero-target` - Exponential ramps target 0.001, not 0
+- `envelope-set-initial-value` - Set initial value before ramping
+- `design-noise-for-percussion` - Filtered noise for clicks/taps
+- `design-oscillator-for-tonal` - Oscillators with pitch sweep for tonal sounds
+- `design-filter-for-character` - Bandpass filter to shape percussive sounds
+- `param-click-duration` - Click sounds: 5-15ms duration
+- `param-filter-frequency-range` - Click filter: 3000-6000Hz
+- `param-reasonable-gain` - Gain under 1.0 to prevent clipping
+- `param-q-value-range` - Filter Q: 2-5 for focused but natural
+
+### 7. Morphing Icons (LOW)
+
+- `morphing-three-lines` - Every icon uses exactly 3 SVG lines
+- `morphing-use-collapsed` - Unused lines use collapsed constant
+- `morphing-consistent-viewbox` - All icons share same viewBox (14x14)
+- `morphing-group-variants` - Rotational variants share group and base lines
+- `morphing-spring-rotation` - Spring physics for grouped icon rotation
+- `morphing-reduced-motion` - Respect prefers-reduced-motion
+- `morphing-jump-non-grouped` - Instant rotation jump between non-grouped icons
+- `morphing-strokelinecap-round` - Round stroke line caps
+- `morphing-aria-hidden` - Icon SVGs are aria-hidden
+
+### 8. Container Animation (MEDIUM)
+
+- `container-two-div-pattern` - Outer animated div, inner measured div; never same element
+- `container-guard-initial-zero` - Guard bounds === 0 on initial render, fall back to "auto"
+- `container-use-resize-observer` - Use ResizeObserver for measurement, not getBoundingClientRect
+- `container-overflow-hidden` - Set overflow: hidden on animated container during transitions
+- `container-no-excessive-use` - Use sparingly: buttons, accordions, interactive elements
+- `container-callback-ref` - Use callback ref (not useRef) for measurement hooks
+- `container-transition-delay` - Add small delay for natural catching-up feel
+
+### 9. Laws of UX (HIGH)
+
+- `ux-fitts-target-size` - Size interactive targets for easy clicking (min 32px)
+- `ux-fitts-hit-area` - Expand hit areas with invisible padding or pseudo-elements
+- `ux-hicks-minimize-choices` - Minimize choices to reduce decision time
+- `ux-millers-chunking` - Chunk data into groups of 5-9 for scannability
+- `ux-doherty-under-400ms` - Respond within 400ms to feel instant
+- `ux-doherty-perceived-speed` - Fake speed with skeletons, optimistic UI, progress indicators
+- `ux-postels-accept-messy-input` - Accept messy input, output clean data
+- `ux-progressive-disclosure` - Show what matters now, reveal complexity later
+- `ux-jakobs-familiar-patterns` - Use familiar UI patterns users know from other sites
+- `ux-aesthetic-usability` - Visual polish increases perceived usability
+- `ux-proximity-grouping` - Group related elements spatially with tighter spacing
+- `ux-similarity-consistency` - Similar elements should look alike
+- `ux-common-region-boundaries` - Use boundaries to group related content
+- `ux-von-restorff-emphasis` - Make important elements visually distinct
+- `ux-serial-position` - Place key items first or last in sequences
+- `ux-peak-end-finish-strong` - End experiences with clear success states
+- `ux-teslers-complexity` - Move complexity to the system, not the user
+- `ux-goal-gradient-progress` - Show progress toward completion
+- `ux-zeigarnik-show-incomplete` - Show incomplete state to drive completion
+- `ux-pragnanz-simplify` - Simplify complex visuals into clear forms
+- `ux-pareto-prioritize-features` - Prioritize the critical 20% of features
+- `ux-cognitive-load-reduce` - Minimize extraneous cognitive load
+- `ux-uniform-connectedness` - Visually connect related elements with lines or frames
+
+### 10. Predictive Prefetching (MEDIUM)
+
+- `prefetch-trajectory-over-hover` - Trajectory prediction over hover; reclaims 100-200ms
+- `prefetch-not-everything` - Prefetch by intent, not viewport; avoid wasted bandwidth
+- `prefetch-hit-slop` - Use hitSlop to trigger predictions earlier
+- `prefetch-touch-fallback` - Fall back gracefully on touch devices (no cursor)
+- `prefetch-keyboard-tab` - Prefetch on keyboard navigation when focus approaches
+- `prefetch-use-selectively` - Use predictive prefetching where latency is noticeable
+
+### 11. Typography (MEDIUM)
+
+- `type-tabular-nums-for-data` - Tabular numbers for columns, dashboards, pricing
+- `type-oldstyle-nums-for-prose` - Oldstyle numbers blend into body text
+- `type-slashed-zero` - Slashed zero in code-adjacent UIs
+- `type-opentype-contextual-alternates` - Keep calt enabled for contextual glyph adjustment
+- `type-disambiguation-stylistic-set` - Enable ss02 to distinguish I/l/1 and 0/O
+- `type-optical-sizing-auto` - Leave font-optical-sizing auto for size-adaptive glyphs
+- `type-antialiased-on-retina` - Antialiased font smoothing on retina displays
+- `type-text-wrap-balance-headings` - text-wrap: balance on headings for even lines
+- `type-underline-offset` - Offset underlines below descenders
+- `type-no-font-synthesis` - Disable font-synthesis to prevent faux bold/italic
+- `type-font-display-swap` - Use font-display: swap to avoid invisible text during load
+- `type-variable-weight-continuous` - Use continuous weight values (100-900) with variable fonts
+- `type-text-wrap-pretty` - text-wrap: pretty for body text to reduce orphans
+- `type-justify-with-hyphens` - Pair text-align: justify with hyphens: auto
+- `type-letter-spacing-uppercase` - Add letter-spacing to uppercase and small-caps text
+- `type-proper-fractions` - Use diagonal-fractions for proper typographic fractions
+
+### 12. Visual Design (HIGH)
+
+- `visual-concentric-radius` - Inner radius = outer radius minus padding for nested elements
+- `visual-layered-shadows` - Layer multiple shadows for realistic depth
+- `visual-shadow-direction` - All shadows share same offset direction (single light source)
+- `visual-no-pure-black-shadow` - Use neutral colors, not pure black, for shadows
+- `visual-shadow-matches-elevation` - Shadow size indicates elevation in consistent scale
+- `visual-animate-shadow-pseudo` - Animate shadow via pseudo-element opacity for performance
+- `visual-consistent-spacing-scale` - Use a consistent spacing scale, not arbitrary values
+- `visual-border-alpha-colors` - Semi-transparent borders adapt to any background
+- `visual-button-shadow-anatomy` - Six-layer shadow anatomy for polished buttons
+
+## How to Use
+
+Read individual rule files for detailed explanations and code examples:
+
+```
+rules/timing-under-300ms.md
+rules/spring-for-gestures.md
+rules/ux-doherty-under-400ms.md
+rules/type-tabular-nums-for-data.md
+```
+
+Each rule file contains:
+- Brief explanation of why it matters
+- Incorrect code example with explanation
+- Correct code example with explanation
+
+## Full Compiled Document
+
+For the complete guide with all rules expanded: `AGENTS.md`
+
+
+ARGUMENTS: Apply UI/UX best practices for loading states / progressive disclosure / perceived performance to a problem: "playlist switcher takes a long time before showing fetched playlist status indicator for Xtream playlists." Provide guidance on skeletons, optimistic UI, async indicators, scroll-based loading, and avoiding render-blocking work in list rows.
+
+---
+
+Base directory for this skill: /Users/4gray/.claude/skills/angular-developer
+
+# Angular Developer Guidelines
+
+1. Always analyze the project's Angular version before providing guidance, as best practices and available features can vary significantly between versions. If creating a new project with Angular CLI, do not specify a version unless prompted by the user.
+
+2. When generating code, follow Angular's style guide and best practices for maintainability and performance. Use the Angular CLI for scaffolding components, services, directives, pipes, and routes to ensure consistency.
+
+3. Once you finish generating code, run `ng build` to ensure there are no build errors. If there are errors, analyze the error messages and fix them before proceeding. Do not skip this step, as it is critical for ensuring the generated code is correct and functional.
+
+## Creating New Projects
+
+If no guidelines are provided by the user, here are same default rules to follow when creating a new Angular project:
+
+1. Use the latest stable version of Angular unless the user specifies otherwise.
+2. Use Signals Forms for form management in new projects (available in Angular v21 and newer) [Find out more](references/signal-forms.md).
+
+**Execution Rules for `ng new`:**
+When asked to create a new Angular project, you must determine the correct execution command by following these strict steps:
+
+**Step 1: Check for an explicit user version.**
+
+- **IF** the user requests a specific version (e.g., Angular 15), bypass local installations and strictly use `npx`.
+- **Command:** `npx @angular/cli@<requested_version> new <project-name>`
+
+**Step 2: Check for an existing Angular installation.**
+
+- **IF** no specific version is requested, run `ng version` in the terminal to check if the Angular CLI is already installed on the system.
+- **IF** the command succeeds and returns an installed version, use the local/global installation directly.
+- **Command:** `ng new <project-name>`
+
+**Step 3: Fallback to Latest.**
+
+- **IF** no specific version is requested AND the `ng version` command fails (indicating no Angular installation exists), you must use `npx` to fetch the latest version.
+- **Command:** `npx @angular/cli@latest new <project-name>`
+
+## Components
+
+When working with Angular components, consult the following references based on the task:
+
+- **Fundamentals**: Anatomy, metadata, core concepts, and template control flow (@if, @for, @switch). Read [components.md](references/components.md)
+- **Inputs**: Signal-based inputs, transforms, and model inputs. Read [inputs.md](references/inputs.md)
+- **Outputs**: Signal-based outputs and custom event best practices. Read [outputs.md](references/outputs.md)
+- **Host Elements**: Host bindings and attribute injection. Read [host-elements.md](references/host-elements.md)
+
+If you require deeper documentation not found in the references above, read the documentation at `https://angular.dev/guide/components`.
+
+## Reactivity and Data Management
+
+When managing state and data reactivity, use Angular Signals and consult the following references:
+
+- **Signals Overview**: Core signal concepts (`signal`, `computed`), reactive contexts, and `untracked`. Read [signals-overview.md](references/signals-overview.md)
+- **Dependent State (`linkedSignal`)**: Creating writable state linked to source signals. Read [linked-signal.md](references/linked-signal.md)
+- **Async Reactivity (`resource`)**: Fetching asynchronous data directly into signal state. Read [resource.md](references/resource.md)
+- **Side Effects (`effect`)**: Logging, third-party DOM manipulation (`afterRenderEffect`), and when NOT to use effects. Read [effects.md](references/effects.md)
+
+## Forms
+
+In most cases for new apps, **prefer signal forms**. When making a forms decision, analyze the project and consider the following guidelines:
+
+- if the application is using v21 or newer and this is a new form, **prefer signal forms**.
+  -For older applications or when working with existing forms, use the appropriate form type that matches the applications current form strategy.
+
+- **Signal Forms**: Use signals for form state management. Read [signal-forms.md](references/signal-forms.md)
+- **Template-driven forms**: Use for simple forms. Read [template-driven-forms.md](references/template-driven-forms.md)
+- **Reactive forms**: Use for complex forms. Read [reactive-forms.md](references/reactive-forms.md)
+
+## Dependency Injection
+
+When implementing dependency injection in Angular, follow these guidelines:
+
+- **Fundamentals**: Overview of Dependency Injection, services, and the `inject()` function. Read [di-fundamentals.md](references/di-fundamentals.md)
+- **Creating and Using Services**: Creating services, the `providedIn: 'root'` option, and injecting into components or other services. Read [creating-services.md](references/creating-services.md)
+- **Defining Dependency Providers**: Automatic vs manual provision, `InjectionToken`, `useClass`, `useValue`, `useFactory`, and scopes. Read [defining-providers.md](references/defining-providers.md)
+- **Injection Context**: Where `inject()` is allowed, `runInInjectionContext`, and `assertInInjectionContext`. Read [injection-context.md](references/injection-context.md)
+- **Hierarchical Injectors**: The `EnvironmentInjector` vs `ElementInjector`, resolution rules, modifiers (`optional`, `skipSelf`), and `providers` vs `viewProviders`. Read [hierarchical-injectors.md](references/hierarchical-injectors.md)
+
+## Angular Aria
+
+When building accessible custom components for any of the following patterns: Accordion, Listbox, Combobox, Menu, Tabs, Toolbar, Tree, Grid, consult the following reference:
+
+- **Angular Aria Components**: Building headless, accessible components (Accordion, Listbox, Combobox, Menu, Tabs, Toolbar, Tree, Grid) and styling ARIA attributes. Read [angular-aria.md](references/angular-aria.md)
+
+## Routing
+
+When implementing navigation in Angular, consult the following references:
+
+- **Define Routes**: URL paths, static vs dynamic segments, wildcards, and redirects. Read [define-routes.md](references/define-routes.md)
+- **Route Loading Strategies**: Eager vs lazy loading, and context-aware loading. Read [loading-strategies.md](references/loading-strategies.md)
+- **Show Routes with Outlets**: Using `<router-outlet>`, nested outlets, and named outlets. Read [show-routes-with-outlets.md](references/show-routes-with-outlets.md)
+- **Navigate to Routes**: Declarative navigation with `RouterLink` and programmatic navigation with `Router`. Read [navigate-to-routes.md](references/navigate-to-routes.md)
+- **Control Route Access with Guards**: Implementing `CanActivate`, `CanMatch`, and other guards for security. Read [route-guards.md](references/route-guards.md)
+- **Data Resolvers**: Pre-fetching data before route activation with `ResolveFn`. Read [data-resolvers.md](references/data-resolvers.md)
+- **Router Lifecycle and Events**: Chronological order of navigation events and debugging. Read [router-lifecycle.md](references/router-lifecycle.md)
+- **Rendering Strategies**: CSR, SSG (Prerendering), and SSR with hydration. Read [rendering-strategies.md](references/rendering-strategies.md)
+- **Route Transition Animations**: Enabling and customizing the View Transitions API. Read [route-animations.md](references/route-animations.md)
+
+If you require deeper documentation or more context, visit the [official Angular Routing guide](https://angular.dev/guide/routing).
+
+## Styling and Animations
+
+When implementing styling and animations in Angular, consult the following references:
+
+- **Using Tailwind CSS with Angular**: Integrating Tailwind CSS into Angular projects. Read [tailwind-css.md](references/tailwind-css.md)
+- **Angular Animations**: Using native CSS (recommended) or the legacy DSL for dynamic effects. Read [angular-animations.md](references/angular-animations.md)
+- **Styling components**: Best practices for component styles and encapsulation. Read [component-styling.md](references/component-styling.md)
+
+## Testing
+
+When writing or updating tests, consult the following references based on the task:
+
+- **Fundamentals**: Best practices for unit testing (Vitest), async patterns, and `TestBed`. Read [testing-fundamentals.md](references/testing-fundamentals.md)
+- **Component Harnesses**: Standard patterns for robust component interaction. Read [component-harnesses.md](references/component-harnesses.md)
+- **Router Testing**: Using `RouterTestingHarness` for reliable navigation tests. Read [router-testing.md](references/router-testing.md)
+- **End-to-End (E2E) Testing**: Best practices for E2E tests with Cypress. Read [e2e-testing.md](references/e2e-testing.md)
+
+## Tooling
+
+When working with Angular tooling, consult the following references:
+
+- **Angular CLI**: Creating applications, generating code (components, routes, services), serving, and building. Read [cli.md](references/cli.md)
+- **Angular MCP Server**: Available tools, configuration, and experimental features. Read [mcp.md](references/mcp.md)
+
+
+ARGUMENTS: Apply Angular v20+ best practices for the following problem: Optimize a playlist switcher (Angular standalone component, signal-based) where opening it triggers slow data fetching for Xtream playlists. Need patterns for: (a) lazy/deferred status indicators, (b) parallel resource fetching with resource()/httpResource, (c) avoiding render-blocking effects, (d) showing skeletons while signals resolve. Output guidance only — I'll write the code afterwards.
+
+---
+
+yes, do it
+
+---
+
+do it
+
+---
+
+oh, i see that when i start the app, there is this error, probably we introduced it before in this session: ERROR in ./apps/electron-backend/src/app/database/operations/favorites.operations.ts:173:16
+
+TS2322: Type 'Placeholder<"position", any>' is not assignable to type 'number | SQL<unknown> | SQLiteColumn<ColumnBaseConfig<ColumnDataType, string>, {}, {}>'.
+
+  Type 'Placeholder<"position", any>' is missing the following properties from type 'SQLiteColumn<ColumnBaseConfig<ColumnDataType, string>, {}, {}>': table, _, keyAsName, primary, and 17 more.
+
+    171 |     const updateFavoritePosition = db
+
+    172 |         .update(schema.favorites)
+
+  > 173 |         .set({ position: sql.placeholder('position') })
+
+        |                ^^^^^^^^
+
+    174 |         .where(eq(schema.favorites.contentId, sql.placeholder('contentId')))
+
+    175 |         .prepare();
+
+    176 |
+
+
+
+Found 1 error in 2875 ms.

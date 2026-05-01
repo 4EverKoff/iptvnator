@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "746d41da84ff",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "apps/electron-backend/src/app/database/operations/favorites.operations.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/74/6d41da84ff/0/metadata.json",
+      "transcript": "/74/6d41da84ff/0/full.jsonl",
+      "context": "/74/6d41da84ff/0/context.md",
+      "content_hash": "/74/6d41da84ff/0/content_hash.txt",
+      "prompt": "/74/6d41da84ff/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 11,
+    "cache_creation_tokens": 4414,
+    "cache_read_tokens": 2706499,
+    "output_tokens": 2934,
+    "api_call_count": 6
+  }
+}

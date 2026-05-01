@@ -1,0 +1,32 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "746d41da84ff",
+  "session_id": "0c589c1b-56d3-41b1-9467-9cfc3983e8a7",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-01T23:01:09.7389Z",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "apps/electron-backend/src/app/database/operations/favorites.operations.ts"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "c8ba9147-417e-4a7a-8df2-858ffa8088c8",
+  "checkpoint_transcript_start": 1338,
+  "transcript_lines_at_start": 1338,
+  "token_usage": {
+    "input_tokens": 11,
+    "cache_creation_tokens": 4414,
+    "cache_read_tokens": 2706499,
+    "output_tokens": 2934,
+    "api_call_count": 6
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-01T23:01:09.538532Z",
+    "agent_lines": 0,
+    "human_added": 1081,
+    "human_modified": 1,
+    "human_removed": 0,
+    "total_committed": 1081,
+    "agent_percentage": 0
+  }
+}
