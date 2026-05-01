@@ -1,0 +1,35 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "e3e3d80db476",
+  "session_id": "f767df3f-8e2e-4234-ae75-cd201585d783",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-01T21:26:43.223846Z",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "libs/portal/stalker/feature/src/lib/stalker-collection-channels-list/stalker-collection-channels-list.component.html",
+    "libs/portal/stalker/feature/src/lib/stalker-collection-channels-list/stalker-collection-channels-list.component.scss",
+    "libs/portal/xtream/feature/src/lib/portal-channels-list/portal-channels-list.component.html",
+    "libs/portal/xtream/feature/src/lib/portal-channels-list/portal-channels-list.component.scss"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "3b556990-987d-4460-8037-8283c81005a1",
+  "checkpoint_transcript_start": 477,
+  "transcript_lines_at_start": 477,
+  "token_usage": {
+    "input_tokens": 19,
+    "cache_creation_tokens": 15619,
+    "cache_read_tokens": 2212512,
+    "output_tokens": 6359,
+    "api_call_count": 9
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-01T21:26:43.060794Z",
+    "agent_lines": 0,
+    "human_added": 0,
+    "human_modified": 45,
+    "human_removed": 20,
+    "total_committed": 1,
+    "agent_percentage": 0
+  }
+}
