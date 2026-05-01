@@ -1,0 +1,36 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "a635db375527",
+  "session_id": "0c589c1b-56d3-41b1-9467-9cfc3983e8a7",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-01T22:58:09.973036Z",
+  "branch": "master",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "libs/playlist/import/feature/src/lib/xtream-code-import/xtream-code-import.component.ts",
+    "libs/playlist/shared/ui/src/lib/playlist-switcher/playlist-switcher.component.scss",
+    "libs/playlist/shared/ui/src/lib/playlist-switcher/playlist-switcher.component.spec.ts",
+    "libs/playlist/shared/ui/src/lib/playlist-switcher/playlist-switcher.component.ts",
+    "libs/services/src/lib/portal-status.service.ts"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "8f92d343-c2da-47ae-adca-ab86b90cb85a",
+  "checkpoint_transcript_start": 1183,
+  "transcript_lines_at_start": 1183,
+  "token_usage": {
+    "input_tokens": 80,
+    "cache_creation_tokens": 57998,
+    "cache_read_tokens": 21382154,
+    "output_tokens": 27354,
+    "api_call_count": 50
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-01T22:58:09.777564Z",
+    "agent_lines": 234,
+    "human_added": 1079,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 1313,
+    "agent_percentage": 17.82178217821782
+  }
+}

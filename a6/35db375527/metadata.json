@@ -1,0 +1,30 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "a635db375527",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "libs/playlist/import/feature/src/lib/xtream-code-import/xtream-code-import.component.ts",
+    "libs/playlist/shared/ui/src/lib/playlist-switcher/playlist-switcher.component.scss",
+    "libs/playlist/shared/ui/src/lib/playlist-switcher/playlist-switcher.component.spec.ts",
+    "libs/playlist/shared/ui/src/lib/playlist-switcher/playlist-switcher.component.ts",
+    "libs/services/src/lib/portal-status.service.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/a6/35db375527/0/metadata.json",
+      "transcript": "/a6/35db375527/0/full.jsonl",
+      "context": "/a6/35db375527/0/context.md",
+      "content_hash": "/a6/35db375527/0/content_hash.txt",
+      "prompt": "/a6/35db375527/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 80,
+    "cache_creation_tokens": 57998,
+    "cache_read_tokens": 21382154,
+    "output_tokens": 27354,
+    "api_call_count": 50
+  }
+}
