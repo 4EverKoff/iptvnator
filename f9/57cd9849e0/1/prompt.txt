@@ -1,0 +1,336 @@
+i have my app available in different languages that are stored in json files, unfortunately many languages missing many translations that are available in en.json. you task is to find all the missing strings in different languages and  add proper translations for all languages.
+
+---
+
+<task-notification>
+<task-id>aca55fa59127c3176</task-id>
+<tool-use-id>REDACTED</tool-use-id>
+<output-file>REDACTED.output</output-file>
+<status>completed</status>
+<summary>Agent "Translate tr.json patch" completed</summary>
+<result>All 338 placeholders preserved. The patch file is complete.
+
+## Summary
+
+- **Total keys translated**: 338 (all entries from `tools/i18n/missing/tr.json`)
+- **Output file**: `/Users/4gray/Code/iptvnator/tools/i18n/patches/tr.json` (4-space indent, trailing newline, pure JSON)
+- **Validation script**: passed — `missing 0 extra 0`
+- **Placeholder integrity**: all `{{count}}`, `{{type}}`, `{{name}}`, `{{view}}`, `{{current}}`, `{{total}}` placeholders preserved exactly as in the English source.
+- **Brand/technical names** kept untranslated as instructed: IPTVnator, Xtream, Stalker, M3U, EPG, MPV, VLC, libmpv, FFmpeg, HTTP, ID, URL, TVG, Catchup, Timeshift, Origin, Referrer, User-Agent, macOS, ArtPlayer, Video.js, HTML5, Ko-fi, Telegram, Ctrl/Cmd+K.
+
+**Terminology aligned with existing `apps/web/src/assets/i18n/tr.json`:**
+- "kanal" (channel), "Oynatma listesi/listeleri" (playlist/s), "Favoriler" (favorites), "Ayarlar" (settings), "Ara/Arama" (search), "Kaydet" (save), "İptal" (cancel), "Yenile" (refresh), "Kaldır" (remove), "Filmler/Diziler/Canlı TV" (movies/series/live TV), "Sırala" (sort), "Kategoriler" (categories), "Bölüm" (section/episode), "İndirilenler" (downloads), "Son izlenenler" (recently viewed), "Sağlayıcı" (provider), "Sürükle ve Bırak" not needed in this batch.
+
+**Notes on a few choices that may benefit from review:**
+- `WORKSPACE.SHELL.RAIL_DASHBOARD` / `WORKSPACE.DASHBOARD.*` → "Pano" (Turkish for "dashboard"). The existing `tr.json` had no prior translation; "Pano" is the standard idiomatic choice for a UI dashboard.
+- `SETTINGS.COVER_SIZE` rendered as "Kapak boyutu" (cover/poster art). If the team prefers "Poster boyutu" it can be swapped.
+- `SETTINGS.STARTUP_BEHAVIOR` → "Başlangıç görünümü" (Startup view) — matches the English label rather than the literal "Startup behavior" key, as recommended by the rule to preserve UI brevity and meaning.
+- `SETTINGS.SOURCE_SINGULAR`/`SETTINGS.SOURCE_PLURAL` both rendered "kaynak" — Turkish does not pluralise after a number, so the singular form is correct in both slots; if the runtime concatenates them with "1 ..." vs "{{n}} ..." patterns it will still read naturally.
+- `XTREAM.DETAIL_FALLBACK.STATUS` is a section heading in English ("Portal metadata unavailable") — translated as a heading-style noun phrase: "Portal üst verisi mevcut değil".
+- `Catchup`, `Timeshift`, `TVG rec`, `Origin`, `Referrer`, `User-Agent` are kept as English technical terms per the instructions.
+
+No documentation, code, or other repo files were modified; this was a translation-data-only task, so no doc/wiki sync or test runs were required.</result>
+<usage><total_tokens>100397</total_tokens><tool_uses>8</tool_uses><duration_ms>218574</duration_ms></usage>
+</task-notification>
+
+---
+
+<task-notification>
+<task-id>af6b1dd6d1de8a217</task-id>
+<tool-use-id>toolu_01SS9gmQ29Yuxcixru3uGBLx</tool-use-id>
+<output-file>REDACTED.output</output-file>
+<status>completed</status>
+<summary>Agent "Translate es.json patch" completed</summary>
+<result>Validation passed.
+
+## Summary
+
+Translated all ~450 missing English UI strings in `/Users/4gray/Code/iptvnator/tools/i18n/missing/es.json` into neutral Latin American/European Spanish and wrote the patch to `/Users/4gray/Code/iptvnator/tools/i18n/patches/es.json`.
+
+**Validation**: `missing 0 extra 0` — every source key has a matching translation, no extras.
+
+**Translation choices**:
+- Matched the existing `es.json` glossary: "Ajustes" (Settings), "Buscar" (Search), "Guardar" (Save), "Cancelar" (Cancel), "lista de reproducción", "favoritos", "canales", "vistos recientemente", "actualizar".
+- Used impersonal/imperative-`tú` form ("Selecciona", "Verifica", "Prueba", "Cargar más") consistent with the existing file's tone.
+- Sentence case for UI labels ("Vistos recientemente", "Información de la cuenta", "Búsqueda avanzada").
+- Spanish inverted punctuation (`¿`, `¡`) added where applicable, e.g. confirm dialogs ("¿Eliminar todos los favoritos {{type}}?", "¿Continuar?").
+- Preserved `{{count}}`, `{{total}}`, `{{type}}`, `{{name}}`, `{{view}}`, `{{current}}` interpolations verbatim.
+- Kept brand/technical terms untranslated as required: IPTVnator, Xtream, Stalker, M3U, M3U8, EPG, MPV, VLC, HLS, URL, ID, HTTP, TVG, Catchup, Timeshift, Drag &amp; Drop, libmpv, FFmpeg, Origin, Referrer, User-Agent, macOS.
+- Plural keys (`DAYS_ONE`/`DAYS_OTHER`, `PLAYLIST_COUNT_ONE`/`PLAYLIST_COUNT_OTHER`, `ITEM_COUNT_ONE`/`ITEM_COUNT_OTHER`) handled with proper Spanish singular/plural agreement.
+- `Dashboard` rendered as "Panel" (consistent with Spanish UI conventions for sidebar nav).
+- `Sources` as "Fuentes", `Library` as "Biblioteca", `Cover size` as "Tamaño de portada".
+- Ellipsis normalized to `…` to match existing file style.
+
+No code, tests, or docs were changed — task scope was i18n content only.</result>
+<usage><total_tokens>101936</total_tokens><tool_uses>5</tool_uses><duration_ms>229190</duration_ms></usage>
+</task-notification>
+
+---
+
+<task-notification>
+<task-id>a531b5e35536f598d</task-id>
+<tool-use-id>REDACTED</tool-use-id>
+<output-file>REDACTED.output</output-file>
+<status>completed</status>
+<summary>Agent "Translate el.json patch" completed</summary>
+<result>Validation passes: `missing 0 extra 0`.
+
+Summary:
+- Wrote `/Users/4gray/Code/iptvnator/tools/i18n/patches/el.json` with all 377 missing English UI strings translated into modern (monotonic) Greek.
+- Matched terminology with the existing `apps/web/src/assets/i18n/el.json`: "λίστα αναπαραγωγής" (playlist), "κανάλι" (channel), "αγαπημένα" (favorites), "αναζήτηση" (search), "ρυθμίσεις" (settings), "Ζωντανή TV" (Live TV), "Πληροφορίες λογαριασμού" (Account info), "Πρόσφατα προβληθέντα" (Recently viewed), "Βασικά Αγαπημένα" (Global Favorites), "Πίνακας ελέγχου" (Dashboard), "Πύλη" (Portal), "Πάροχος" (Provider), "Σύνθετη αναζήτηση" (Advanced search), etc.
+- Brand/technical names left untranslated: IPTVnator, Xtream, Stalker, M3U, M3U8, EPG, MPV, VLC, libmpv, FFmpeg, HTTP, HTML5, ArtPlayer, Video.js, Drag &amp; Drop, Catchup, Timeshift, TVG, User-Agent, Origin, Referrer, macOS, Telegram, GitHub, Ko-fi, blog, Stalker Portal.
+- Greek question mark (`;`) used for interrogative dialog titles (e.g. `CLEAR_RECENTLY_VIEWED_DIALOG_TITLE`, `CLEAR_FAVORITES_DIALOG_TITLE`).
+- All `{{count}}`, `{{total}}`, `{{type}}`, `{{name}}`, `{{view}}`, `{{current}}` placeholders preserved verbatim.
+- Singular/plural pairs (`DAYS_ONE`/`DAYS_OTHER`, `PLAYLIST_COUNT_ONE`/`PLAYLIST_COUNT_OTHER`, `ITEM_COUNT_ONE`/`ITEM_COUNT_OTHER`) translated as singular vs plural Greek forms.
+- 4-space indentation, trailing newline, pure JSON.
+- Validation command: `missing 0 extra 0`.</result>
+<usage><total_tokens>106945</total_tokens><tool_uses>7</tool_uses><duration_ms>242690</duration_ms></usage>
+</task-notification>
+
+---
+
+<task-notification>
+<task-id>a30f6846f0b534a28</task-id>
+<tool-use-id>REDACTED</tool-use-id>
+<output-file>REDACTED.output</output-file>
+<status>completed</status>
+<summary>Agent "Translate it.json patch" completed</summary>
+<result>All 454 entries translated; all `{{...}}` placeholders preserved verbatim.
+
+## Summary
+
+Wrote `/Users/4gray/Code/iptvnator/tools/i18n/patches/it.json` with **454 Italian translations**, flat shape, 4-space indent, trailing newline.
+
+**Validation**: `missing 0 extra 0` — all keys from `tools/i18n/missing/it.json` match exactly. All `{{count}}`, `{{total}}`, `{{type}}`, `{{view}}`, `{{name}}`, `{{current}}` interpolation placeholders preserved verbatim across the 454 entries.
+
+**Glossary applied** (matched against existing `apps/web/src/assets/i18n/it.json`):
+- canale / canali, playlist, preferiti, cerca / ricerca, impostazioni, salva, annulla, riprova, aggiorna, rimuovi, sorgente / sorgenti, libreria, dashboard, gruppi, categorie
+- "TV in diretta" for Live TV, "Film" for Movies, "Serie" for Series, "Visti di recente" for Recently viewed, "Aggiunti di recente" for Recently added, "Continua a guardare" for Continue Watching
+- Impersonal/infinitive register for buttons and short labels ("Carica altri", "Cerca canali", "Sfoglia file")
+- Plurals: `_ONE` singular, `_OTHER` plural ("1 giorno" / "{{count}} giorni"; "1 elemento" / "{{count}} elementi"; "1 playlist" / "{{count}} playlist")
+
+**Brand/technical names left untranslated** as required: IPTVnator, Xtream, Stalker, M3U/M3U8, EPG, MPV, VLC, HLS, IPTV, URL, ID, HTTP/HTTPS, RTMP, TVG, Catchup, Timeshift, Drag &amp; Drop, libmpv, FFmpeg, Origin, Referrer, User-Agent, macOS, Telegram, Ko-fi.</result>
+<usage><total_tokens>103687</total_tokens><tool_uses>8</tool_uses><duration_ms>235253</duration_ms></usage>
+</task-notification>
+
+---
+
+<task-notification>
+<task-id>abb51d6a6b9c4bb76</task-id>
+<tool-use-id>REDACTED</tool-use-id>
+<output-file>REDACTED.output</output-file>
+<status>completed</status>
+<summary>Agent "Translate fr.json patch" completed</summary>
+<result>Everything checks out:
+
+**Summary**
+
+- Wrote `/Users/4gray/Code/iptvnator/tools/i18n/patches/fr.json` with all 439 keys from `tools/i18n/missing/fr.json` translated to French.
+- Validation `python3 -c "..."` printed `missing 0 extra 0`.
+- All `{{interpolation}}` placeholders preserved verbatim across every entry (0 mismatches).
+- French punctuation: NBSP (U+00A0) inserted before `:` `;` `?` `!` `»` and after `«` (no remaining regular spaces before those punctuation marks).
+- Brand/technical names kept untranslated: IPTVnator, Xtream, Stalker, M3U/M3U8, EPG, MPV, VLC, libmpv, FFmpeg, HLS, IPTV, URL, ID, HTTP/HTTPS, RTMP, TVG, Catchup, Timeshift, Drag &amp; Drop, Origin, Referrer, User-Agent, macOS, Telegram, GitHub.
+- Terminology aligned with existing `apps/web/src/assets/i18n/fr.json`: "liste de lecture", "chaîne", "favoris", "rechercher", "paramètres", "enregistrer", "annuler", "récemment consultés", formal "vous", "tableau de bord", "télécommande".
+- Format: 4-space indent, trailing newline, flat JSON, plurals translated for `_ONE`/`_OTHER` and `_ITEM_COUNT_ONE`/`_OTHER` and `_DAYS_ONE`/`_DAYS_OTHER`.
+
+Note: existing `fr.json` uses regular spaces before `:` and `?`, while this patch follows the explicit task rule of using NBSP. If consistency with the existing file is preferred over the rule, the punctuation can be normalized either way later.</result>
+<usage><total_tokens>112800</total_tokens><tool_uses>12</tool_uses><duration_ms>264302</duration_ms></usage>
+</task-notification>
+
+---
+
+<task-notification>
+<task-id>ab3fcb7c81e4aa037</task-id>
+<tool-use-id>REDACTED</tool-use-id>
+<output-file>REDACTED.output</output-file>
+<status>completed</status>
+<summary>Agent "Translate pt.json patch" completed</summary>
+<result>All 462 keys translated and validated. Summary:
+
+**Variant used:** Brazilian Portuguese (PT-BR), matching the existing `apps/web/src/assets/i18n/pt.json` which uses "arquivo" (not "ficheiro"), "Configurações" (not "Definições"), "Salvar" (not "Guardar"), "usuário", "tela", and "aplicativo".
+
+**Output:** `/Users/4gray/Code/iptvnator/tools/i18n/patches/pt.json` — 462 entries, flat shape, 4-space indent, trailing newline.
+
+**Glossary alignment with existing file:**
+- "playlist" (kept untranslated, matches existing usage)
+- "canal/canais", "favoritos", "pesquisar"
+- "Configurações", "Salvar", "arquivo", "aplicativo", "usuário"
+- "área de transferência" for clipboard
+- "Atualizar" for refresh, "Carregar" for load
+- "visualizados recentemente" matches the `recently viewed` term style used in existing translations
+
+**Validation:**
+- `missing 0 extra 0` — all keys present, no extras
+- All `{{interpolation}}` placeholders preserved verbatim across all 462 entries
+- Brand/technical names kept untranslated: IPTVnator, Xtream, Stalker, M3U, EPG, MPV, VLC, HTTP, TVG, Catchup, Timeshift, libmpv, FFmpeg, Origin, Referrer, User-Agent, macOS, Drag &amp; Drop, etc.
+- Plurals used `_ONE`/`_OTHER` correctly (1 dia / {{count}} dias; 1 item / {{count}} itens; 1 playlist / {{count}} playlists)
+- Sentence case applied throughout (e.g., "Limpar downloads concluídos" not "Limpar Downloads Concluídos")</result>
+<usage><total_tokens>102406</total_tokens><tool_uses>7</tool_uses><duration_ms>233424</duration_ms></usage>
+</task-notification>
+
+---
+
+<task-notification>
+<task-id>a77276d98d28d48a1</task-id>
+<tool-use-id>toolu_01HaQBRdFB4iGtST3hByVG4j</tool-use-id>
+<output-file>REDACTED.output</output-file>
+<status>completed</status>
+<summary>Agent "Translate nl.json patch" completed</summary>
+<result>Validation passed: `missing 0 extra 0`.
+
+## Summary
+
+Translated all 494 missing English UI strings into Dutch and wrote them to `/Users/4gray/Code/iptvnator/tools/i18n/patches/nl.json`.
+
+**Approach:**
+- Read the existing `apps/web/src/assets/i18n/nl.json` first to align with established Dutch terminology.
+- Glossary alignment: `afspeellijst` (playlist), `kanaal/kanalen` (channel/s), `favorieten` (favorites), `instellingen` (settings), `opslaan` (save), `annuleren` (cancel), `wissen` (clear), `bron(nen)` (source/s), `recent bekeken` (recently viewed), `categorieën`, `voltooid`, `mislukt`, `gewist`, `verloopt`, etc.
+- Sentence case used throughout (no English title case in mid-sentence labels). Existing nl.json was already inconsistent on this; I matched the sentence-case pattern visible in newer entries while keeping section headers/proper labels intact.
+- Brand and technical names left untranslated: IPTVnator, Xtream, Stalker, M3U/M3U8, EPG, MPV, VLC, HLS, IPTV, URL, ID, HTTP/HTTPS, RTMP, TVG, Catchup, Timeshift, Drag &amp; Drop, libmpv, FFmpeg, Origin, Referrer, User-Agent, macOS, Telegram, Ko-fi.
+- Preserved all `{{interpolation}}` placeholders (`{{count}}`, `{{total}}`, `{{type}}`, `{{view}}`, `{{name}}`, `{{current}}`) verbatim.
+- `_ONE` / `_OTHER` plurals handled as singular vs. plural Dutch forms.
+- Address form: impersonal/infinitive style consistent with the existing nl.json (mix of "je" and infinitive imperatives — the new file leans toward infinitive imperatives like "Wachten op...", "Selecteer een..." which matches Dutch UI conventions).
+
+**Output:** `/Users/4gray/Code/iptvnator/tools/i18n/patches/nl.json` — 494 entries, 4-space indent, trailing newline.
+
+**Validation result:** `missing 0 extra 0` (key sets match exactly).</result>
+<usage><total_tokens>105837</total_tokens><tool_uses>7</tool_uses><duration_ms>255893</duration_ms></usage>
+</task-notification>
+
+---
+
+<task-notification>
+<task-id>a060ba1ee93902da8</task-id>
+<tool-use-id>toolu_01Av7soiZ7RRRtBHyHgsuW8m</tool-use-id>
+<output-file>REDACTED.output</output-file>
+<status>completed</status>
+<summary>Agent "Translate pl.json patch" completed</summary>
+<result>Validation passed: `missing 0 extra 0`.
+
+## Summary
+
+Wrote `/Users/4gray/Code/iptvnator/tools/i18n/patches/pl.json` with Polish translations for all 494 missing UI strings.
+
+Key decisions:
+- **Glossary kept consistent with existing `pl.json`**: "lista odtwarzania" (playlist), "kanał" (channel), "ulubione" (favorites), "szukaj"/"wyszukaj" (search), "ustawienia" (settings), "zapisz" (save), "anuluj" (cancel).
+- **Brand/technical names untranslated**: IPTVnator, Xtream, Stalker, M3U, M3U8, EPG, MPV, VLC, libmpv, FFmpeg, Origin, Referrer, User-Agent, macOS, Drag &amp; Drop, HTTP/HTTPS/RTMP, Catchup, Timeshift, TVG, URL, ID, etc.
+- **Plurals** (Polish doesn't use "1 day" vs "{{count}} days" cleanly — the genitive plural "dni" is the catch-all `_OTHER` form): `DAYS_ONE` → "1 dzień", `DAYS_OTHER` → "{{count}} dni"; same pattern for `PLAYLIST_COUNT`, `ITEM_COUNT`, `SOURCES_AVAILABLE`.
+- **Address form**: impersonal/imperative for buttons matching existing file (e.g. "Dodaj listę odtwarzania", "Załaduj więcej", "Wyczyść ukończone").
+- **Sentence case** preserved across labels.
+- **All `{{interpolation}}` placeholders** preserved verbatim — none altered.
+
+Validation command output: `missing 0 extra 0` (all 494 keys present, no extras).</result>
+<usage><total_tokens>107455</total_tokens><tool_uses>7</tool_uses><duration_ms>260441</duration_ms></usage>
+</task-notification>
+
+---
+
+<task-notification>
+<task-id>a89ec6061e39fa9f5</task-id>
+<tool-use-id>REDACTED</tool-use-id>
+<output-file>REDACTED.output</output-file>
+<status>completed</status>
+<summary>Agent "Translate ar.json patch" completed</summary>
+<result>Validation passed: `missing 0 extra 0`.
+
+## Summary
+
+Wrote `/Users/4gray/Code/iptvnator/tools/i18n/patches/ar.json` containing all 486 Arabic translations as a flat JSON patch.
+
+Key decisions:
+- **Terminology aligned with existing `ar.json`**: قائمة تشغيل (playlist), قناة (channel), المفضلة (favorites), بحث (search), الإعدادات (settings), حفظ (save), إلغاء (cancel), تنزيلات (downloads), البث المباشر (Live TV), الأفلام (Movies), المسلسلات (Series), لوحة التحكم (dashboard), المصادر (sources).
+- **Brand/technical names kept in Latin**: IPTVnator, Xtream, Stalker, M3U, EPG, MPV, VLC, Catchup, Timeshift, libmpv, FFmpeg, Origin, Referrer, User-Agent, Drag &amp; Drop, macOS, HTTP, HTTPS, RTMP, URL, QR, Ctrl/Cmd+K.
+- **Placeholders preserved verbatim**: `{{count}}`, `{{total}}`, `{{type}}`, `{{name}}`, `{{view}}`, `{{current}}` left untouched as ASCII LTR.
+- **Plural pairs** (`DAYS_ONE`/`DAYS_OTHER`, `PLAYLIST_COUNT_ONE`/`_OTHER`, `ITEM_COUNT_ONE`/`_OTHER`, `ONE_SOURCE_AVAILABLE`/`SOURCES_AVAILABLE`): singular for `_ONE`, generic singular noun after `{{count}}` for `_OTHER` (natural in modern Arabic UI usage).
+- **Punctuation**: Arabic question mark `؟` used in user-facing prose (e.g. dialog confirmations), ASCII punctuation kept in technical strings (port ranges, hex character counts).
+- **4-space indent + trailing newline**, validation passes with 0 missing / 0 extra keys.</result>
+<usage><total_tokens>105523</total_tokens><tool_uses>5</tool_uses><duration_ms>263403</duration_ms></usage>
+</task-notification>
+
+---
+
+<task-notification>
+<task-id>a865ae66b547fa094</task-id>
+<tool-use-id>toolu_01Qrce8xC8cicLVL1Z5MCwzm</tool-use-id>
+<output-file>REDACTED.output</output-file>
+<status>completed</status>
+<summary>Agent "Translate ja.json patch" completed</summary>
+<result>These are the `_ONE` plural forms — in English the singular form hardcodes "1" (e.g. "1 day", "1 playlist", "1 item") with no placeholder, while Japanese uses `{{count}}` since both forms are identical. This is fine because i18next still passes `count` to the `_ONE` form, and it will substitute correctly. However, to be safe and match the `_OTHER` exactly, this is actually the recommended pattern for languages without plurals. The translations are correct.
+
+Validation passed: `missing 0 extra 0`.
+
+Summary:
+- Wrote `/Users/4gray/Code/iptvnator/tools/i18n/patches/ja.json` with all 504 entries translated to Japanese.
+- Followed existing `apps/web/src/assets/i18n/ja.json` terminology: プレイリスト, チャンネル, お気に入り, 設定, 保存, キャンセル, ライブTV, シリーズ, 映画, ダウンロード, EPG, etc.
+- Preserved all `{{interpolation}}` placeholders, brand/technical names (IPTVnator, Xtream, Stalker, M3U, MPV, VLC, EPG, libmpv, FFmpeg, Origin, Referrer, User-Agent, Catchup, Timeshift, TVG, HTTP, RTMP, HTTPS, macOS, Drag &amp; Drop) untranslated.
+- Used Japanese punctuation (`、`, `。`, `？`, full-width parentheses `（）` in some cases for hint text consistency with existing ja.json).
+- For `_ONE`/`_OTHER` plural pairs, both use the same `{{count}}`-based template since Japanese has no grammatical plural — this means `_ONE` now contains `{{count}}` where the English source had a hardcoded "1", which is the correct natural form for Japanese.
+- 4-space indent, trailing newline, pure JSON.
+- Validation `python3 -c ...`: prints `missing 0 extra 0` — no missing or extra keys.
+
+No tests or docs needed updating — this is a pure i18n data addition.</result>
+<usage><total_tokens>105616</total_tokens><tool_uses>8</tool_uses><duration_ms>251477</duration_ms></usage>
+</task-notification>
+
+---
+
+<task-notification>
+<task-id>a90a789b6e8060614</task-id>
+<tool-use-id>toolu_01YESYGvXWTZX2w98G1Z7hZV</tool-use-id>
+<output-file>REDACTED.output</output-file>
+<status>completed</status>
+<summary>Agent "Translate ko.json patch" completed</summary>
+<result>All 551 keys translated, JSON valid, 4-space indent, trailing newline present.
+
+## Summary
+
+Wrote `/Users/4gray/Code/iptvnator/tools/i18n/patches/ko.json` with all 551 Korean translations. Validation script printed `missing 0 extra 0`.
+
+Key decisions:
+- **Glossary** matched existing `apps/web/src/assets/i18n/ko.json` terminology: 채널, 재생목록, 즐겨찾기, 검색, 설정, 저장, 취소, 라이브 TV, 시리즈, 영화, 다운로드.
+- **Brand/technical names** kept verbatim: IPTVnator, Xtream, Stalker, M3U/M3U8, EPG, MPV, VLC, HLS, URL, ID, HTTP, HTTPS, RTMP, TVG, Catchup, Timeshift, Drag &amp; Drop, libmpv, FFmpeg, Origin, Referrer, User-Agent, macOS, Buy me a coffee.
+- **Register**: descriptions use polite `-합니다`/`-니다` style; buttons use noun stems ("저장", "취소", "더 보기"). Progress states use `-는 중...`.
+- **Interpolation**: every `{{count}}`, `{{type}}`, `{{view}}`, `{{name}}`, `{{current}}`, `{{total}}`, `{{filename}}`, `{{title}}`, `{{term}}` placeholder preserved verbatim. `XTREAM.EPISODES_WATCHED` reordered to natural Korean ("{{total}}개 중 {{count}}개").
+- **Plurals**: `_ONE` keys use the same `{{count}}`-based template as `_OTHER` per spec — Korean has no grammatical plural.
+- **Particles**: used `(으)로` / `을(를)` polymorphic forms for placeholders where the following particle depends on the trailing sound.</result>
+<usage><total_tokens>111188</total_tokens><tool_uses>10</tool_uses><duration_ms>292288</duration_ms></usage>
+</task-notification>
+
+---
+
+<task-notification>
+<task-id>a80796a37007e2a0c</task-id>
+<tool-use-id>toolu_01XwzVvuo8EVxaf2oA6XhRDZ</tool-use-id>
+<output-file>REDACTED.output</output-file>
+<status>completed</status>
+<summary>Agent "Translate ary.json patch" completed</summary>
+<result>Validation passed.
+
+## Summary
+
+Created `/Users/4gray/Code/iptvnator/tools/i18n/patches/ary.json` with all 494 entries translated into Moroccan Darija.
+
+**Script used: Arabic script** — matching the existing `apps/web/src/assets/i18n/ary.json` (e.g. `قائمة التشغيل`, `حل`, `قلب على`, `بزاف`, `بحال`).
+
+**Translation approach**:
+- Colloquial Darija for verbs and conversational text: `حل` (open), `قلب على` (search for), `حيد` (remove), `بدا` (start), `كمل` (continue), `جاري` + verbal noun for progress states, `حاول مرة أخرى` (retry), `وري` (show), `شارجي` / `تشريج` (load/loading), `جرب` (try), `بدل` (change), `هاد` (this), `ديال` (of), `اللي` (that/which).
+- MSA-style nominals where Darija and MSA align in the existing file: `قائمة التشغيل`, `الإعدادات`, `المفضلة`, `الفئة`, `الفئات`, `المنفذ`, `بيانات الاعتماد`, `البث المباشر`, `السلاسل`, `الأفلام`, `قاعدة البيانات`.
+- Brand/technical terms preserved verbatim: IPTVnator, Xtream, Xtream Codes, Stalker, Stalker Portal, M3U, M3U8, EPG, MPV, VLC, HTML5, Video.js, ArtPlayer, libmpv, FFmpeg, macOS, HTTP, HTTPS, RTMP, URL, hex, Catchup, Timeshift, Drag &amp; Drop, TVG (TVG ID/name/url/logo/rec kept Latin), Origin, Referrer, User-Agent, Stream ID, Ctrl/Cmd+K, Telegram, GitHub, QR.
+- All `{{interpolation}}` placeholders preserved verbatim, plurals handled (`_ONE` singular, `_OTHER` with `{{count}}`).
+- No HTML tags appeared in the source strings.
+
+Validation: `missing 0 extra 0` — all 494 keys present, none extra.</result>
+<usage><total_tokens>110791</total_tokens><tool_uses>7</tool_uses><duration_ms>309825</duration_ms></usage>
+</task-notification>
+
+---
+
+but the script is not translating the strings right? it just syncs the structure or?
+
+---
+
+but what would be the workflow to not only sync but also translate? maybe we can create /skill-creator  for that?
+
+---
+
+yes, make it project local
