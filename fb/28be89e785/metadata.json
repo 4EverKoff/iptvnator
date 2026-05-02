@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "fb28be89e785",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "libs/workspace/dashboard/data-access/src/lib/dashboard-data.service.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/fb/28be89e785/0/metadata.json",
+      "transcript": "/fb/28be89e785/0/full.jsonl",
+      "context": "/fb/28be89e785/0/context.md",
+      "content_hash": "/fb/28be89e785/0/content_hash.txt",
+      "prompt": "/fb/28be89e785/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 20,
+    "cache_creation_tokens": 23924,
+    "cache_read_tokens": 9260867,
+    "output_tokens": 18394,
+    "api_call_count": 15
+  }
+}

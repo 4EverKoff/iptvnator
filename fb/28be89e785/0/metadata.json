@@ -1,0 +1,32 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "fb28be89e785",
+  "session_id": "0c589c1b-56d3-41b1-9467-9cfc3983e8a7",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-02T07:19:09.998302Z",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "libs/workspace/dashboard/data-access/src/lib/dashboard-data.service.ts"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "f187ddeb-f820-41c8-837e-7d106c6033d8",
+  "checkpoint_transcript_start": 1483,
+  "transcript_lines_at_start": 1483,
+  "token_usage": {
+    "input_tokens": 20,
+    "cache_creation_tokens": 23924,
+    "cache_read_tokens": 9260867,
+    "output_tokens": 18394,
+    "api_call_count": 15
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-02T07:19:09.681809Z",
+    "agent_lines": 0,
+    "human_added": 102,
+    "human_modified": 45,
+    "human_removed": 0,
+    "total_committed": 102,
+    "agent_percentage": 0
+  }
+}
