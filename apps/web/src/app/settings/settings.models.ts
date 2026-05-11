@@ -1,5 +1,6 @@
 import {
     CoverSize,
+    IinaOpenMode,
     StartupBehavior,
     Theme,
     VideoPlayer,
@@ -36,6 +37,11 @@ export interface CoverSizeOption {
 
 export interface SettingsPlayerOption {
     id: VideoPlayer;
+    labelKey: string;
+}
+
+export interface IinaOpenModeOption {
+    value: IinaOpenMode;
     labelKey: string;
 }
 

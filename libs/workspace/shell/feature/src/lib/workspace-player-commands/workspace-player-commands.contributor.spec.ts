@@ -68,9 +68,7 @@ describe('WorkspacePlayerCommandsContributor', () => {
         translate = {
             instant: jest.fn(
                 (key: string, params?: Record<string, string | number>) =>
-                    params?.['name']
-                        ? `${key}:${params['name']}`
-                        : key
+                    params?.['name'] ? `${key}:${params['name']}` : key
             ),
             onLangChange: of(null),
         };
@@ -95,7 +93,7 @@ describe('WorkspacePlayerCommandsContributor', () => {
         TestBed.resetTestingModule();
     });
 
-    it('registers all five player commands when running in Electron', () => {
+    it('registers all six player commands when running in Electron on macOS', () => {
         bootstrap({ isDesktop: true });
 
         const ids = getRegistered(viewCommands).map((c) => c.id);
@@ -105,10 +103,11 @@ describe('WorkspacePlayerCommandsContributor', () => {
             'switch-player-artplayer',
             'switch-player-mpv',
             'switch-player-vlc',
+            'switch-player-iina',
         ]);
     });
 
-    it('hides MPV and VLC when window.electron is unavailable', () => {
+    it('hides desktop players when window.electron is unavailable', () => {
         bootstrap({ isDesktop: false });
 
         const registered = getRegistered(viewCommands);
@@ -121,6 +120,7 @@ describe('WorkspacePlayerCommandsContributor', () => {
         expect(visibilityById['switch-player-artplayer']).toBe(true);
         expect(visibilityById['switch-player-mpv']).toBe(false);
         expect(visibilityById['switch-player-vlc']).toBe(false);
+        expect(visibilityById['switch-player-iina']).toBe(false);
     });
 
     it('marks the active player command as disabled', () => {

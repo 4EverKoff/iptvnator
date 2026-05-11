@@ -239,6 +239,7 @@
         "PLAYER_EMBEDDED_MPV": "Embedded MPV (Experimental, macOS)",
         "PLAYER_MPV": "MPV player",
         "PLAYER_VLC": "VLC",
+        "PLAYER_IINA": "IINA",
         "VIDEO_PLAYER_PLACEHOLDER": "Select an option",
         "VERSION": "Version",
         "SAVE_CHANGES": "Save changes",
@@ -246,8 +247,8 @@
         "NEW_VERSION_AVAILABLE": "There is a new version available",
         "LATEST_VERSION": "You are using the latest version",
         "STREAM_FORMAT": "Stream Format",
-        "OPEN_EXTERNAL_PLAYER_ON_DOUBLE_CLICK": "Start MPV/VLC with double-click",
-        "OPEN_EXTERNAL_PLAYER_ON_DOUBLE_CLICK_DESCRIPTION": "Require a double-click on channel rows before MPV or VLC playback starts.",
+        "OPEN_EXTERNAL_PLAYER_ON_DOUBLE_CLICK": "Start external player with double-click",
+        "OPEN_EXTERNAL_PLAYER_ON_DOUBLE_CLICK_DESCRIPTION": "Require a double-click on channel rows before external playback starts.",
         "LANGUAGE": "Language",
         "SETTINGS_SAVED": "Success! Configuration was saved.",
         "THEME": "Visual theme",
@@ -333,6 +334,11 @@
         "VLC_PLAYER_PATH": "VLC player path",
         "VLC_REUSE_INSTANCE_LABEL": "Reuse VLC instance",
         "VLC_REUSE_INSTANCE_DESCRIPTION": "When enabled, the same VLC window will be reused for playing different streams. When disabled, each stream opens in a new VLC window.",
+        "IINA_OPEN_MODE_LABEL": "IINA open mode",
+        "IINA_OPEN_MODE_DESCRIPTION": "Choose whether IPTVnator opens the stream in IINA or adds it to the IINA playlist.",
+        "IINA_OPEN_MODE_PLACEHOLDER": "Select IINA mode",
+        "IINA_OPEN_MODE_OPEN": "Open in IINA",
+        "IINA_OPEN_MODE_ENQUEUE": "Add to IINA playlist",
         "REMOTE_CONTROL": "Remote control",
         "REMOTE_CONTROL_DESCRIPTION": "Enable remote control of the application.",
         "REMOTE_CONTROL_PORT": "Remote control port",
@@ -361,11 +367,11 @@
         "PLAYBACK_DIAGNOSTICS": {
             "UNSUPPORTED_CONTAINER": {
                 "TITLE": "This stream container is likely unsupported by the browser player",
-                "DESCRIPTION": "Chromium/Electron may not decode this container inline. Try MPV or VLC for broader codec support."
+                "DESCRIPTION": "Chromium/Electron may not decode this container inline. Try MPV, VLC, or IINA for broader codec support."
             },
             "UNSUPPORTED_CODEC": {
                 "TITLE": "This stream codec is likely unsupported by the browser player",
-                "DESCRIPTION": "The stream advertises codecs that the built-in Chromium player may not decode. MPV or VLC can often play it."
+                "DESCRIPTION": "The stream advertises codecs that the built-in Chromium player may not decode. MPV, VLC, or IINA can often play it."
             },
             "MEDIA_DECODE_ERROR": {
                 "TITLE": "The browser player could not decode this stream",
@@ -385,6 +391,7 @@
             },
             "ACTION_OPEN_MPV": "Open in MPV",
             "ACTION_OPEN_VLC": "Open in VLC",
+            "ACTION_OPEN_IINA": "Open in IINA",
             "ACTION_COPY_URL": "Copy URL"
         },
     "LAYOUT": {

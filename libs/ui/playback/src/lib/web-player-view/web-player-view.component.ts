@@ -77,6 +77,7 @@ export class WebPlayerViewComponent {
     player!: VideoPlayer;
     vjsOptions!: { sources: { src: string; type: string }[] };
     readonly isDesktop = signal(this.detectDesktop());
+    readonly isMacDesktop = signal(this.detectMacDesktop());
     readonly playbackDiagnostic = signal<PlaybackDiagnostic | null>(null);
     readonly canShowExternalFallbackActions = computed(
         () =>
@@ -188,5 +189,12 @@ export class WebPlayerViewComponent {
 
     private detectDesktop(): boolean {
         return typeof window !== 'undefined' && !!window.electron;
+    }
+
+    private detectMacDesktop(): boolean {
+        return (
+            typeof window !== 'undefined' &&
+            window.electron?.platform === 'darwin'
+        );
     }
 }

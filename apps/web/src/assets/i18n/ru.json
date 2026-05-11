@@ -239,6 +239,7 @@
         "PLAYER_EMBEDDED_MPV": "Встроенный MPV (экспериментальный, macOS)",
         "PLAYER_MPV": "MPV-плеер",
         "PLAYER_VLC": "VLC",
+        "PLAYER_IINA": "IINA",
         "VIDEO_PLAYER_PLACEHOLDER": "Выберите из списка",
         "VERSION": "Версия приложения",
         "SAVE_CHANGES": "Сохранить",
@@ -331,6 +332,11 @@
         "VLC_PLAYER_PATH": "Путь к VLC плееру",
         "VLC_REUSE_INSTANCE_LABEL": "Переиспользовать экземпляр VLC",
         "VLC_REUSE_INSTANCE_DESCRIPTION": "Когда включено, одно и то же окно VLC будет использоваться для воспроизведения разных потоков. Когда отключено, каждый поток открывается в новом окне VLC.",
+        "IINA_OPEN_MODE_LABEL": "IINA open mode",
+        "IINA_OPEN_MODE_DESCRIPTION": "Choose whether IPTVnator opens the stream in IINA or adds it to the IINA playlist.",
+        "IINA_OPEN_MODE_PLACEHOLDER": "Select IINA mode",
+        "IINA_OPEN_MODE_OPEN": "Open in IINA",
+        "IINA_OPEN_MODE_ENQUEUE": "Add to IINA playlist",
         "REMOTE_CONTROL": "Удалённое управление",
         "REMOTE_CONTROL_DESCRIPTION": "Включить удалённое управление приложением.",
         "REMOTE_CONTROL_PORT": "Порт удалённого управления",
@@ -383,6 +389,7 @@
             },
             "ACTION_OPEN_MPV": "Открыть в MPV",
             "ACTION_OPEN_VLC": "Открыть в VLC",
+            "ACTION_OPEN_IINA": "Open in IINA",
             "ACTION_COPY_URL": "Скопировать URL"
         },
     "LAYOUT": {

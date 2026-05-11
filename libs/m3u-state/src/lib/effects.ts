@@ -20,6 +20,7 @@ import {
 } from 'rxjs';
 import { DataService, PlaylistsService } from 'services';
 import {
+    OPEN_IINA_PLAYER,
     OPEN_MPV_PLAYER,
     OPEN_VLC_PLAYER,
     Channel,
@@ -194,7 +195,7 @@ export class PlaylistEffects {
                             shouldOpenExternalPlayer &&
                             settings.player === VideoPlayer.VLC &&
                             channel.radio !== 'true'
-                        )
+                        ) {
                             this.dataService.sendIpcEvent(OPEN_VLC_PLAYER, {
                                 url: channel.url,
                                 title: channel.name ?? '',
@@ -202,6 +203,19 @@ export class PlaylistEffects {
                                 referer: channel.http.referrer,
                                 origin: channel.http.origin,
                             });
+                        } else if (
+                            settings &&
+                            Object.keys(settings).length > 0 &&
+                            shouldOpenExternalPlayer &&
+                            settings.player === VideoPlayer.IINA &&
+                            channel.radio !== 'true'
+                        ) {
+                            this.dataService.sendIpcEvent(OPEN_IINA_PLAYER, {
+                                url: channel.url,
+                                title: channel.name ?? '',
+                                iinaOpenMode: settings.iinaOpenMode,
+                            });
+                        }
                     }
                 );
 
@@ -250,6 +264,14 @@ export class PlaylistEffects {
 
         if (settings.player === VideoPlayer.VLC) {
             this.dataService.sendIpcEvent(OPEN_VLC_PLAYER, payload);
+            return;
+        }
+
+        if (settings.player === VideoPlayer.IINA) {
+            this.dataService.sendIpcEvent(OPEN_IINA_PLAYER, {
+                ...payload,
+                iinaOpenMode: settings.iinaOpenMode,
+            });
         }
     }
 

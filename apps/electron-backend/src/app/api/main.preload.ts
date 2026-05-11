@@ -5,6 +5,7 @@ import type {
     EmbeddedMpvSession,
     EmbeddedMpvSupport,
     ExternalPlayerSession,
+    IinaOpenMode,
     PlaylistRefreshEvent,
     PlaylistRefreshPayload,
     ResolvedPortalPlayback,
@@ -305,7 +306,7 @@ const electronApi = {
         url: string,
         title: string,
         thumbnail: string,
-        userAgent: string,
+        userAgent?: string,
         referer?: string,
         origin?: string,
         contentInfo?: any,
@@ -346,6 +347,31 @@ const electronApi = {
             contentInfo,
             startTime,
             headers
+        ),
+    openInIina: (
+        url: string,
+        title: string,
+        thumbnail: string,
+        userAgent: string,
+        referer?: string,
+        origin?: string,
+        contentInfo?: any,
+        startTime?: number,
+        headers?: Record<string, string>,
+        iinaOpenMode?: IinaOpenMode
+    ): Promise<ExternalPlayerSession> =>
+        ipcRenderer.invoke(
+            'OPEN_IINA_PLAYER',
+            url,
+            title,
+            thumbnail,
+            userAgent,
+            referer,
+            origin,
+            contentInfo,
+            startTime,
+            headers,
+            iinaOpenMode
         ),
     closeExternalPlayerSession: (sessionId: string) =>
         ipcRenderer.invoke('CLOSE_EXTERNAL_PLAYER_SESSION', sessionId),

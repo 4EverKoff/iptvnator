@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
-import { StreamFormat, VideoPlayer } from 'shared-interfaces';
+import { IinaOpenMode, StreamFormat, VideoPlayer } from 'shared-interfaces';
 import { SettingsPlaybackSectionComponent } from './settings-playback-section.component';
 
 describe('SettingsPlaybackSectionComponent', () => {
@@ -29,6 +29,16 @@ describe('SettingsPlaybackSectionComponent', () => {
             {
                 id: VideoPlayer.MPV,
                 labelKey: 'SETTINGS.PLAYER_MPV',
+            },
+        ]);
+        fixture.componentRef.setInput('iinaOpenModeOptions', [
+            {
+                value: IinaOpenMode.Open,
+                labelKey: 'SETTINGS.IINA_OPEN_MODE_OPEN',
+            },
+            {
+                value: IinaOpenMode.Enqueue,
+                labelKey: 'SETTINGS.IINA_OPEN_MODE_ENQUEUE',
             },
         ]);
         fixture.componentRef.setInput('streamFormatEnum', StreamFormat);
@@ -60,7 +70,7 @@ describe('SettingsPlaybackSectionComponent', () => {
         ).toBeNull();
     });
 
-    it.each([VideoPlayer.MPV, VideoPlayer.VLC])(
+    it.each([VideoPlayer.MPV, VideoPlayer.VLC, VideoPlayer.IINA])(
         'labels the double-click option as external-player behavior on desktop for %s',
         (player) => {
             fixture.componentRef.setInput('form', createForm(player));
@@ -119,6 +129,21 @@ describe('SettingsPlaybackSectionComponent', () => {
             )
         ).toBeNull();
     });
+
+    it('shows IINA open-mode settings when IINA is selected', () => {
+        fixture.componentRef.setInput('form', createForm(VideoPlayer.IINA));
+        fixture.componentRef.setInput('isDesktop', true);
+        fixture.detectChanges();
+
+        expect(
+            fixture.nativeElement.querySelector(
+                '[data-test-id="select-iina-open-mode"]'
+            )
+        ).not.toBeNull();
+        expect(fixture.nativeElement.textContent).toContain(
+            'SETTINGS.IINA_OPEN_MODE_LABEL'
+        );
+    });
 });
 
 function createForm(player = VideoPlayer.VideoJs): FormGroup {
@@ -131,6 +156,7 @@ function createForm(player = VideoPlayer.VideoJs): FormGroup {
         mpvReuseInstance: new FormControl(false),
         vlcPlayerPath: new FormControl(''),
         vlcReuseInstance: new FormControl(false),
+        iinaOpenMode: new FormControl(IinaOpenMode.Open),
         recordingFolder: new FormControl(''),
     });
 }

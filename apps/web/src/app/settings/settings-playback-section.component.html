@@ -219,4 +219,34 @@
             </div>
         </div>
     }
+
+    @if (form().value.player === 'iina') {
+        <div class="setting-item">
+            <div class="setting-item__meta">
+                <h4>{{ 'SETTINGS.IINA_OPEN_MODE_LABEL' | translate }}</h4>
+                <p>
+                    {{ 'SETTINGS.IINA_OPEN_MODE_DESCRIPTION' | translate }}
+                </p>
+            </div>
+            <div class="setting-item__control">
+                <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                    <mat-label>{{
+                        'SETTINGS.IINA_OPEN_MODE_PLACEHOLDER' | translate
+                    }}</mat-label>
+                    <mat-select
+                        formControlName="iinaOpenMode"
+                        data-test-id="select-iina-open-mode"
+                    >
+                        @for (mode of iinaOpenModeOptions(); track mode.value) {
+                            <mat-option
+                                [value]="mode.value"
+                                [attr.data-test-id]="mode.value"
+                                >{{ mode.labelKey | translate }}
+                            </mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    }
 </section>

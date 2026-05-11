@@ -239,6 +239,7 @@
         "PLAYER_EMBEDDED_MPV": "內嵌 MPV（實驗性，macOS）",
         "PLAYER_MPV": "MPV 播放器",
         "PLAYER_VLC": "VLC",
+        "PLAYER_IINA": "IINA",
         "VIDEO_PLAYER_PLACEHOLDER": "選擇一個選項",
         "VERSION": "版本",
         "SAVE_CHANGES": "儲存變更",
@@ -327,6 +328,11 @@
         "VLC_PLAYER_PATH": "VLC 播放器路徑",
         "VLC_REUSE_INSTANCE_LABEL": "重複使用 VLC 實體",
         "VLC_REUSE_INSTANCE_DESCRIPTION": "啟用後，相同的 VLC 視窗將重複用於播放不同串流。停用時，每個串流會在新的 VLC 視窗中開啟。",
+        "IINA_OPEN_MODE_LABEL": "IINA open mode",
+        "IINA_OPEN_MODE_DESCRIPTION": "Choose whether IPTVnator opens the stream in IINA or adds it to the IINA playlist.",
+        "IINA_OPEN_MODE_PLACEHOLDER": "Select IINA mode",
+        "IINA_OPEN_MODE_OPEN": "Open in IINA",
+        "IINA_OPEN_MODE_ENQUEUE": "Add to IINA playlist",
         "REMOTE_CONTROL": "遠端控制",
         "REMOTE_CONTROL_DESCRIPTION": "啟用應用程式遠端控制功能。",
         "REMOTE_CONTROL_PORT": "遠端控制連接埠",
@@ -355,11 +361,11 @@
         "PLAYBACK_DIAGNOSTICS": {
             "UNSUPPORTED_CONTAINER": {
                 "TITLE": "This stream container is likely unsupported by the browser player",
-                "DESCRIPTION": "Chromium/Electron may not decode this container inline. Try MPV or VLC for broader codec support."
+                "DESCRIPTION": "Chromium/Electron may not decode this container inline. Try MPV, VLC, or IINA for broader codec support."
             },
             "UNSUPPORTED_CODEC": {
                 "TITLE": "This stream codec is likely unsupported by the browser player",
-                "DESCRIPTION": "The stream advertises codecs that the built-in Chromium player may not decode. MPV or VLC can often play it."
+                "DESCRIPTION": "The stream advertises codecs that the built-in Chromium player may not decode. MPV, VLC, or IINA can often play it."
             },
             "MEDIA_DECODE_ERROR": {
                 "TITLE": "The browser player could not decode this stream",
@@ -379,6 +385,7 @@
             },
             "ACTION_OPEN_MPV": "Open in MPV",
             "ACTION_OPEN_VLC": "Open in VLC",
+            "ACTION_OPEN_IINA": "Open in IINA",
             "ACTION_COPY_URL": "Copy URL"
         },
     "LAYOUT": {

@@ -2,6 +2,9 @@ jest.mock('electron', () => ({
     ipcMain: {
         handle: jest.fn(),
     },
+    shell: {
+        openExternal: jest.fn(),
+    },
 }));
 
 jest.mock('../app', () => ({
@@ -27,6 +30,7 @@ jest.mock('../services/stalker-playback-context.service', () => ({
 }));
 
 import { ipcMain } from 'electron';
+import { IinaOpenMode } from 'shared-interfaces';
 import {
     MPV_PLAYER_PATH,
     store,
@@ -35,6 +39,7 @@ import {
 } from '../services/store.service';
 import {
     buildExternalPlayerSpawnSpec,
+    buildIinaOpenUrl,
     buildVlcEnqueueCommands,
     isRunningInFlatpak,
     parseVlcRcPlaybackState,
@@ -67,21 +72,25 @@ function getIpcMainHandler(channel: string): (...args: unknown[]) => unknown {
 
 describe('player.events Flatpak launch helpers', () => {
     it('detects Flatpak only on Linux when /.flatpak-info exists', () => {
-        expect(isRunningInFlatpak(createPathExists(['/.flatpak-info']), 'linux')).toBe(
-            true
-        );
-        expect(isRunningInFlatpak(createPathExists(['/.flatpak-info']), 'darwin')).toBe(
-            false
-        );
+        expect(
+            isRunningInFlatpak(createPathExists(['/.flatpak-info']), 'linux')
+        ).toBe(true);
+        expect(
+            isRunningInFlatpak(createPathExists(['/.flatpak-info']), 'darwin')
+        ).toBe(false);
         expect(isRunningInFlatpak(createPathExists([]), 'linux')).toBe(false);
     });
 
     it('keeps direct Linux player launching outside Flatpak', () => {
-        const launchContext = resolveExternalPlayerLaunchContext('mpv', undefined, {
-            platform: 'linux',
-            isFlatpak: false,
-            pathExists: createPathExists(['/usr/local/bin/mpv']),
-        });
+        const launchContext = resolveExternalPlayerLaunchContext(
+            'mpv',
+            undefined,
+            {
+                platform: 'linux',
+                isFlatpak: false,
+                pathExists: createPathExists(['/usr/local/bin/mpv']),
+            }
+        );
         const spawnSpec = buildExternalPlayerSpawnSpec(launchContext, [
             '--ytdl=no',
             'https://example.com/stream.m3u8',
@@ -102,11 +111,15 @@ describe('player.events Flatpak launch helpers', () => {
     });
 
     it('builds Flatpak host launches with bare player names by default', () => {
-        const launchContext = resolveExternalPlayerLaunchContext('vlc', undefined, {
-            platform: 'linux',
-            isFlatpak: true,
-            pathExists: createPathExists(['/usr/bin/vlc']),
-        });
+        const launchContext = resolveExternalPlayerLaunchContext(
+            'vlc',
+            undefined,
+            {
+                platform: 'linux',
+                isFlatpak: true,
+                pathExists: createPathExists(['/usr/bin/vlc']),
+            }
+        );
         const spawnSpec = buildExternalPlayerSpawnSpec(launchContext, [
             '--extraintf=rc',
             'https://example.com/stream.m3u8',
@@ -177,6 +190,24 @@ describe('player.events Flatpak launch helpers', () => {
             mode: 'direct',
             playerPath: '/Applications/VLC.app/Contents/MacOS/VLC',
             command: '/Applications/VLC.app/Contents/MacOS/VLC',
+            argsPrefix: [],
+        });
+    });
+
+    it('resolves custom macOS IINA app bundles to their CLI executable', () => {
+        const launchContext = resolveExternalPlayerLaunchContext(
+            'iina',
+            '/Applications/IINA.app/',
+            {
+                platform: 'darwin',
+                isFlatpak: false,
+            }
+        );
+
+        expect(launchContext).toEqual({
+            mode: 'direct',
+            playerPath: '/Applications/IINA.app/Contents/MacOS/iina-cli',
+            command: '/Applications/IINA.app/Contents/MacOS/iina-cli',
             argsPrefix: [],
         });
     });
@@ -315,9 +346,7 @@ describe('buildVlcEnqueueCommands', () => {
             origin: 'https://origin.example',
         });
 
-        expect(commands[1]).toContain(
-            ':http-referrer=https://origin.example'
-        );
+        expect(commands[1]).toContain(':http-referrer=https://origin.example');
     });
 
     it('appends a seek command when startTime is provided', () => {
@@ -341,5 +370,50 @@ describe('buildVlcEnqueueCommands', () => {
 
         expect(commands[1]).toContain(':http-header=X-Real: value');
         expect(commands[1]).not.toContain('X-Empty');
+    });
+});
+
+describe('buildIinaOpenUrl', () => {
+    it('builds a direct IINA open URL by default', () => {
+        const openUrl = buildIinaOpenUrl({
+            url: 'https://example.com/live/channel.m3u8',
+        });
+
+        expect(openUrl).toBe(
+            'iina://open?url=https%3A%2F%2Fexample.com%2Flive%2Fchannel.m3u8'
+        );
+    });
+
+    it('adds enqueue mode and mpv options when provided', () => {
+        const openUrl = buildIinaOpenUrl({
+            url: 'https://example.com/live/channel.m3u8',
+            mode: IinaOpenMode.Enqueue,
+            title: 'Channel One',
+            userAgent: 'IPTVnator Test',
+            referer: 'https://referrer.example',
+            headers: { 'X-Token': 'abc' },
+            startTime: 42,
+        });
+        const parsed = new URL(openUrl);
+
+        expect(parsed.protocol).toBe('iina:');
+        expect(parsed.host).toBe('open');
+        expect(parsed.searchParams.get('url')).toBe(
+            'https://example.com/live/channel.m3u8'
+        );
+        expect(parsed.searchParams.get('enqueue')).toBe('1');
+        expect(parsed.searchParams.get('mpv_force-media-title')).toBe(
+            'Channel One'
+        );
+        expect(parsed.searchParams.get('mpv_user-agent')).toBe(
+            'IPTVnator Test'
+        );
+        expect(parsed.searchParams.get('mpv_referrer')).toBe(
+            'https://referrer.example'
+        );
+        expect(parsed.searchParams.get('mpv_http-header-fields')).toBe(
+            'X-Token: abc'
+        );
+        expect(parsed.searchParams.get('mpv_start')).toBe('42');
     });
 });

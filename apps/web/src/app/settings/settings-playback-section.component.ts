@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslateModule } from '@ngx-translate/core';
 import { StreamFormat, VideoPlayer } from 'shared-interfaces';
-import { SettingsPlayerOption } from './settings.models';
+import { IinaOpenModeOption, SettingsPlayerOption } from './settings.models';
 
 @Component({
     selector: 'app-settings-playback-section',
@@ -32,12 +32,17 @@ export class SettingsPlaybackSectionComponent {
     readonly form = input.required<FormGroup>();
     readonly activeSection = input.required<string>();
     readonly players = input.required<SettingsPlayerOption[]>();
+    readonly iinaOpenModeOptions = input.required<IinaOpenModeOption[]>();
     readonly streamFormatEnum = input.required<typeof StreamFormat>();
     readonly isDesktop = input(false);
     readonly selectRecordingFolder = output<void>();
 
     isExternalPlayerSelected(): boolean {
         const player = this.form().value.player;
-        return player === VideoPlayer.MPV || player === VideoPlayer.VLC;
+        return (
+            player === VideoPlayer.MPV ||
+            player === VideoPlayer.VLC ||
+            player === VideoPlayer.IINA
+        );
     }
 }

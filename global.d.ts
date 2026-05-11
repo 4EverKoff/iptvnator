@@ -4,6 +4,7 @@ import { EmbeddedMpvRecordingStartOptions } from './libs/shared/interfaces/src/l
 import { EmbeddedMpvSession } from './libs/shared/interfaces/src/lib/embedded-mpv-session.interface';
 import { EmbeddedMpvSupport } from './libs/shared/interfaces/src/lib/embedded-mpv-session.interface';
 import { ExternalPlayerSession } from './libs/shared/interfaces/src/lib/external-player-session.interface';
+import { IinaOpenMode } from './libs/shared/interfaces/src/lib/settings.interface';
 import { PlaybackPositionData } from './libs/shared/interfaces/src/lib/playback-position.interface';
 import {
     XtreamBackupFavoriteItem,
@@ -65,7 +66,7 @@ declare global {
                 url: string,
                 title: string,
                 thumbnail: string,
-                userAgent: string,
+                userAgent?: string,
                 referer?: string,
                 origin?: string,
                 contentInfo?: any,
@@ -82,6 +83,18 @@ declare global {
                 contentInfo?: any,
                 startTime?: number,
                 headers?: Record<string, string>
+            ) => Promise<ExternalPlayerSession>;
+            openInIina: (
+                url: string,
+                title: string,
+                thumbnail: string,
+                userAgent: string,
+                referer?: string,
+                origin?: string,
+                contentInfo?: any,
+                startTime?: number,
+                headers?: Record<string, string>,
+                iinaOpenMode?: IinaOpenMode
             ) => Promise<ExternalPlayerSession>;
             autoUpdatePlaylists: (playlists: Playlist[]) => Promise<Playlist[]>;
             fetchEpg: (

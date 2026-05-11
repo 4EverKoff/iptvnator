@@ -64,6 +64,15 @@ const PLAYER_COMMAND_DEFS: readonly PlayerCommandDefinition[] = [
         desktopOnly: true,
         priority: 94,
     },
+    {
+        id: 'switch-player-iina',
+        player: VideoPlayer.IINA,
+        icon: 'play_circle_outline',
+        nameKey: 'SETTINGS.PLAYER_IINA',
+        keywords: ['player', 'iina', 'external', 'macos'],
+        desktopOnly: true,
+        priority: 95,
+    },
 ];
 
 @Injectable({ providedIn: 'root' })
@@ -97,7 +106,8 @@ export class WorkspacePlayerCommandsContributor {
             icon: def.icon,
             labelKey: 'WORKSPACE.SHELL.COMMANDS.SWITCH_PLAYER_LABEL',
             labelParams: () => ({ name: this.translate.instant(def.nameKey) }),
-            descriptionKey: 'WORKSPACE.SHELL.COMMANDS.SWITCH_PLAYER_DESCRIPTION',
+            descriptionKey:
+                'WORKSPACE.SHELL.COMMANDS.SWITCH_PLAYER_DESCRIPTION',
             descriptionParams: () => ({
                 name: this.translate.instant(def.nameKey),
             }),
@@ -106,7 +116,10 @@ export class WorkspacePlayerCommandsContributor {
                 this.translate.instant(def.nameKey).toLowerCase(),
             ],
             priority: def.priority,
-            visible: () => !def.desktopOnly || this.isDesktop,
+            visible: () =>
+                (!def.desktopOnly || this.isDesktop) &&
+                (def.player !== VideoPlayer.IINA ||
+                    window.electron?.platform === 'darwin'),
             enabled: () => this.settingsStore.player() !== def.player,
             run: () => this.activate(def),
         };

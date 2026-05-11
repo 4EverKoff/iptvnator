@@ -79,6 +79,7 @@ import {
     Channel,
     EpgProgram,
     ExternalPlayerSession,
+    OPEN_IINA_PLAYER,
     OPEN_MPV_PLAYER,
     OPEN_VLC_PLAYER,
     PLAYLIST_PARSE_BY_URL,
@@ -819,10 +820,20 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
             return;
         }
 
-        this.dataService.sendIpcEvent(
-            request.player === 'mpv' ? OPEN_MPV_PLAYER : OPEN_VLC_PLAYER,
-            payload
-        );
+        const ipcEvent =
+            request.player === 'mpv'
+                ? OPEN_MPV_PLAYER
+                : request.player === 'vlc'
+                  ? OPEN_VLC_PLAYER
+                  : OPEN_IINA_PLAYER;
+
+        this.dataService.sendIpcEvent(ipcEvent, {
+            ...payload,
+            iinaOpenMode:
+                request.player === 'iina'
+                    ? this.settingsStore.iinaOpenMode?.()
+                    : undefined,
+        });
     }
 
     private toLiveEpgPanelSummary(
@@ -851,8 +862,12 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 
     private isExternalPlayer(
         player: VideoPlayer | null | undefined
-    ): player is VideoPlayer.MPV | VideoPlayer.VLC {
-        return player === VideoPlayer.MPV || player === VideoPlayer.VLC;
+    ): player is VideoPlayer.MPV | VideoPlayer.VLC | VideoPlayer.IINA {
+        return (
+            player === VideoPlayer.MPV ||
+            player === VideoPlayer.VLC ||
+            player === VideoPlayer.IINA
+        );
     }
 
     private isTerminalExternalSession(

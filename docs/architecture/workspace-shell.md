@@ -138,11 +138,12 @@ Command palette behavior is shell-owned but view-extensible:
    visibility — a navigation command like `Open sources` is invisible while
    the user is on `/workspace/sources` but the id stays in storage so it
    reappears in the recent section after navigating away.
-7. Five "Switch player to X" commands are registered globally by
+7. Six "Switch player to X" commands are registered globally by
    `WorkspacePlayerCommandsContributor`. The MPV/VLC entries are visible only
-   in Electron, and the entry matching the current `SettingsStore.player()`
-   value is disabled. The new player setting applies to the next playback
-   session; an existing stream is not re-mounted.
+   in Electron, IINA is visible only on macOS Electron, and the entry matching
+   the current `SettingsStore.player()` value is disabled. The new player
+   setting applies to the next playback session; an existing stream is not
+   re-mounted.
 
 ## Maintenance Guidance
 

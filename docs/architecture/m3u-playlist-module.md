@@ -346,7 +346,7 @@ class EpgService {
   shared `live-epg-panel-state` preference
 - Multi-EPG modal view
 - Channel info overlay
-- External player support (MPV, VLC) in Electron
+- External player support (MPV, VLC, and macOS IINA) in Electron
 - M3U archive/catch-up playback for supported replay schemes
 
 ### Archive / Catch-Up Playback

@@ -1,11 +1,13 @@
 import {
     CoverSize,
+    IinaOpenMode,
     StartupBehavior,
     Theme,
     VideoPlayer,
 } from 'shared-interfaces';
 import {
     CoverSizeOption,
+    IinaOpenModeOption,
     SettingsPlayerOption,
     SettingsSection,
     StartupBehaviorOption,
@@ -48,6 +50,17 @@ export const SETTINGS_COVER_SIZE_OPTIONS: CoverSizeOption[] = [
     },
 ];
 
+export const SETTINGS_IINA_OPEN_MODE_OPTIONS: IinaOpenModeOption[] = [
+    {
+        value: IinaOpenMode.Open,
+        labelKey: 'SETTINGS.IINA_OPEN_MODE_OPEN',
+    },
+    {
+        value: IinaOpenMode.Enqueue,
+        labelKey: 'SETTINGS.IINA_OPEN_MODE_ENQUEUE',
+    },
+];
+
 export const SETTINGS_STARTUP_BEHAVIOR_OPTIONS: StartupBehaviorOption[] = [
     {
         value: StartupBehavior.FirstView,
@@ -67,6 +80,10 @@ export const SETTINGS_OS_PLAYER_OPTIONS: SettingsPlayerOption[] = [
     {
         id: VideoPlayer.VLC,
         labelKey: 'SETTINGS.PLAYER_VLC',
+    },
+    {
+        id: VideoPlayer.IINA,
+        labelKey: 'SETTINGS.PLAYER_IINA',
     },
 ];
 

@@ -11,7 +11,7 @@ This document records the current contract for embedded playback in portal detai
 - Live playback stays inline in dedicated live layouts.
 - VOD and series detail playback now also stays inline on canonical detail surfaces.
 - Material dialog playback remains only as a fallback for older non-detail callers.
-- Browser-player failures are diagnosed client-side and can offer explicit MPV/VLC fallback actions without changing the saved player setting.
+- Browser-player failures are diagnosed client-side and can offer explicit MPV/VLC/IINA fallback actions without changing the saved player setting.
 
 ## Scope
 
@@ -97,7 +97,7 @@ When a detail view starts playback:
 1. Resolve or construct a typed playback payload.
 2. Check the active player setting.
 3. If the player is embedded, render the inline player inside the current detail view.
-4. If the player is external, hand the same payload to `PlayerService` for MPV/VLC playback.
+4. If the player is external, hand the same payload to `PlayerService` for MPV/VLC/IINA playback.
 
 The detail host owns inline state. `PlayerService` is no longer the primary owner of UI playback state for canonical VOD/series detail screens.
 
@@ -121,9 +121,9 @@ Supported diagnostic codes are:
 - `drm-or-encryption`
 - `unknown-playback-error`
 
-When a diagnostic is actionable in Electron, the inline banner may offer `Open in MPV`, `Open in VLC`, and `Copy URL`. Web builds only expose copy/help text. MPV/VLC fallback requests carry the original `ResolvedPortalPlayback` payload so headers, referer, origin, user-agent, content metadata, and resume offset stay intact.
+When a diagnostic is actionable in Electron, the inline banner may offer `Open in MPV`, `Open in VLC`, `Open in IINA` on macOS, and `Copy URL`. Web builds only expose copy/help text. External fallback requests carry the original `ResolvedPortalPlayback` payload so headers, referer, origin, user-agent, content metadata, and resume offset stay intact.
 
-`PortalPlayer.openExternalPlayback(playback, player)` is the forced external launch API. It sends the playback payload to MPV or VLC regardless of the current saved player setting, so fallback buttons do not mutate preferences.
+`PortalPlayer.openExternalPlayback(playback, player)` is the forced external launch API. It sends the playback payload to MPV, VLC, or IINA regardless of the current saved player setting, so fallback buttons do not mutate preferences.
 
 ## Flatpak External Players
 

@@ -1,9 +1,11 @@
-import { ipcMain } from 'electron';
+import { ipcMain, shell } from 'electron';
 import {
     CLOSE_EXTERNAL_PLAYER_SESSION,
     EXTERNAL_PLAYER_SESSION_UPDATE,
     ExternalPlayerName,
     ExternalPlayerSession,
+    IinaOpenMode,
+    OPEN_IINA_PLAYER,
 } from 'shared-interfaces';
 import App from '../app';
 import {
@@ -43,7 +45,10 @@ interface ExternalPlaybackSnapshot {
 
 function sendExternalPlayerSessionUpdate(session: ExternalPlayerSession) {
     if (App.mainWindow && !App.mainWindow.isDestroyed()) {
-        App.mainWindow.webContents.send(EXTERNAL_PLAYER_SESSION_UPDATE, session);
+        App.mainWindow.webContents.send(
+            EXTERNAL_PLAYER_SESSION_UPDATE,
+            session
+        );
     }
 }
 
@@ -96,6 +101,7 @@ function normalizePlayerPathForStore(value: string | null | undefined): string {
 const macOSAppBundleExecutableNames: Record<ExternalPlayerName, string> = {
     mpv: 'mpv',
     vlc: 'VLC',
+    iina: 'iina-cli',
 };
 
 function getMacOSAppBundleExecutableName(player: ExternalPlayerName): string {
@@ -147,7 +153,11 @@ function getDefaultPlayerPath(
         return getDefaultMpvPath({ platform, isFlatpak, pathExists });
     }
 
-    return getDefaultVlcPath({ platform, isFlatpak, pathExists });
+    if (player === 'vlc') {
+        return getDefaultVlcPath({ platform, isFlatpak, pathExists });
+    }
+
+    return getDefaultIinaPath({ platform, isFlatpak, pathExists });
 }
 
 export function resolveExternalPlayerLaunchContext(
@@ -498,14 +508,56 @@ function buildHttpHeaderFields(
     return fields;
 }
 
+export function buildIinaOpenUrl(options: {
+    url: string;
+    mode?: IinaOpenMode;
+    title?: string;
+    userAgent?: string;
+    referer?: string;
+    origin?: string;
+    headers?: Record<string, string>;
+    startTime?: number;
+}): string {
+    const params = new URLSearchParams();
+    params.set('url', options.url);
+
+    if (options.mode === IinaOpenMode.Enqueue) {
+        params.set('enqueue', '1');
+    }
+
+    if (options.title) {
+        params.set('mpv_force-media-title', options.title);
+    }
+    if (options.userAgent) {
+        params.set('mpv_user-agent', options.userAgent);
+    }
+    if (options.startTime && Number.isFinite(options.startTime)) {
+        params.set('mpv_start', String(options.startTime));
+    }
+    if (options.referer) {
+        params.set('mpv_referrer', options.referer);
+    } else if (options.origin) {
+        params.set('mpv_referrer', options.origin);
+    }
+
+    const headerFields = buildHttpHeaderFields(options.origin, options.headers);
+    if (headerFields.length > 0) {
+        params.set('mpv_http-header-fields', headerFields.join(','));
+    }
+
+    return `iina://open?${params.toString()}`;
+}
+
 function isStalkerDirectStreamProfile(
     headers: Record<string, string>
 ): boolean {
     const icyMetaData = headers['Icy-MetaData'] ?? headers['icy-metadata'];
     const userAgent = headers['User-Agent'] ?? headers['user-agent'];
 
-    return String(icyMetaData).trim() === '1' &&
-        String(userAgent).trim().toLowerCase() === 'ksplayer';
+    return (
+        String(icyMetaData).trim() === '1' &&
+        String(userAgent).trim().toLowerCase() === 'ksplayer'
+    );
 }
 
 function startPositionPolling(
@@ -592,9 +644,7 @@ async function getVlcProperty(port: number, command: string): Promise<string> {
 }
 
 async function getVlcPlaybackState(port: number): Promise<string | null> {
-    return parseVlcRcPlaybackState(
-        await getVlcCommandResponse(port, 'status')
-    );
+    return parseVlcRcPlaybackState(await getVlcCommandResponse(port, 'status'));
 }
 
 async function getVlcPlaybackSnapshot(
@@ -661,7 +711,10 @@ function startVlcPositionPolling(
 }
 
 // Helper function to send command to MPV via IPC
-function sendMpvCommand(command: string, args: Array<string | number>): Promise<void> {
+function sendMpvCommand(
+    command: string,
+    args: Array<string | number>
+): Promise<void> {
     return new Promise((resolve, reject) => {
         if (!mpvSocketPath) {
             reject(new Error('No MPV socket path available'));
@@ -810,15 +863,18 @@ ipcMain.handle(
                         'Successfully loaded new URL in existing MPV instance'
                     );
 
-                    externalPlayerSessions.attachCloser(session.id, async () => {
-                        try {
-                            await sendMpvCommand('quit', []);
-                        } catch {
-                            if (mpvProcess && !mpvProcess.killed) {
-                                mpvProcess.kill();
+                    externalPlayerSessions.attachCloser(
+                        session.id,
+                        async () => {
+                            try {
+                                await sendMpvCommand('quit', []);
+                            } catch {
+                                if (mpvProcess && !mpvProcess.killed) {
+                                    mpvProcess.kill();
+                                }
                             }
                         }
-                    });
+                    );
 
                     // Seek if startTime provided
                     if (startTime) {
@@ -1114,10 +1170,7 @@ ipcMain.handle(
                 getVlcPath({ isFlatpak }),
                 { isFlatpak }
             );
-            const requestedReuseInstance = store.get(
-                VLC_REUSE_INSTANCE,
-                false
-            );
+            const requestedReuseInstance = store.get(VLC_REUSE_INSTANCE, false);
             const reuseInstance = shouldReuseVlcInstance(
                 requestedReuseInstance,
                 isFlatpak
@@ -1338,8 +1391,8 @@ ipcMain.handle(
 
                     const markVlcSessionClosed = () => {
                         if (
-                            externalPlayerSessions.getSession(session.id)?.status ===
-                            'closed'
+                            externalPlayerSessions.getSession(session.id)
+                                ?.status === 'closed'
                         ) {
                             return;
                         }
@@ -1375,27 +1428,30 @@ ipcMain.handle(
                         );
                     };
 
-                    externalPlayerSessions.attachCloser(session.id, async () => {
-                        await flushVlcPlaybackPosition();
-                        if (!proc.killed) {
-                            proc.kill();
+                    externalPlayerSessions.attachCloser(
+                        session.id,
+                        async () => {
+                            await flushVlcPlaybackPosition();
+                            if (!proc.killed) {
+                                proc.kill();
+                            }
                         }
-                    });
+                    );
 
                     // Start polling if we have port and content info and NOT retrying (RC disabled on retry)
-                        if (!isRetry && rcPort > 0 && contentInfo) {
-                            startVlcPositionPolling(
-                                rcPort,
-                                contentInfo,
-                                session.id,
-                                (snapshot) => {
-                                    lastVlcSnapshot = snapshot;
-                                },
-                                () => {
-                                    markVlcSessionClosed();
-                                }
-                            );
-                        }
+                    if (!isRetry && rcPort > 0 && contentInfo) {
+                        startVlcPositionPolling(
+                            rcPort,
+                            contentInfo,
+                            session.id,
+                            (snapshot) => {
+                                lastVlcSnapshot = snapshot;
+                            },
+                            () => {
+                                markVlcSessionClosed();
+                            }
+                        );
+                    }
 
                     // Capture stdout
                     if (proc.stdout) {
@@ -1547,6 +1603,93 @@ ipcMain.handle('SET_VLC_REUSE_INSTANCE', (_event, reuseInstance: boolean) => {
 });
 
 ipcMain.handle(
+    OPEN_IINA_PLAYER,
+    async (
+        event,
+        url: string,
+        title: string,
+        thumbnail?: string,
+        userAgent?: string,
+        referer?: string,
+        origin?: string,
+        contentInfo?: any,
+        startTime?: number,
+        headers?: Record<string, string>,
+        iinaOpenMode?: IinaOpenMode
+    ) => {
+        const session = externalPlayerSessions.beginSession({
+            player: 'iina',
+            title,
+            thumbnail,
+            streamUrl: url,
+            contentInfo,
+        });
+
+        try {
+            if (process.platform !== 'darwin') {
+                throw new Error('IINA playback is only available on macOS.');
+            }
+
+            const fallbackHeaders = getStalkerPlaybackContextHeaders(url) ?? {};
+            const mergedHeaders = isStalkerDirectStreamProfile(fallbackHeaders)
+                ? fallbackHeaders
+                : {
+                      ...fallbackHeaders,
+                      ...(headers ?? {}),
+                  };
+            const effectiveOrigin =
+                origin ??
+                mergedHeaders['Origin'] ??
+                mergedHeaders['origin'] ??
+                undefined;
+            const effectiveReferer =
+                referer ??
+                mergedHeaders['Referer'] ??
+                mergedHeaders['referer'] ??
+                undefined;
+            const effectiveUserAgent =
+                userAgent ??
+                mergedHeaders['User-Agent'] ??
+                mergedHeaders['user-agent'] ??
+                undefined;
+            const mode = iinaOpenMode ?? IinaOpenMode.Open;
+            const iinaUrl = buildIinaOpenUrl({
+                url,
+                mode,
+                title,
+                userAgent: effectiveUserAgent,
+                referer: effectiveReferer,
+                origin: effectiveOrigin,
+                headers: mergedHeaders,
+                startTime,
+            });
+
+            console.log('[IINA] Opening player', {
+                mode,
+                stream: maskUrlForLogs(url),
+                hasUserAgent: Boolean(effectiveUserAgent),
+                hasReferer: Boolean(effectiveReferer),
+                hasOrigin: Boolean(effectiveOrigin),
+                headerCount: Object.keys(mergedHeaders).length,
+                hasContentInfo: Boolean(contentInfo),
+                startTime: startTime ?? null,
+            });
+
+            await shell.openExternal(iinaUrl);
+
+            return externalPlayerSessions.markOpened(session.id) ?? session;
+        } catch (error) {
+            console.error('Error opening IINA player:', error);
+            externalPlayerSessions.markError(
+                session.id,
+                error instanceof Error ? error.message : String(error)
+            );
+            throw error;
+        }
+    }
+);
+
+ipcMain.handle(
     CLOSE_EXTERNAL_PLAYER_SESSION,
     async (_event, sessionId: string) => {
         return externalPlayerSessions.closeSession(sessionId);
@@ -1565,6 +1708,22 @@ function getVlcPath(options: PlayerPathOptions = {}) {
         normalizeCustomPlayerPath(store.get(VLC_PLAYER_PATH)) ??
         getDefaultVlcPath(options)
     );
+}
+
+function getDefaultIinaPath(options: PlayerPathOptions = {}) {
+    const { platform = process.platform, pathExists = existsSync } = options;
+
+    if (platform === 'darwin') {
+        const macosPaths = ['/Applications/IINA.app/Contents/MacOS/iina-cli'];
+
+        for (const iinaPath of macosPaths) {
+            if (pathExists(iinaPath)) {
+                return iinaPath;
+            }
+        }
+    }
+
+    return 'iina-cli';
 }
 
 function getDefaultMpvPath(options: PlayerPathOptions = {}) {

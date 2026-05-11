@@ -10,6 +10,7 @@ import { MockProvider } from 'ng-mocks';
 import { EMPTY, of } from 'rxjs';
 import { DataService } from 'services';
 import {
+    IinaOpenMode,
     Language,
     Settings,
     StartupBehavior,
@@ -47,6 +48,7 @@ const DEFAULT_SETTINGS: Settings = {
     mpvReuseInstance: false,
     vlcPlayerPath: '',
     vlcReuseInstance: false,
+    iinaOpenMode: IinaOpenMode.Open,
     remoteControl: false,
     remoteControlPort: 8765,
     downloadFolder: '',

@@ -7,6 +7,7 @@ import { DataService } from 'services';
 import {
     AUTO_UPDATE_PLAYLISTS,
     ERROR,
+    IinaOpenMode,
     Playlist,
     PLAYLIST_PARSE_BY_URL,
     PLAYLIST_UPDATE,
@@ -30,6 +31,7 @@ interface PlayerLaunchPayload {
     readonly url: string;
     readonly ['user-agent']?: string;
     readonly contentInfo?: unknown;
+    readonly iinaOpenMode?: IinaOpenMode;
 }
 
 interface ErrorStatus {
@@ -203,6 +205,36 @@ export class ElectronService extends DataService {
                     }
                 );
                 console.error('VLC launch error:', error);
+                throw error;
+            }
+        }
+
+        if (type === 'OPEN_IINA_PLAYER') {
+            const data = payload as PlayerLaunchPayload;
+            try {
+                return (await window.electron.openInIina(
+                    data.url,
+                    data.title ?? '',
+                    data.thumbnail ?? '',
+                    data['user-agent'] ?? undefined,
+                    data.referer ?? undefined,
+                    data.origin ?? undefined,
+                    data.contentInfo,
+                    data.startTime,
+                    data.headers ?? undefined,
+                    data.iinaOpenMode
+                )) as T;
+            } catch (error: unknown) {
+                const errorMessage =
+                    this.getErrorDetails(error)?.message ?? String(error);
+                this.snackBar.open(
+                    `Error launching IINA: ${errorMessage}`,
+                    'Close',
+                    {
+                        duration: 5000,
+                    }
+                );
+                console.error('IINA launch error:', error);
                 throw error;
             }
         }

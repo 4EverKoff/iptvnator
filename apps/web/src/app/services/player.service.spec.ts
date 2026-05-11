@@ -50,6 +50,7 @@ describe('PlayerService', () => {
         expect(service.isEmbeddedPlayer(VideoPlayer.EmbeddedMpv)).toBe(true);
         expect(service.isEmbeddedPlayer(VideoPlayer.MPV)).toBe(false);
         expect(service.isEmbeddedPlayer(VideoPlayer.VLC)).toBe(false);
+        expect(service.isEmbeddedPlayer(VideoPlayer.IINA)).toBe(false);
     });
 
     it('uses the dialog fallback for embedded players', async () => {
@@ -139,6 +140,35 @@ describe('PlayerService', () => {
             })
         );
         expect(dialog.open).not.toHaveBeenCalled();
+        expect(result).toEqual(session);
+    });
+
+    it('forwards IINA playback launches through IPC', async () => {
+        const session: ExternalPlayerSession = {
+            id: 'session-3',
+            player: 'iina',
+            status: 'opened',
+            title: 'Example IINA',
+            streamUrl: 'https://example.com/iina.m3u8',
+            startedAt: '2026-03-07T10:00:00.000Z',
+            updatedAt: '2026-03-07T10:00:00.000Z',
+            canClose: false,
+        };
+        settingsStore.player.mockReturnValue(VideoPlayer.IINA);
+        dataService.sendIpcEvent.mockResolvedValue(session);
+
+        const result = await service.openResolvedPlayback({
+            streamUrl: 'https://example.com/iina.m3u8',
+            title: 'Example IINA',
+        });
+
+        expect(dataService.sendIpcEvent).toHaveBeenCalledWith(
+            'OPEN_IINA_PLAYER',
+            expect.objectContaining({
+                url: 'https://example.com/iina.m3u8',
+                title: 'Example IINA',
+            })
+        );
         expect(result).toEqual(session);
     });
 });

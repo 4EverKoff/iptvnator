@@ -82,6 +82,19 @@
                     <mat-icon>open_in_new</mat-icon>
                     {{ 'PLAYBACK_DIAGNOSTICS.ACTION_OPEN_VLC' | translate }}
                 </button>
+                @if (isMacDesktop()) {
+                    <button
+                        mat-stroked-button
+                        type="button"
+                        data-test-id="playback-fallback-iina"
+                        (click)="requestExternalFallback('iina')"
+                    >
+                        <mat-icon>open_in_new</mat-icon>
+                        {{
+                            'PLAYBACK_DIAGNOSTICS.ACTION_OPEN_IINA' | translate
+                        }}
+                    </button>
+                }
             }
             <button
                 mat-button

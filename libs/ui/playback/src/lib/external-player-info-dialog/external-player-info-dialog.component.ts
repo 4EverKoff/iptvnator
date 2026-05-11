@@ -14,8 +14,8 @@ import { TranslateModule } from '@ngx-translate/core';
                 <mat-icon class="icon">live_tv</mat-icon>
                 <div>
                     The video is playing in external player window.<br />
-                    Please make sure that mpv/vlc player is correctly installed
-                    on your system.<br />
+                    Please make sure that MPV, VLC, or IINA is correctly
+                    installed on your system.<br />
                     See
                     <a
                         [routerLink]

@@ -11,7 +11,13 @@ export enum VideoPlayer {
     EmbeddedMpv = 'embedded-mpv',
     MPV = 'mpv',
     VLC = 'vlc',
+    IINA = 'iina',
     ArtPlayer = 'artplayer',
+}
+
+export enum IinaOpenMode {
+    Open = 'open',
+    Enqueue = 'enqueue',
 }
 
 export enum StartupBehavior {
@@ -40,6 +46,7 @@ export interface Settings {
     mpvReuseInstance: boolean;
     vlcPlayerPath: string;
     vlcReuseInstance: boolean;
+    iinaOpenMode: IinaOpenMode;
     remoteControl: boolean;
     remoteControlPort: number;
     /** Custom download folder path (uses system Downloads folder if not set) */

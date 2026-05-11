@@ -4,6 +4,7 @@ import { ExternalPlayerInfoDialogComponent } from '@iptvnator/ui/playback/extern
 import { DataService } from 'services';
 import {
     ExternalPlayerSession,
+    OPEN_IINA_PLAYER,
     OPEN_MPV_PLAYER,
     OPEN_VLC_PLAYER,
     PlayerContentInfo,
@@ -79,6 +80,11 @@ export class PlayerService {
                 this.dialog.open(ExternalPlayerInfoDialogComponent);
             }
             return await this.openExternalPlayback(playback, 'vlc');
+        } else if (player === VideoPlayer.IINA) {
+            if (!hideExternalInfoDialog) {
+                this.dialog.open(ExternalPlayerInfoDialogComponent);
+            }
+            return await this.openExternalPlayback(playback, 'iina');
         }
 
         return import('@iptvnator/portal/xtream/feature').then(
@@ -104,7 +110,11 @@ export class PlayerService {
         player: ExternalPlayerName
     ): Promise<ExternalPlayerSession | void> {
         const ipcEvent =
-            player === 'mpv' ? OPEN_MPV_PLAYER : OPEN_VLC_PLAYER;
+            player === 'mpv'
+                ? OPEN_MPV_PLAYER
+                : player === 'vlc'
+                  ? OPEN_VLC_PLAYER
+                  : OPEN_IINA_PLAYER;
 
         return await this.dataService.sendIpcEvent<ExternalPlayerSession>(
             ipcEvent,
@@ -118,6 +128,10 @@ export class PlayerService {
                 headers: playback.headers,
                 contentInfo: playback.contentInfo,
                 startTime: playback.startTime,
+                iinaOpenMode:
+                    player === 'iina'
+                        ? this.settingsStore.iinaOpenMode?.()
+                        : undefined,
             }
         );
     }

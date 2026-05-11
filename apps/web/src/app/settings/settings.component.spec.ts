@@ -32,6 +32,7 @@ import {
 } from 'services';
 import {
     EmbeddedMpvSupport,
+    IinaOpenMode,
     Language,
     PlaylistMeta,
     StartupBehavior,
@@ -79,6 +80,7 @@ const DEFAULT_SETTINGS = {
     mpvReuseInstance: false,
     vlcPlayerPath: '',
     vlcReuseInstance: false,
+    iinaOpenMode: IinaOpenMode.Open,
     remoteControl: false,
     remoteControlPort: 8765,
     epgUrl: [],
@@ -467,6 +469,33 @@ describe('SettingsComponent', () => {
                 component
                     .players()
                     .some((player) => player.id === VideoPlayer.EmbeddedMpv)
+            ).toBe(true);
+        });
+
+        it('shows IINA only on macOS desktop builds', () => {
+            expect(
+                component
+                    .players()
+                    .some((player) => player.id === VideoPlayer.IINA)
+            ).toBe(false);
+
+            fixture.destroy();
+            window.electron = {
+                ...window.electron,
+                platform: 'darwin',
+            } as unknown as typeof window.electron;
+            const macFixture = TestBed.createComponent(SettingsComponent);
+            const macComponent = macFixture.componentInstance;
+            macComponent.checkAppVersion = jest.fn();
+            macComponent.fetchLocalIpAddresses = jest
+                .fn()
+                .mockResolvedValue(undefined);
+            macFixture.detectChanges();
+
+            expect(
+                macComponent
+                    .players()
+                    .some((player) => player.id === VideoPlayer.IINA)
             ).toBe(true);
         });
 

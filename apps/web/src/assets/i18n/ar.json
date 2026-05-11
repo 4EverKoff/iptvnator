@@ -239,6 +239,7 @@
         "PLAYER_EMBEDDED_MPV": "MPV المضمّن (تجريبي، macOS)",
         "PLAYER_MPV": "مشغل MPV",
         "PLAYER_VLC": "VLC",
+        "PLAYER_IINA": "IINA",
         "VIDEO_PLAYER_PLACEHOLDER": "اختر خيارًا",
         "VERSION": "الإصدار",
         "SAVE_CHANGES": "حفظ التغييرات",
@@ -327,6 +328,11 @@
         "VLC_PLAYER_PATH": "مسار مشغل VLC",
         "VLC_REUSE_INSTANCE_LABEL": "إعادة استخدام نسخة VLC",
         "VLC_REUSE_INSTANCE_DESCRIPTION": "عند التفعيل، سيتم إعادة استخدام نفس نافذة VLC لتشغيل البثوث المختلفة. عند التعطيل، يفتح كل بث في نافذة VLC جديدة.",
+        "IINA_OPEN_MODE_LABEL": "IINA open mode",
+        "IINA_OPEN_MODE_DESCRIPTION": "Choose whether IPTVnator opens the stream in IINA or adds it to the IINA playlist.",
+        "IINA_OPEN_MODE_PLACEHOLDER": "Select IINA mode",
+        "IINA_OPEN_MODE_OPEN": "Open in IINA",
+        "IINA_OPEN_MODE_ENQUEUE": "Add to IINA playlist",
         "REMOTE_CONTROL": "التحكم عن بعد",
         "REMOTE_CONTROL_DESCRIPTION": "تمكين التحكم عن بعد للتطبيق.",
         "REMOTE_CONTROL_PORT": "منفذ التحكم عن بعد",
@@ -355,11 +361,11 @@
         "PLAYBACK_DIAGNOSTICS": {
             "UNSUPPORTED_CONTAINER": {
                 "TITLE": "This stream container is likely unsupported by the browser player",
-                "DESCRIPTION": "Chromium/Electron may not decode this container inline. Try MPV or VLC for broader codec support."
+                "DESCRIPTION": "Chromium/Electron may not decode this container inline. Try MPV, VLC, or IINA for broader codec support."
             },
             "UNSUPPORTED_CODEC": {
                 "TITLE": "This stream codec is likely unsupported by the browser player",
-                "DESCRIPTION": "The stream advertises codecs that the built-in Chromium player may not decode. MPV or VLC can often play it."
+                "DESCRIPTION": "The stream advertises codecs that the built-in Chromium player may not decode. MPV, VLC, or IINA can often play it."
             },
             "MEDIA_DECODE_ERROR": {
                 "TITLE": "The browser player could not decode this stream",
@@ -379,6 +385,7 @@
             },
             "ACTION_OPEN_MPV": "Open in MPV",
             "ACTION_OPEN_VLC": "Open in VLC",
+            "ACTION_OPEN_IINA": "Open in IINA",
             "ACTION_COPY_URL": "Copy URL"
         },
     "LAYOUT": {

@@ -119,7 +119,7 @@ Implemented behavior:
   - `onRemoteControlCommand` (number + volume)
 - Applies channel up/down by active channel URL over `channels$`
 - Applies number select through existing `switchToChannelByNumber(...)`
-- Dispatches remote channel changes as explicit playback requests so MPV/VLC starts immediately even when mouse channel rows require double-click before external playback.
+- Dispatches remote channel changes as explicit playback requests so MPV/VLC/IINA starts immediately even when mouse channel rows require double-click before external playback.
 - Applies volume commands:
   - up/down in 0.1 increments
   - toggle mute with last non-zero volume restore

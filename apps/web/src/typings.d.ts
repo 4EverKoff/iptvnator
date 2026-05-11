@@ -13,6 +13,7 @@ import {
     EpgChannelMetadata,
     EpgProgram,
     ExternalPlayerSession,
+    IinaOpenMode,
     PlaybackPositionData,
     Playlist,
     PlaylistRefreshEvent,
@@ -71,7 +72,7 @@ declare global {
                 url: string,
                 title: string,
                 thumbnail: string,
-                userAgent: string,
+                userAgent?: string,
                 referer?: string,
                 origin?: string,
                 contentInfo?: unknown,
@@ -88,6 +89,18 @@ declare global {
                 contentInfo?: unknown,
                 startTime?: number,
                 headers?: Record<string, string>
+            ) => Promise<ExternalPlayerSession>;
+            openInIina: (
+                url: string,
+                title: string,
+                thumbnail: string,
+                userAgent: string,
+                referer?: string,
+                origin?: string,
+                contentInfo?: unknown,
+                startTime?: number,
+                headers?: Record<string, string>,
+                iinaOpenMode?: IinaOpenMode
             ) => Promise<ExternalPlayerSession>;
             autoUpdatePlaylists: (playlists: Playlist[]) => Promise<Playlist[]>;
             fetchEpg: (urls: string[]) => Promise<{

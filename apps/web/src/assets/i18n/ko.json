@@ -239,6 +239,7 @@
         "PLAYER_EMBEDDED_MPV": "내장 MPV (실험적, macOS)",
         "PLAYER_MPV": "MPV 플레이어",
         "PLAYER_VLC": "VLC",
+        "PLAYER_IINA": "IINA",
         "VIDEO_PLAYER_PLACEHOLDER": "옵션을 선택하세요",
         "VERSION": "버전",
         "SAVE_CHANGES": "변경 사항 저장",
@@ -327,6 +328,11 @@
         "VLC_PLAYER_PATH": "VLC 플레이어 경로",
         "VLC_REUSE_INSTANCE_LABEL": "VLC 인스턴스 재사용",
         "VLC_REUSE_INSTANCE_DESCRIPTION": "활성화하면 동일한 VLC 창에서 다른 스트림을 재생합니다. 비활성화하면 각 스트림이 새 VLC 창에서 열립니다.",
+        "IINA_OPEN_MODE_LABEL": "IINA open mode",
+        "IINA_OPEN_MODE_DESCRIPTION": "Choose whether IPTVnator opens the stream in IINA or adds it to the IINA playlist.",
+        "IINA_OPEN_MODE_PLACEHOLDER": "Select IINA mode",
+        "IINA_OPEN_MODE_OPEN": "Open in IINA",
+        "IINA_OPEN_MODE_ENQUEUE": "Add to IINA playlist",
         "REMOTE_CONTROL": "원격 제어",
         "REMOTE_CONTROL_DESCRIPTION": "애플리케이션의 원격 제어를 활성화합니다.",
         "REMOTE_CONTROL_PORT": "원격 제어 포트",
@@ -355,11 +361,11 @@
         "PLAYBACK_DIAGNOSTICS": {
             "UNSUPPORTED_CONTAINER": {
                 "TITLE": "This stream container is likely unsupported by the browser player",
-                "DESCRIPTION": "Chromium/Electron may not decode this container inline. Try MPV or VLC for broader codec support."
+                "DESCRIPTION": "Chromium/Electron may not decode this container inline. Try MPV, VLC, or IINA for broader codec support."
             },
             "UNSUPPORTED_CODEC": {
                 "TITLE": "This stream codec is likely unsupported by the browser player",
-                "DESCRIPTION": "The stream advertises codecs that the built-in Chromium player may not decode. MPV or VLC can often play it."
+                "DESCRIPTION": "The stream advertises codecs that the built-in Chromium player may not decode. MPV, VLC, or IINA can often play it."
             },
             "MEDIA_DECODE_ERROR": {
                 "TITLE": "The browser player could not decode this stream",
@@ -379,6 +385,7 @@
             },
             "ACTION_OPEN_MPV": "Open in MPV",
             "ACTION_OPEN_VLC": "Open in VLC",
+            "ACTION_OPEN_IINA": "Open in IINA",
             "ACTION_COPY_URL": "Copy URL"
         },
     "LAYOUT": {

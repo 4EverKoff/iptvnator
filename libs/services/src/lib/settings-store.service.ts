@@ -9,6 +9,7 @@ import {
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { firstValueFrom } from 'rxjs';
 import {
+    IinaOpenMode,
     Language,
     Settings,
     StartupBehavior,
@@ -32,6 +33,7 @@ const DEFAULT_SETTINGS: Settings = {
     mpvReuseInstance: false,
     vlcPlayerPath: '',
     vlcReuseInstance: false,
+    iinaOpenMode: IinaOpenMode.Open,
     remoteControl: false,
     remoteControlPort: 8765,
     epgUrl: [],
@@ -139,6 +141,7 @@ export const SettingsStore = signalStore(
                 mpvReuseInstance: store.mpvReuseInstance(),
                 vlcPlayerPath: store.vlcPlayerPath(),
                 vlcReuseInstance: store.vlcReuseInstance(),
+                iinaOpenMode: store.iinaOpenMode(),
                 remoteControl: store.remoteControl(),
                 remoteControlPort: store.remoteControlPort(),
                 epgUrl: store.epgUrl(),

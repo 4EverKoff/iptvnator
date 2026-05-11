@@ -46,6 +46,7 @@ import {
 import {
     EmbeddedMpvSupport,
     CoverSize,
+    IinaOpenMode,
     Language,
     StartupBehavior,
     StreamFormat,
@@ -71,6 +72,7 @@ import {
     buildSettingsSectionNavItems,
     SETTINGS_COVER_SIZE_OPTIONS,
     SETTINGS_EMBEDDED_PLAYER_OPTIONS,
+    SETTINGS_IINA_OPEN_MODE_OPTIONS,
     SETTINGS_OS_PLAYER_OPTIONS,
     SETTINGS_STARTUP_BEHAVIOR_OPTIONS,
     SETTINGS_THEME_OPTIONS,
@@ -151,7 +153,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
                   },
               ]
             : []),
-        ...SETTINGS_OS_PLAYER_OPTIONS,
+        ...SETTINGS_OS_PLAYER_OPTIONS.filter(
+            (player) =>
+                player.id !== VideoPlayer.IINA ||
+                window.electron?.platform === 'darwin'
+        ),
     ]);
 
     /** Player options */
@@ -172,6 +178,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
     readonly themeOptions = SETTINGS_THEME_OPTIONS;
     readonly coverSizeOptions = SETTINGS_COVER_SIZE_OPTIONS;
+    readonly iinaOpenModeOptions = SETTINGS_IINA_OPEN_MODE_OPTIONS;
     readonly startupBehaviorOptions = SETTINGS_STARTUP_BEHAVIOR_OPTIONS;
 
     /** Settings form object */
@@ -190,6 +197,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
         mpvReuseInstance: false,
         vlcPlayerPath: '',
         vlcReuseInstance: false,
+        iinaOpenMode: IinaOpenMode.Open,
         remoteControl: false,
         remoteControlPort: [
             8765,
