@@ -1,4 +1,5 @@
 const esbuild = require('esbuild');
+const fs = require('fs');
 const path = require('path');
 
 // Node.js built-in modules that should be externalized
@@ -18,6 +19,28 @@ const nativeModules = [
 ];
 
 const isProduction = process.env.NODE_ENV === 'production';
+const workerBuildDir = path.join(__dirname, 'dist', 'workers');
+const legacyWorkerBuildDir = path.join(
+    __dirname,
+    '../../dist/apps/electron-backend/workers'
+);
+
+function ensureDirExists(dirPath) {
+    fs.mkdirSync(dirPath, { recursive: true });
+}
+
+function copyWorkerArtifacts(primaryOutPath, outputPaths) {
+    const mapOutPath = `${primaryOutPath}.map`;
+
+    for (const outputPath of outputPaths) {
+        ensureDirExists(path.dirname(outputPath));
+        fs.copyFileSync(primaryOutPath, outputPath);
+
+        if (fs.existsSync(mapOutPath)) {
+            fs.copyFileSync(mapOutPath, `${outputPath}.map`);
+        }
+    }
+}
 
 async function buildWorker() {
     try {
@@ -28,10 +51,7 @@ async function buildWorker() {
                     __dirname,
                     'src/app/workers/epg-parser.worker.ts'
                 ),
-                outfile: path.join(
-                    __dirname,
-                    '../../dist/apps/electron-backend/workers/epg-parser.worker.js'
-                ),
+                filename: 'epg-parser.worker.js',
             },
             {
                 label: 'database worker',
@@ -39,10 +59,7 @@ async function buildWorker() {
                     __dirname,
                     'src/app/workers/database.worker.ts'
                 ),
-                outfile: path.join(
-                    __dirname,
-                    '../../dist/apps/electron-backend/workers/database.worker.js'
-                ),
+                filename: 'database.worker.js',
             },
             {
                 label: 'playlist refresh worker',
@@ -50,10 +67,7 @@ async function buildWorker() {
                     __dirname,
                     'src/app/workers/playlist-refresh.worker.ts'
                 ),
-                outfile: path.join(
-                    __dirname,
-                    '../../dist/apps/electron-backend/workers/playlist-refresh.worker.js'
-                ),
+                filename: 'playlist-refresh.worker.js',
             },
         ];
 
@@ -62,13 +76,19 @@ async function buildWorker() {
                 `Building ${worker.label} with esbuild (${isProduction ? 'production' : 'development'})...`
             );
 
+            const primaryOutfile = path.join(workerBuildDir, worker.filename);
+            const outputPaths = [
+                primaryOutfile,
+                path.join(legacyWorkerBuildDir, worker.filename),
+            ];
+
             await esbuild.build({
                 entryPoints: [worker.entry],
                 bundle: true,
                 platform: 'node',
                 target: 'node18',
                 format: 'cjs',
-                outfile: worker.outfile,
+                outfile: primaryOutfile,
                 external: [
                     ...nodeBuiltins.map((m) => `node:${m}`),
                     ...nodeBuiltins,
@@ -99,6 +119,8 @@ async function buildWorker() {
                     ),
                 },
             });
+
+            copyWorkerArtifacts(primaryOutfile, outputPaths);
         }
 
         console.log('✅ Workers built successfully!');

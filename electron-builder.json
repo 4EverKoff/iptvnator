@@ -8,13 +8,20 @@
     },
     "files": [
         {
+            "from": "dist/apps/electron-backend",
+            "to": "electron-backend",
+            "filter": ["**/*", "!**/*.map"]
+        },
+        {
+            "from": "dist/apps/web",
+            "to": "web",
+            "filter": ["**/*", "!**/*.map"]
+        },
+        {
             "from": "dist/apps/remote-control-web",
             "to": "remote-control-web",
             "filter": ["**/*"]
-        },
-        "electron-backend/**/*",
-        "web/**/*",
-        "!**/*.map"
+        }
     ],
     "asarUnpack": [
         "**/better-sqlite3/**",
@@ -28,7 +35,13 @@
         "productName": "IPTVnator",
         "main": "electron-backend/main.js"
     },
-    "extraResources": ["dist/apps/electron-backend/workers"],
+    "extraResources": [
+        {
+            "from": "dist/apps/electron-backend/workers",
+            "to": "dist/apps/electron-backend/workers",
+            "filter": ["**/*", "!**/*.map"]
+        }
+    ],
     "mac": {
         "target": {
             "target": "dmg",

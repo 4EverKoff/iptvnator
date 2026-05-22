@@ -6,7 +6,10 @@
     "targets": {
         "build-worker": {
             "executor": "nx:run-commands",
-            "outputs": ["{workspaceRoot}/dist/apps/electron-backend/workers"],
+            "outputs": [
+                "{workspaceRoot}/apps/electron-backend/dist/workers",
+                "{workspaceRoot}/dist/apps/electron-backend/workers"
+            ],
             "options": {
                 "command": "node apps/electron-backend/build-worker.js"
             }
@@ -43,6 +46,12 @@
                 "tsConfig": "apps/electron-backend/tsconfig.app.json",
                 "assets": [
                     "apps/electron-backend/src/assets",
+                    {
+                        "glob": "**/*",
+                        "input": "apps/electron-backend/dist/workers",
+                        "output": "workers",
+                        "ignore": ["**/*.map"]
+                    },
                     {
                         "glob": "**/*",
                         "input": "apps/electron-backend/native/build/Release",
@@ -96,6 +105,12 @@
                 "tsConfig": "apps/electron-backend/tsconfig.app.json",
                 "assets": [
                     "apps/electron-backend/src/assets",
+                    {
+                        "glob": "**/*",
+                        "input": "apps/electron-backend/dist/workers",
+                        "output": "workers",
+                        "ignore": ["**/*.map"]
+                    },
                     {
                         "glob": "**/*",
                         "input": "apps/electron-backend/native/build/Release",
