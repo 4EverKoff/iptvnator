@@ -1,8 +1,6 @@
 import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import {
-    PortalCatalogSortMode,
-} from '@iptvnator/portal/shared/util';
+import { PortalCatalogSortMode } from '@iptvnator/portal/shared/util';
 import {
     XtreamPlaylistData,
     XtreamStore,
@@ -161,12 +159,14 @@ describe('XtreamCatalogFacadeService', () => {
     });
 
     it('restores saved sort mode, sets the selected category, and loads positions once per playlist', () => {
-        localStorage.setItem('xtream-category-sort-mode', 'name-asc');
+        localStorage.setItem('xtream-category-sort-mode', 'rating-desc');
 
         service.initialize('42');
         service.initialize('77');
 
-        expect(xtreamStore.setContentSortMode).toHaveBeenCalledWith('name-asc');
+        expect(xtreamStore.setContentSortMode).toHaveBeenCalledWith(
+            'rating-desc'
+        );
         expect(xtreamStore.setSelectedCategory).toHaveBeenLastCalledWith(77);
         expect(xtreamStore.loadAllPositions).toHaveBeenCalledTimes(1);
         expect(xtreamStore.loadAllPositions).toHaveBeenCalledWith('playlist-1');
@@ -181,13 +181,13 @@ describe('XtreamCatalogFacadeService', () => {
     });
 
     it('persists sort mode changes and delegates them to the store', () => {
-        service.setContentSortMode('name-desc');
+        service.setContentSortMode('rating-desc');
 
         expect(xtreamStore.setContentSortMode).toHaveBeenCalledWith(
-            'name-desc'
+            'rating-desc'
         );
         expect(localStorage.getItem('xtream-category-sort-mode')).toBe(
-            'name-desc'
+            'rating-desc'
         );
     });
 });

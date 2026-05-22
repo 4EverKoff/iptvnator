@@ -24,6 +24,7 @@ import {
     fetchXtreamSeriesFixture,
     fetchXtreamVodFixture,
     getXtreamDateValue,
+    getXtreamRatingValue,
     getXtreamTitle,
 } from './portal-mock-fixtures';
 
@@ -126,6 +127,20 @@ test.describe('Electron Catalog Sorting', () => {
             .sort(collator.compare)
             .reverse()
             .slice(0, visibleComparisonSize);
+        const expectedVodRatingDesc = [...vodFixture.items]
+            .sort((left, right) => {
+                const byRating =
+                    getXtreamRatingValue(right) - getXtreamRatingValue(left);
+                return (
+                    byRating ||
+                    collator.compare(
+                        getXtreamTitle(left),
+                        getXtreamTitle(right)
+                    )
+                );
+            })
+            .map((item) => getXtreamTitle(item))
+            .slice(0, visibleComparisonSize);
         const expectedSeriesNameAsc = [...seriesFixture.items]
             .map((item) => getXtreamTitle(item))
             .sort(collator.compare)
@@ -154,6 +169,12 @@ test.describe('Electron Catalog Sorting', () => {
 
             await setContentSortMode(app.mainWindow, 'Name Z-A');
             await expectVisibleGridTitles(app.mainWindow, expectedVodNameDesc);
+
+            await setContentSortMode(app.mainWindow, 'Sort by Rating');
+            await expectVisibleGridTitles(
+                app.mainWindow,
+                expectedVodRatingDesc
+            );
 
             await openWorkspaceSection(app.mainWindow, 'Series');
             await clickCategoryByNameExact(
@@ -370,6 +391,7 @@ async function setContentSortMode(
         | 'Date Added (Oldest First)'
         | 'Name A-Z'
         | 'Name Z-A'
+        | 'Sort by Rating'
 ): Promise<void> {
     await page.getByRole('button', { name: 'Sort content' }).click();
     await page.getByRole('menuitem', { name: label, exact: true }).click();

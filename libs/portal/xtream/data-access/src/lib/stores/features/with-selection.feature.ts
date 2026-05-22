@@ -21,7 +21,8 @@ export type XtreamCategorySortMode =
     | 'date-desc'
     | 'date-asc'
     | 'name-asc'
-    | 'name-desc';
+    | 'name-desc'
+    | 'rating-desc';
 
 /**
  * Selection state for managing UI selection and pagination
@@ -97,6 +98,9 @@ interface XtreamSelectionItem {
         readonly name?: string;
     };
     readonly name?: string;
+    readonly rating?: number | string;
+    readonly rating_imdb?: number | string;
+    readonly rating_kinopoisk?: number | string;
     readonly series_id?: string | number;
     readonly stream_id?: string | number;
     readonly title?: string;
@@ -137,6 +141,33 @@ export function withSelection() {
                         : item.added;
                 return parseInt(value ?? '', 10) || 0;
             };
+            const getItemTitle = (item: XtreamSelectionItem): string =>
+                item.title ?? item.name ?? '';
+            const toNumericRating = (value: unknown): number => {
+                if (typeof value === 'number' && Number.isFinite(value)) {
+                    return value;
+                }
+
+                if (typeof value !== 'string') {
+                    return Number.NEGATIVE_INFINITY;
+                }
+
+                const rating = Number.parseFloat(value.trim());
+                return Number.isFinite(rating)
+                    ? rating
+                    : Number.NEGATIVE_INFINITY;
+            };
+            const getItemRating = (item: XtreamSelectionItem): number => {
+                const info = Array.isArray(item.info) ? null : item.info;
+                return Math.max(
+                    toNumericRating(item.rating_imdb),
+                    toNumericRating(item.rating),
+                    toNumericRating(item.rating_kinopoisk),
+                    toNumericRating(info?.rating_imdb),
+                    toNumericRating(info?.rating),
+                    toNumericRating(info?.rating_kinopoisk)
+                );
+            };
 
             const sortByMode = (
                 items: XtreamSelectionItem[],
@@ -157,8 +188,13 @@ export function withSelection() {
                         );
                     }
 
-                    const titleA = a.title ?? a.name ?? '';
-                    const titleB = b.title ?? b.name ?? '';
+                    const titleA = getItemTitle(a);
+                    const titleB = getItemTitle(b);
+                    if (sortMode === 'rating-desc') {
+                        const byRating = getItemRating(b) - getItemRating(a);
+                        return byRating || COLLATOR.compare(titleA, titleB);
+                    }
+
                     const byName = COLLATOR.compare(titleA, titleB);
                     return sortMode === 'name-asc' ? byName : -byName;
                 });

@@ -68,6 +68,17 @@
                                 <mat-icon>check</mat-icon>
                             }
                         </button>
+                        <button
+                            mat-menu-item
+                            (click)="setContentSortMode('rating-desc')"
+                        >
+                            <span>{{
+                                'CHANNELS.SORT_BY_RATING' | translate
+                            }}</span>
+                            @if (contentSortMode() === 'rating-desc') {
+                                <mat-icon>check</mat-icon>
+                            }
+                        </button>
                     </mat-menu>
                 }
                 @if (categoryItemCount() > 0) {

@@ -60,24 +60,30 @@ const TestSelectionStore = signalStore(
                 category_id: '10',
                 title: 'First',
                 added: '4',
+                rating: '5.5',
             },
             {
                 xtream_id: 2,
                 category_id: '10',
                 title: 'Second',
                 added: '3',
+                rating_imdb: '8.2',
             },
             {
                 xtream_id: 3,
                 category_id: '10',
                 title: 'Third',
                 added: '2',
+                info: {
+                    rating: '9.1',
+                },
             },
             {
                 xtream_id: 4,
                 category_id: '10',
                 title: 'Fourth',
                 added: '1',
+                rating: '',
             },
             {
                 xtream_id: 5,
@@ -246,5 +252,16 @@ describe('withSelection', () => {
         expect(
             store.selectItemsFromSelectedCategory().map((item) => item.title)
         ).toEqual(['World News', 'World Sports']);
+    });
+
+    it('sorts VOD category items by rating with unrated items last', () => {
+        store.setSelectedContentType('vod');
+        store.setSelectedCategory(10);
+
+        store.setContentSortMode('rating-desc');
+
+        expect(
+            store.selectItemsFromSelectedCategory().map((item) => item.title)
+        ).toEqual(['Third', 'Second', 'First', 'Fourth']);
     });
 });

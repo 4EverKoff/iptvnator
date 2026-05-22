@@ -7,7 +7,8 @@ export type PortalCatalogSortMode =
     | 'date-desc'
     | 'date-asc'
     | 'name-asc'
-    | 'name-desc';
+    | 'name-desc'
+    | 'rating-desc';
 
 export interface PortalCatalogPlaylistMeta {
     id: string;

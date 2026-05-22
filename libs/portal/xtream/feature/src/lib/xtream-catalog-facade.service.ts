@@ -56,7 +56,8 @@ export class XtreamCatalogFacadeService implements PortalCatalogFacade<
             savedSortMode === 'date-desc' ||
             savedSortMode === 'date-asc' ||
             savedSortMode === 'name-asc' ||
-            savedSortMode === 'name-desc'
+            savedSortMode === 'name-desc' ||
+            savedSortMode === 'rating-desc'
         ) {
             this.xtreamStore.setContentSortMode(savedSortMode);
         }

@@ -26,6 +26,8 @@ export type XtreamVodStream = {
     added?: string;
     category_id?: string;
     name?: string;
+    rating?: number | string;
+    rating_imdb?: number | string;
     stream_id?: number | string;
 };
 
@@ -34,6 +36,8 @@ export type XtreamSeriesItem = {
     category_id?: number | string;
     last_modified?: string;
     name?: string;
+    rating?: number | string;
+    rating_imdb?: number | string;
     releaseDate?: string;
     series_id?: number | string;
 };
@@ -277,6 +281,29 @@ export function getXtreamDateValue(
     }
 
     return Number.parseInt(item.added ?? '', 10) || 0;
+}
+
+export function getXtreamRatingValue(
+    item: XtreamVodStream | XtreamSeriesItem
+): number {
+    const rating = Math.max(
+        parseXtreamRating(item.rating_imdb),
+        parseXtreamRating(item.rating)
+    );
+    return Number.isFinite(rating) ? rating : Number.NEGATIVE_INFINITY;
+}
+
+function parseXtreamRating(value: unknown): number {
+    if (typeof value === 'number' && Number.isFinite(value)) {
+        return value;
+    }
+
+    if (typeof value !== 'string') {
+        return Number.NEGATIVE_INFINITY;
+    }
+
+    const rating = Number.parseFloat(value.trim());
+    return Number.isFinite(rating) ? rating : Number.NEGATIVE_INFINITY;
 }
 
 export function getStalkerTitle(item: StalkerContentItem): string {
